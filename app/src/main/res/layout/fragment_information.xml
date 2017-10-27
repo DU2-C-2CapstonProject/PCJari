@@ -7,14 +7,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="정보"
-        android:textSize="17dp"/>
+        android:textSize="17sp"/>
     <TextView
         android:id="@+id/textView_InfoNotice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:text="공지사항"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textColor="#000000"
         android:textStyle="bold"/>
 
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:text="버전정보"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textColor="#000000"
         android:textStyle="bold"/>
 
@@ -34,14 +34,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
         android:text="설정"
-        android:textSize="17dp"/>
+        android:textSize="17sp"/>
     <TextView
         android:id="@+id/textView_SettingsFrontPage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:text="첫 화면"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textColor="#3273e4"
         android:textStyle="bold"/>
 
@@ -79,23 +79,24 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
         android:text="기타"
-        android:textSize="17dp"/>
+        android:textSize="17sp"/>
     <TextView
         android:id="@+id/textView_Connect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:text="문의하기"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textColor="#000000"
         android:textStyle="bold"/>
     <TextView
         android:id="@+id/textView_InfoUpload"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="15dp"
         android:text="제보하기"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textColor="#000000"
         android:textStyle="bold"/>
 </LinearLayout>
