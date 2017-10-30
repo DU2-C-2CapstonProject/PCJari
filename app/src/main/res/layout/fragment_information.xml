@@ -2,21 +2,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/textView_Info"
+
+        <TextView
+            android:id="@+id/textView_Info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="정보"
+            android:textSize="17sp"/>
+        <TextView
+            android:id="@+id/textView_InfoNotice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="공지사항"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:textStyle="bold"/>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="정보"
-        android:textSize="17sp"/>
-    <TextView
-        android:id="@+id/textView_InfoNotice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:text="공지사항"
-        android:textSize="20sp"
-        android:textColor="#000000"
-        android:textStyle="bold"/>
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="#c7c7c7" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textView_InfoVersion"
@@ -28,11 +42,23 @@
         android:textColor="#000000"
         android:textStyle="bold"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="13dp">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="#c7c7c7" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/textView_Settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
         android:text="설정"
         android:textSize="17sp"/>
     <TextView
@@ -71,8 +97,19 @@
             android:checked="false"
             android:text="즐겨찾기"/>
     </RadioGroup>
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="#c7c7c7" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/textView_Others"
         android:layout_width="match_parent"
@@ -89,6 +126,19 @@
         android:textSize="20sp"
         android:textColor="#000000"
         android:textStyle="bold"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="#c7c7c7" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/textView_InfoUpload"
         android:layout_width="match_parent"
@@ -99,4 +149,17 @@
         android:textSize="20sp"
         android:textColor="#000000"
         android:textStyle="bold"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="#c7c7c7" />
+    </LinearLayout>
+
 </LinearLayout>
