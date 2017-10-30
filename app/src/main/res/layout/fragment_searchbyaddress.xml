@@ -16,12 +16,12 @@
         <Spinner
             android:id="@+id/spinner2"
             android:layout_width="121dp"
-            android:layout_height="match_parent" />
+            android:layout_height="38dp" />
 
         <Spinner
             android:id="@+id/spinner3"
             android:layout_width="147dp"
-            android:layout_height="match_parent" />
+            android:layout_height="38dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -34,7 +34,8 @@
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:hint="@string/title_search" />
+            android:hint="@string/title_search"
+            android:privateImeOptions="defaultInputmode=korean" />
 
         <Button
             android:id="@+id/button_search"
