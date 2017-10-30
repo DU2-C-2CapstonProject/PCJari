@@ -15,7 +15,7 @@ import com.example.capston.pcjari.R;
 public class DetailedInformationFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        getActivity().setTitle("즐겨찾기");
+        getActivity().setTitle("매장 상세");
 
         View view = inflater.inflate(R.layout.fragment_detailedinformation, container, false);
 
