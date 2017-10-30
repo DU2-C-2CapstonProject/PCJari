@@ -3,8 +3,10 @@ package com.example.capston.pcjari;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 import com.example.capston.pcjari.fragment.FavoriteFragment;
 import com.example.capston.pcjari.fragment.InformationFragment;
@@ -46,5 +48,4 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
-
 }
