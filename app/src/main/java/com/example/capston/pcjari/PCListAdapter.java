@@ -42,18 +42,20 @@ public class PCListAdapter extends BaseAdapter{
             convertView = inflater.inflate(R.layout.pc_list_view, parent, false);
         }
 
-        ImageView iv_img = (ImageView) convertView.findViewById(R.id.iv_img) ;
-        TextView pc_name = (TextView) convertView.findViewById(R.id.pc_name) ;
+        ImageView pc_img = (ImageView) convertView.findViewById(R.id.pc_img) ;
+        TextView pc_title = (TextView) convertView.findViewById(R.id.pc_title) ;
         TextView pc_address = (TextView) convertView.findViewById(R.id.pc_address) ;
         TextView pc_price = (TextView) convertView.findViewById(R.id.pc_price) ;
         TextView pc_card = (TextView) convertView.findViewById(R.id.pc_card) ;
         ImageView pc_favoriteMark = (ImageView) convertView.findViewById(R.id.favoriteMark);
-        TextView pc;
+        TextView pc_spaceSeat = (TextView) convertView.findViewById(R.id.pc_spaceSeat);
+        TextView pc_usingSeat = (TextView) convertView.findViewById(R.id.pc_usingSeat);
+        TextView pc_totalSeat = (TextView) convertView.findViewById(R.id.pc_totalSeat);
 
         PCListItem pcItem = getItem(position);
 
-        iv_img.setImageDrawable(pcItem.getIcon());
-        pc_name.setText(pcItem.getTitle());
+        pc_img.setImageDrawable(pcItem.getIcon());
+        pc_title.setText(pcItem.getTitle());
         pc_address.setText(pcItem.getAddress());
         pc_price.setText(String.valueOf(pcItem.getPrice()+"원"));
 
@@ -69,10 +71,18 @@ public class PCListAdapter extends BaseAdapter{
             pc_favoriteMark.setVisibility(View.INVISIBLE);
         }
 
+        pc_spaceSeat.setText(String.valueOf(pcItem.getSpaceSeat()));
+        pc_usingSeat.setText(String.valueOf(pcItem.getUsingSeat()));
+        pc_totalSeat.setText(String.valueOf(pcItem.getTotalSeat()));
+
         return convertView;
     }
 
-    public void addItem(Drawable img, String name, String address, int price, boolean card, boolean favorite) {
+    public void addItem(PCListItem pcItem) {
+        pcItems.add(pcItem);
+    }
+
+    public void addItem(Drawable img, String name, String address, int price, boolean card, boolean favorite, int spaceSeat, int usingSeat, int totalSeat) {
         PCListItem pcItem = new PCListItem();
 
         pcItem.setIcon(img);
@@ -81,6 +91,9 @@ public class PCListAdapter extends BaseAdapter{
         pcItem.setPrice(price);
         pcItem.setCard(card);
         pcItem.setFavorite(favorite);
+        pcItem.setSpaceSeat(spaceSeat);
+        pcItem.setUsingSeat(usingSeat);
+        pcItem.setTotalSeat(totalSeat);
 
         pcItems.add(pcItem);
     }

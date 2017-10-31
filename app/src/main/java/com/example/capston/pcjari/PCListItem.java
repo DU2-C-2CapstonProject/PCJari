@@ -19,8 +19,13 @@ public class PCListItem {
     private int price;
     private boolean card;
 
+    private double location_x;
+    private double location_y;
+
     private int totalSeat;
     private int spaceSeat;
+    private int usingSeat;
+
     private boolean favorite = false;
 
 
@@ -74,6 +79,18 @@ public class PCListItem {
 
     public void setSpaceSeat(int spaceSeat) {
         this.spaceSeat = spaceSeat;
+    }
+
+    public void setUsingSeat(int usingSeat) {
+        this.usingSeat = usingSeat;
+    }
+
+    public void setLocation_x(double location_x) {
+        this.location_x = location_x;
+    }
+
+    public void setLocation_y(double location_y) {
+        this.location_y = location_y;
     }
 
     public void setFavorite(boolean favorite) {
@@ -131,6 +148,18 @@ public class PCListItem {
 
     public int getSpaceSeat() {
         return spaceSeat;
+    }
+
+    public int getUsingSeat() {
+        return usingSeat;
+    }
+
+    public double getLocation_x() {
+        return location_x;
+    }
+
+    public double getLocation_y() {
+        return location_y;
     }
 
     public boolean isFavorite() {
