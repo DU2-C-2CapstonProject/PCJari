@@ -15,8 +15,8 @@ import java.util.ArrayList;
  * Created by KangSeungho on 2017-10-30.
  */
 
-public class ListViewAdapter extends BaseAdapter{
-    private ArrayList<ListViewItem> pcItems = new ArrayList<>();
+public class PCListAdapter extends BaseAdapter{
+    private ArrayList<PCListItem> pcItems = new ArrayList<>();
 
     @Override
     public int getCount() {
@@ -24,7 +24,7 @@ public class ListViewAdapter extends BaseAdapter{
     }
 
     @Override
-    public ListViewItem getItem(int position) {
+    public PCListItem getItem(int position) {
         return pcItems.get(position);
     }
 
@@ -47,8 +47,10 @@ public class ListViewAdapter extends BaseAdapter{
         TextView pc_address = (TextView) convertView.findViewById(R.id.pc_address) ;
         TextView pc_price = (TextView) convertView.findViewById(R.id.pc_price) ;
         TextView pc_card = (TextView) convertView.findViewById(R.id.pc_card) ;
+        ImageView pc_favoriteMark = (ImageView) convertView.findViewById(R.id.favoriteMark);
+        TextView pc;
 
-        ListViewItem pcItem = getItem(position);
+        PCListItem pcItem = getItem(position);
 
         iv_img.setImageDrawable(pcItem.getIcon());
         pc_name.setText(pcItem.getTitle());
@@ -61,11 +63,30 @@ public class ListViewAdapter extends BaseAdapter{
             pc_card.setVisibility(View.INVISIBLE);
         }
 
+        if(pcItem.isFavorite()) {
+            pc_favoriteMark.setVisibility(View.VISIBLE);
+        } else {
+            pc_favoriteMark.setVisibility(View.INVISIBLE);
+        }
+
         return convertView;
     }
 
+    public void addItem(Drawable img, String name, String address, int price, boolean card, boolean favorite) {
+        PCListItem pcItem = new PCListItem();
+
+        pcItem.setIcon(img);
+        pcItem.setTitle(name);
+        pcItem.setAddress(address);
+        pcItem.setPrice(price);
+        pcItem.setCard(card);
+        pcItem.setFavorite(favorite);
+
+        pcItems.add(pcItem);
+    }
+
     public void addItem(Drawable img, String name, String address, int price, boolean card) {
-        ListViewItem pcItem = new ListViewItem();
+        PCListItem pcItem = new PCListItem();
 
         pcItem.setIcon(img);
         pcItem.setTitle(name);

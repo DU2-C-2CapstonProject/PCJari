@@ -6,13 +6,12 @@ package com.example.capston.pcjari.fragment;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.example.capston.pcjari.ListViewAdapter;
+import com.example.capston.pcjari.PCListAdapter;
 import com.example.capston.pcjari.R;
 
 public class SearchByMeFragment extends Fragment {
@@ -35,7 +34,7 @@ public class SearchByMeFragment extends Fragment {
     }
 
     private void dataSetting(){
-        ListViewAdapter mMyAdapter = new ListViewAdapter();
+        PCListAdapter mMyAdapter = new PCListAdapter();
 
         /*
         mMyAdapter.addItem(ContextCompat.getDrawable(getContext(), R.drawable.po1), "바닐라PC방",  "경기도 성남시 수정구");
