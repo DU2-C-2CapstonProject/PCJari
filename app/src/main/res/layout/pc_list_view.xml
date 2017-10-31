@@ -36,7 +36,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_name"
+                        android:id="@+id/pc_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="PC방명"
@@ -44,7 +44,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tv_contents"
+                        android:id="@+id/pc_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
@@ -53,7 +53,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/maxSeat"
                     android:layout_width="65dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"
@@ -65,15 +65,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:layout_marginLeft="5dp">
+
                 <TextView
+                    android:id="@+id/pc_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="시간당 요금" />
+
                 <TextView
+                    android:id="@+id/pc_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="카드가능" />
+                    android:text="카드 가능"
+                    android:visibility="visible"/>
 
             </LinearLayout>
         </LinearLayout>

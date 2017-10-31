@@ -43,25 +43,35 @@ public class ListViewAdapter extends BaseAdapter{
         }
 
         ImageView iv_img = (ImageView) convertView.findViewById(R.id.iv_img) ;
-        TextView tv_name = (TextView) convertView.findViewById(R.id.tv_name) ;
-        TextView tv_contents = (TextView) convertView.findViewById(R.id.tv_contents) ;
+        TextView pc_name = (TextView) convertView.findViewById(R.id.pc_name) ;
+        TextView pc_address = (TextView) convertView.findViewById(R.id.pc_address) ;
+        TextView pc_price = (TextView) convertView.findViewById(R.id.pc_price) ;
+        TextView pc_card = (TextView) convertView.findViewById(R.id.pc_card) ;
 
         ListViewItem pcItem = getItem(position);
 
         iv_img.setImageDrawable(pcItem.getIcon());
-        tv_name.setText(pcItem.getTitle());
-        tv_contents.setText(pcItem.getDesc());
+        pc_name.setText(pcItem.getTitle());
+        pc_address.setText(pcItem.getAddress());
+        pc_price.setText(String.valueOf(pcItem.getPrice()+"원"));
 
+        if(pcItem.isCard()) {
+            pc_card.setVisibility(View.VISIBLE);
+        } else {
+            pc_card.setVisibility(View.INVISIBLE);
+        }
 
         return convertView;
     }
 
-    public void addItem(Drawable img, String name, String contents) {
+    public void addItem(Drawable img, String name, String address, int price, boolean card) {
         ListViewItem pcItem = new ListViewItem();
 
         pcItem.setIcon(img);
         pcItem.setTitle(name);
-        pcItem.setDesc(contents);
+        pcItem.setAddress(address);
+        pcItem.setPrice(price);
+        pcItem.setCard(card);
 
         pcItems.add(pcItem);
     }
