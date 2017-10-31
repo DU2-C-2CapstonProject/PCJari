@@ -36,7 +36,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/pc_name"
+                        android:id="@+id/tv_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="PC방명"
@@ -44,7 +44,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/pc_address"
+                        android:id="@+id/tv_contents"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
@@ -52,33 +52,75 @@
                         android:textSize="15sp" />
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/maxSeat"
-                    android:layout_width="65dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="5dp"
-                    android:text="좌석/좌석" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="3dp">
 
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:layout_marginLeft="5dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="시간당 요금" />
 
-                <TextView
-                    android:id="@+id/pc_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="시간당 요금" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="카드가능" />
+                    </LinearLayout>
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/pc_card"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:text="카드 가능"
-                    android:visibility="visible"/>
+                <RelativeLayout
+                    android:layout_width="60dp"
+                    android:layout_height="73dp"
+                    android:layout_margin="5dp">
+
+                    <TextView
+                        android:id="@+id/textView_pcLeft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="20"
+                        android:textSize="40sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true">
+
+                        <TextView
+                            android:id="@+id/textView_pcUsing"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="5dp"
+                            android:text="000" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="5dp"
+                            android:text="/" />
+
+                        <TextView
+                            android:id="@+id/textView_pcTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignEnd="@+id/textView_pcLeft"
+                            android:layout_alignTop="@+id/linearLayout"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="1"
+                            android:text="000" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
 
             </LinearLayout>
         </LinearLayout>
