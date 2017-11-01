@@ -4,9 +4,12 @@ package com.example.capston.pcjari.fragment;
  * Created by 94tig on 2017-10-27.
  */
 
-import android.support.v4.app.Fragment;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +25,7 @@ import com.example.capston.pcjari.R;
 public class SearchByAddressFragment extends Fragment {
     private ListView pcListView;
     private PCListAdapter pcListAdapter;
+    PCListItem pcItem[] = new PCListItem[7];
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,7 +51,15 @@ public class SearchByAddressFragment extends Fragment {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             PCListItem pc = pcListAdapter.getItem(position);
-            Toast.makeText(getContext(), pc.getTitle(), Toast.LENGTH_SHORT).show();
+
+            Bundle args = new Bundle();
+            args.putSerializable("PCItem", pc);
+            Fragment detailedInformationFragment = new DetailedInformationFragment();
+            detailedInformationFragment.setArguments(args);
+            getFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container, detailedInformationFragment, "PCItemTag")
+                    .addToBackStack("PCItemTag").commit();
         }
     };
 
@@ -55,18 +67,53 @@ public class SearchByAddressFragment extends Fragment {
         @Override
         public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
             PCListItem pc = pcListAdapter.getItem(position);
-            Toast.makeText(getContext(), String.valueOf(pc.getTotalSeat()), Toast.LENGTH_SHORT).show();
+
+            pc.setFavorite(!pc.isFavorite());
+            if(pc.isFavorite())
+                Toast.makeText(getContext(), "즐겨찾기에 추가 되었습니다.", Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(getContext(), "즐겨찾기에서 삭제 되었습니다.", Toast.LENGTH_SHORT).show();
+
+            pcListView.setAdapter(pcListAdapter);
+
+            //request(pc);          //삭제 Alert를 이용하여 추가,삭제
 
             return true;
         }
     };
 
-    private void dataSetting(){
-        PCListItem pcItem[] = new PCListItem[7];
+    /*
+    // 삭제 Alert
+    private void request(final PCListItem pc) {
+        String title = "즐겨찾기";
+        String message = "즐겨찾기를 추가/삭제 하시겠습니까?";
 
+        AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
+        dialog.setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("예", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        pc.setFavorite(!pc.isFavorite());
+                        pcListView.setAdapter(pcListAdapter);
+                    }
+                })
+                .setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+        dialog.create();
+        dialog.show();
+    }
+    */
+
+    private void dataSetting(){
         pcItem[0] = new PCListItem();
         pcItem[0].setIcon(ContextCompat.getDrawable(getContext(), R.drawable.po1));
         pcItem[0].setTitle("바닐라PC방");
+        pcItem[0].setNotice("12월 1일 전 좌석 그래픽카드 GTX 1080으로 업그레이드");
         pcItem[0].setAddress("경기도 성남시 수정구");
         pcItem[0].setPrice(1000);
         pcItem[0].setCard(true);
@@ -74,10 +121,13 @@ public class SearchByAddressFragment extends Fragment {
         pcItem[0].setSpaceSeat(12);
         pcItem[0].setUsingSeat(50);
         pcItem[0].setTotalSeat(62);
+        pcItem[0].setLocation_x(37.454853);
+        pcItem[0].setLocation_y(127.127196);
 
         pcItem[1] = new PCListItem();
         pcItem[1].setIcon(ContextCompat.getDrawable(getContext(), R.drawable.po2));
         pcItem[1].setTitle("더캠프 PC방 동서울대점");
+        pcItem[1].setNotice("더캠프 공지");
         pcItem[1].setAddress("경기도 성남시 수정구");
         pcItem[1].setPrice(1000);
         pcItem[1].setCard(false);
@@ -85,21 +135,27 @@ public class SearchByAddressFragment extends Fragment {
         pcItem[1].setSpaceSeat(8);
         pcItem[1].setUsingSeat(72);
         pcItem[1].setTotalSeat(80);
+        pcItem[1].setLocation_x(37.459219);
+        pcItem[1].setLocation_y(127.126464);
 
         pcItem[2] = new PCListItem();
         pcItem[2].setIcon(ContextCompat.getDrawable(getContext(), R.drawable.po3));
-        pcItem[2].setTitle("허브PC방");
+        pcItem[2].setTitle("갤러리PC방");
+        pcItem[2].setNotice("갤러리 공지");
         pcItem[2].setAddress("경기도 성남시 수정구");
-        pcItem[2].setPrice(1200);
+        pcItem[2].setPrice(1000);
         pcItem[2].setCard(true);
         pcItem[2].setFavorite(false);
         pcItem[2].setSpaceSeat(2);
         pcItem[2].setUsingSeat(38);
         pcItem[2].setTotalSeat(40);
+        pcItem[2].setLocation_x(37.4574837);
+        pcItem[2].setLocation_y(127.1256681);
 
         pcItem[3] = new PCListItem();
         pcItem[3].setIcon(ContextCompat.getDrawable(getContext(), R.drawable.po4));
         pcItem[3].setTitle("당근PC방");
+        pcItem[3].setNotice("당근 공지");
         pcItem[3].setAddress("경기도 성남시 수정구");
         pcItem[3].setPrice(1000);
         pcItem[3].setCard(true);
@@ -107,10 +163,13 @@ public class SearchByAddressFragment extends Fragment {
         pcItem[3].setSpaceSeat(5);
         pcItem[3].setUsingSeat(55);
         pcItem[3].setTotalSeat(60);
+        pcItem[3].setLocation_x(37.454598);
+        pcItem[3].setLocation_y(127.127243);
 
         pcItem[4] = new PCListItem();
         pcItem[4].setIcon(ContextCompat.getDrawable(getContext(), R.drawable.po5));
         pcItem[4].setTitle("쓰리팝PC까페");
+        pcItem[4].setNotice("쓰리팝 공지");
         pcItem[4].setAddress("경기도 성남시 수정구");
         pcItem[4].setPrice(1000);
         pcItem[4].setCard(true);
@@ -118,10 +177,13 @@ public class SearchByAddressFragment extends Fragment {
         pcItem[4].setSpaceSeat(38);
         pcItem[4].setUsingSeat(12);
         pcItem[4].setTotalSeat(50);
+        pcItem[4].setLocation_x(37.463818);
+        pcItem[4].setLocation_y(127.140416);
 
         pcItem[5] = new PCListItem();
         pcItem[5].setIcon(ContextCompat.getDrawable(getContext(), R.drawable.po6));
-        pcItem[5].setTitle("이네이처PC방태평점");
+        pcItem[5].setTitle("허브 PC방");
+        pcItem[5].setNotice("허브 공지");
         pcItem[5].setAddress("경기도 성남시 수정구");
         pcItem[5].setPrice(1000);
         pcItem[5].setCard(true);
@@ -129,10 +191,13 @@ public class SearchByAddressFragment extends Fragment {
         pcItem[5].setSpaceSeat(26);
         pcItem[5].setUsingSeat(22);
         pcItem[5].setTotalSeat(48);
+        pcItem[5].setLocation_x(37.4559859);
+        pcItem[5].setLocation_y(127.1254249);
 
         pcItem[6] = new PCListItem();
         pcItem[6].setIcon(ContextCompat.getDrawable(getContext(), R.drawable.po7));
         pcItem[6].setTitle("라이온PC방 위례본점");
+        pcItem[6].setNotice("라이온 공지");
         pcItem[6].setAddress("경기도 성남시 수정구");
         pcItem[6].setPrice(1000);
         pcItem[6].setCard(true);
@@ -140,6 +205,8 @@ public class SearchByAddressFragment extends Fragment {
         pcItem[6].setSpaceSeat(4);
         pcItem[6].setUsingSeat(36);
         pcItem[6].setTotalSeat(40);
+        pcItem[6].setLocation_x(37.472175);
+        pcItem[6].setLocation_y(127.143076);
 
         for(PCListItem pc : pcItem)
             pcListAdapter.addItem(pc);
