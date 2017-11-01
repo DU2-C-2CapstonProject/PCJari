@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import java.io.Serializable;
 
 public class PCListItem implements Serializable{
+
     private int pcID;
     private String notice;
     private Drawable icon;

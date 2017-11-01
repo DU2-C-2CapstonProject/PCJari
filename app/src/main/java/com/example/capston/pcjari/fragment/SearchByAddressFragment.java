@@ -4,6 +4,8 @@ package com.example.capston.pcjari.fragment;
  * Created by 94tig on 2017-10-27.
  */
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.capston.pcjari.DetailedInformationActivity;
 import com.example.capston.pcjari.MainActivity;
 import com.example.capston.pcjari.PCListAdapter;
 import com.example.capston.pcjari.PCListItem;
@@ -52,6 +55,11 @@ public class SearchByAddressFragment extends Fragment {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             PCListItem pc = pcListAdapter.getItem(position);
 
+            Intent intent = new Intent(getContext(), DetailedInformationActivity.class);
+            //intent.putExtra("PCItem", pc);
+            startActivity(intent);
+
+            /*
             Bundle args = new Bundle();
             args.putSerializable("PCItem", pc);
             Fragment detailedInformationFragment = new DetailedInformationFragment();
@@ -60,6 +68,7 @@ public class SearchByAddressFragment extends Fragment {
                     .beginTransaction()
                     .replace(R.id.container, detailedInformationFragment, "PCItemTag")
                     .addToBackStack("PCItemTag").commit();
+            */
         }
     };
 
@@ -81,33 +90,6 @@ public class SearchByAddressFragment extends Fragment {
             return true;
         }
     };
-
-    /*
-    // 삭제 Alert
-    private void request(final PCListItem pc) {
-        String title = "즐겨찾기";
-        String message = "즐겨찾기를 추가/삭제 하시겠습니까?";
-
-        AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
-        dialog.setTitle(title)
-                .setMessage(message)
-                .setPositiveButton("예", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        pc.setFavorite(!pc.isFavorite());
-                        pcListView.setAdapter(pcListAdapter);
-                    }
-                })
-                .setNegativeButton("아니오", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                });
-        dialog.create();
-        dialog.show();
-    }
-    */
 
     private void dataSetting(){
         pcItem[0] = new PCListItem();
