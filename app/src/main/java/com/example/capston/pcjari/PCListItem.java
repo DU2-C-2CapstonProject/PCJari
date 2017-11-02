@@ -6,9 +6,12 @@ package com.example.capston.pcjari;
 
 import android.graphics.drawable.Drawable;
 
-public class PCListItem {
+import java.io.Serializable;
+
+public class PCListItem implements Serializable{
+
     private int pcID;
-    private String info;
+    private String notice;
     private Drawable icon;
     private String title;
     private String address;
@@ -33,8 +36,8 @@ public class PCListItem {
         this.pcID = pcID;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
+    public void setNotice(String notice) {
+        this.notice = notice;
     }
 
     public void setIcon(Drawable icon) {
@@ -102,8 +105,8 @@ public class PCListItem {
         return pcID;
     }
 
-    public String getInfo() {
-        return info;
+    public String getNotice() {
+        return notice;
     }
 
     public Drawable getIcon() {
