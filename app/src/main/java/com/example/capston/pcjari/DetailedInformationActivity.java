@@ -20,6 +20,8 @@ public class DetailedInformationActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailedinformation);
 
+        this.setTitle("매장 상세");
+
         Intent intent = getIntent();
         pc = StaticData.pcItems[intent.getIntExtra("Po", 0)];
 
