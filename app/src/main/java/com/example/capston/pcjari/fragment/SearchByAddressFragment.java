@@ -24,11 +24,12 @@ import com.example.capston.pcjari.MainActivity;
 import com.example.capston.pcjari.PCListAdapter;
 import com.example.capston.pcjari.PCListItem;
 import com.example.capston.pcjari.R;
+import com.example.capston.pcjari.StaticData;
 
 public class SearchByAddressFragment extends Fragment {
     private ListView pcListView;
     private PCListAdapter pcListAdapter;
-    PCListItem pcItem[] = new PCListItem[7];
+    PCListItem pcItem[] = StaticData.pcItems;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,10 +54,8 @@ public class SearchByAddressFragment extends Fragment {
     AdapterView.OnItemClickListener shortListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            PCListItem pc = pcListAdapter.getItem(position);
-
             Intent intent = new Intent(getContext(), DetailedInformationActivity.class);
-            //intent.putExtra("PCItem", pc);
+            intent.putExtra("Po", position);
             startActivity(intent);
 
             /*
@@ -84,8 +83,6 @@ public class SearchByAddressFragment extends Fragment {
                 Toast.makeText(getContext(), "즐겨찾기에서 삭제 되었습니다.", Toast.LENGTH_SHORT).show();
 
             pcListView.setAdapter(pcListAdapter);
-
-            //request(pc);          //삭제 Alert를 이용하여 추가,삭제
 
             return true;
         }

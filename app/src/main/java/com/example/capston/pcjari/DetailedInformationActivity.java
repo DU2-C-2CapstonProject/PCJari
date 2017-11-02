@@ -13,19 +13,19 @@ import com.example.capston.pcjari.fragment.SearchByAddressFragment;
 
 public class DetailedInformationActivity extends AppCompatActivity{
     PCListItem pc;
-    TextView notice;
+    TextView notice, address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailedinformation);
 
-
         Intent intent = getIntent();
-        //pc = (PCListItem) intent.getSerializableExtra("PCItem");
+        pc = StaticData.pcItems[intent.getIntExtra("Po", 0)];
 
-
-        //notice = (TextView) findViewById(R.id.di_notice);
-        //notice.setText(pc.getNotice());
+        notice = (TextView) findViewById(R.id.di_notice);
+        address = (TextView) findViewById(R.id.di_address);
+        notice.setText(pc.getNotice());
+        address.setText(pc.getAddress());
     }
 }
