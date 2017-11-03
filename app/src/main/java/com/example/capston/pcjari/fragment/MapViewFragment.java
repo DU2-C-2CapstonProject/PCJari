@@ -12,13 +12,12 @@ import android.view.ViewGroup;
 
 import com.example.capston.pcjari.R;
 
-public class DetailedInformationFragment extends android.support.v4.app.Fragment {
-
+public class MapViewFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        getActivity().setTitle("매장 상세");
+        getActivity().setTitle("지도보기");
 
-        View view = inflater.inflate(R.layout.fragment_detailedinformation, container, false);
+        View view = inflater.inflate(R.layout.fragment_mapview, container, false);
 
         return view;
     }
