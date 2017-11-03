@@ -21,10 +21,6 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:windowSoftInputMode="stateHidden|adjustPan">
-        </activity>
-        <activity
-            android:name=".Intro"
-            android:theme="@style/IntroTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

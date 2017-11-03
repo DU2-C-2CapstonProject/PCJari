@@ -1,3 +1,4 @@
+/*
 package com.example.capston.pcjari;
 
 import android.content.Intent;
@@ -33,3 +34,4 @@ public class Intro extends AppCompatActivity {
         handler.removeCallbacks(r);
     }
 }
+*/
