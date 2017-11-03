@@ -16,7 +16,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.capston.pcjari.DetailedInformationActivity;
@@ -26,10 +29,13 @@ import com.example.capston.pcjari.PCListItem;
 import com.example.capston.pcjari.R;
 import com.example.capston.pcjari.StaticData;
 
+import java.util.ArrayList;
+
 public class SearchByAddressFragment extends Fragment {
     private ListView pcListView;
     private PCListAdapter pcListAdapter;
-    PCListItem pcItem[] = StaticData.pcItems;
+    private PCListItem pcItem[] = StaticData.pcItems;
+    private Button selectButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,18 +48,30 @@ public class SearchByAddressFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_searchbyaddress, container, false);
         pcListView = (ListView)view.findViewById(R.id.listview1);
+        selectButton = (Button)view.findViewById(R.id.button_search);
+        selectButton.setOnClickListener(selectListener);
+
         pcListAdapter = new PCListAdapter();
         dataSetting();
 
-        pcListView.setOnItemClickListener(shortListener);
-        pcListView.setOnItemLongClickListener(longListener);
+        pcListView.setOnItemClickListener(ListshortListener);
+        pcListView.setOnItemLongClickListener(ListlongListener);
 
         return view;
     }
 
-    AdapterView.OnItemClickListener shortListener = new AdapterView.OnItemClickListener() {
+    View.OnClickListener selectListener = new View.OnClickListener() {
         @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        public void onClick(View v) {
+            String x = String.valueOf(StaticData.GPS_X);
+            String y = String.valueOf(StaticData.GPS_Y);
+            Toast.makeText(getContext(), "위도 : " + x + ", 경도 : " + y, Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    AdapterView.OnItemClickListener ListshortListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {          //리스트 아이템 클릭했을 때 나오는 이벤트
             Intent intent = new Intent(getContext(), DetailedInformationActivity.class);
             intent.putExtra("Po", position);
             startActivity(intent);
@@ -71,9 +89,9 @@ public class SearchByAddressFragment extends Fragment {
         }
     };
 
-    AdapterView.OnItemLongClickListener longListener = new AdapterView.OnItemLongClickListener() {
+    AdapterView.OnItemLongClickListener ListlongListener = new AdapterView.OnItemLongClickListener() {
         @Override
-        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {       //리스트 아이템 꾹 눌렀을 때 나오는 이벤트
             PCListItem pc = pcListAdapter.getItem(position);
 
             pc.setFavorite(!pc.isFavorite());
