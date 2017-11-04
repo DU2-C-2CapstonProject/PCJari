@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,11 +32,12 @@ import com.example.capston.pcjari.StaticData;
 
 import java.util.ArrayList;
 
-public class SearchByAddressFragment extends Fragment {
+public class SearchByAddressFragment extends Fragment{
     private ListView pcListView;
     private PCListAdapter pcListAdapter;
     private PCListItem pcItem[] = StaticData.pcItems;
     private Button selectButton;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,12 +49,42 @@ public class SearchByAddressFragment extends Fragment {
         getActivity().setTitle("주소로 찾기");
 
         View view = inflater.inflate(R.layout.fragment_searchbyaddress, container, false);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_layout);
         pcListView = (ListView)view.findViewById(R.id.listview1);
         selectButton = (Button)view.findViewById(R.id.button_search);
         selectButton.setOnClickListener(selectListener);
 
         pcListAdapter = new PCListAdapter();
         dataSetting();
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                int random[] = new int[7];
+                for(int i=0; i<7; i++) {
+                    int min=10;
+                    int max=0;
+                    int space = pcListAdapter.getItem(i).getSpaceSeat();
+                    if(space>=0 && space<10)
+                        max=0;
+                    else if(space>=10 && space<20)
+                        max=10;
+                    else if(space>=20 && space<30)
+                        max=20;
+                    else if(space>=30 && space<40)
+                        max=30;
+                    else
+                        max=1;
+                    random[i] = (int) (Math.random() * min) + max;
+
+                    pcListAdapter.getItem(i).setSpaceSeat(random[i]);
+                    pcListAdapter.getItem(i).setUsingSeat(pcListAdapter.getItem(i).getTotalSeat()-random[i]);
+                }
+
+                pcListView.setAdapter(pcListAdapter);
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
         pcListView.setOnItemClickListener(ListshortListener);
         pcListView.setOnItemLongClickListener(ListlongListener);
