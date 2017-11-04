@@ -159,7 +159,7 @@ public class SearchByAddressFragment extends Fragment{
 
         pcItem[1] = new PCListItem();
         pcItem[1].setIcon(ContextCompat.getDrawable(getContext(), R.drawable.po2));
-        pcItem[1].setTitle("더캠프 PC방 동서울대점");
+        pcItem[1].setTitle("더캠프 PC방");
         pcItem[1].setNotice("더캠프 공지");
         pcItem[1].setAddress("경기도 성남시 수정구");
         pcItem[1].setPrice(1000);
