@@ -1,6 +1,7 @@
 package com.example.capston.pcjari;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -14,12 +15,10 @@ import android.widget.TextView;
 public class DetailedInformationActivity extends AppCompatActivity{
     public static final String POSITION = "포지션";
     int position;
-    Intent get_intent, send_intent;
+    Intent get_intent;
     TextView di_notice, di_address, di_tel;
     PCListItem pc;
     ImageView location_mark;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +26,8 @@ public class DetailedInformationActivity extends AppCompatActivity{
         setContentView(R.layout.activity_detailedinformation);
 
         di_notice = (TextView) findViewById(R.id.di_notice);
-        di_address = (TextView)findViewById(R.id.di_address);
-        di_tel = (TextView)findViewById(R.id.di_tel);
+        di_address = (TextView) findViewById(R.id.di_address);
+        di_tel = (TextView) findViewById(R.id.di_tel);
         location_mark = (ImageView) findViewById(R.id.location_mark);
 
         get_intent = getIntent();
@@ -43,9 +42,22 @@ public class DetailedInformationActivity extends AppCompatActivity{
         location_mark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                send_intent = new Intent(getApplicationContext(), MapViewActivity.class);
+                Intent send_intent = new Intent(getApplicationContext(), MapViewActivity.class);
                 send_intent.putExtra(POSITION, position);
                 startActivity(send_intent);
+            }
+        });
+
+        di_tel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String tel_value[] = pc.getTel().split("-");
+                String tel = "tel:";
+                for(String str : tel_value)
+                    tel+=str;
+
+                Intent tel_intent = new Intent(Intent.ACTION_DIAL, Uri.parse(tel));
+                startActivity(tel_intent);
             }
         });
     }
