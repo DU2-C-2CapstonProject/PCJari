@@ -38,8 +38,8 @@ public class GPSTracker extends Service implements LocationListener {
     boolean canGetLocation = false;
 
     Location location; // location
-    double latitude; // latitude
-    double longitude; // longitude
+    double latitude=0; // latitude
+    double longitude=0; // longitude
 
     // The minimum distance to change Updates in meters
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
@@ -226,6 +226,7 @@ public class GPSTracker extends Service implements LocationListener {
         return null;
     }
 
+    /*
     public static String printBundle(Bundle extras) {
         StringBuilder sb = new StringBuilder();
         try {
@@ -248,5 +249,5 @@ public class GPSTracker extends Service implements LocationListener {
         }
         return sb.toString();
     }
-
+    */
 }

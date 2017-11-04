@@ -19,7 +19,6 @@ import com.example.capston.pcjari.fragment.SearchByMeFragment;
 
 
 public class MainActivity extends AppCompatActivity {
-    GPSTracker gps = null;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -56,32 +55,6 @@ public class MainActivity extends AppCompatActivity {
                 ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
             ActivityCompat.requestPermissions( this, new String[] {  android.Manifest.permission.ACCESS_FINE_LOCATION  },
                     0 );
-        }
-
-        //Intent intent = new Intent(this, Intro.class);
-        //startActivity(intent);
-
-        gpsGetLocation();
-    }
-
-    private void gpsGetLocation() {
-        if(gps == null) {
-            gps = new GPSTracker(this);
-        }else{
-            gps.Update();
-        }
-
-        // check if GPS enabled
-        if(gps.canGetLocation()){
-            StaticData.GPS_X = gps.getLatitude();
-            StaticData.GPS_Y = gps.getLongitude();
-            // \n is for new line
-            //Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + StaticData.GPS_X + "\nLong: " + StaticData.GPS_Y, Toast.LENGTH_LONG).show();
-        }else{
-            // can't get location
-            // GPS or Network is not enabled
-            // Ask user to enable GPS/network in settings
-            gps.showSettingsAlert();
         }
     }
 }

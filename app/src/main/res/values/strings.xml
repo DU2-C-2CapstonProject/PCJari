@@ -54,4 +54,8 @@
         <item>성남시</item>
         <item>수원시</item>
     </string-array>
+
+    <string name="title_activity_map_view">MapViewActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

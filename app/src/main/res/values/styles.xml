@@ -8,9 +8,4 @@
         <item name="colorAccent">@color/colorAccent</item>
         <!-- No Title Bar-->
     </style>
-
-    <style name="IntroTheme" parent="Theme.AppCompat.Light">
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowBackground">@drawable/intro_image</item>
-    </style>
 </resources>

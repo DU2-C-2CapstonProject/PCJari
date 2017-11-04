@@ -73,7 +73,7 @@ public class SearchByAddressFragment extends Fragment {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {          //리스트 아이템 클릭했을 때 나오는 이벤트
             Intent intent = new Intent(getContext(), DetailedInformationActivity.class);
-            intent.putExtra("Po", position);
+            intent.putExtra(DetailedInformationActivity.POSITION, position);
             startActivity(intent);
 
             /*
