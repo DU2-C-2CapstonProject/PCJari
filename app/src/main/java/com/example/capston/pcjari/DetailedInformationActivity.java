@@ -3,6 +3,7 @@ package com.example.capston.pcjari;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,7 +19,7 @@ public class DetailedInformationActivity extends AppCompatActivity{
     Intent get_intent;
     TextView di_notice, di_address, di_tel;
     PCListItem pc;
-    ImageView location_mark;
+    ImageView location_mark, imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,15 +30,20 @@ public class DetailedInformationActivity extends AppCompatActivity{
         di_address = (TextView) findViewById(R.id.di_address);
         di_tel = (TextView) findViewById(R.id.di_tel);
         location_mark = (ImageView) findViewById(R.id.location_mark);
+        imageView = (ImageView) findViewById(R.id.imageView);
 
         get_intent = getIntent();
         position = get_intent.getIntExtra(POSITION, 0);
 
         pc = StaticData.pcItems[position];
 
+        ActionBar actionBar = getSupportActionBar();
+
+        actionBar.setTitle(pc.getTitle());
         di_notice.setText(pc.getNotice());
         di_address.setText(pc.getAddress());
         di_tel.setText(pc.getTel());
+        imageView.setImageDrawable(pc.getIcon());
 
         location_mark.setOnClickListener(new View.OnClickListener() {
             @Override
