@@ -144,6 +144,7 @@
                 android:layout_marginLeft="15dp"
                 android:text="전화"/>
             <TextView
+                android:id="@+id/di_tel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"

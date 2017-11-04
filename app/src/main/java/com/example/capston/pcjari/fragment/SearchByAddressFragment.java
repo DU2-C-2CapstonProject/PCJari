@@ -120,6 +120,10 @@ public class SearchByAddressFragment extends Fragment {
         pcItem[0].setTotalSeat(62);
         pcItem[0].setLocation_x(37.454853);
         pcItem[0].setLocation_y(127.127196);
+        pcItem[0].setCpu("i7-7770K");
+        pcItem[0].setRam("16GB");
+        pcItem[0].setVga("GTX-1070");
+        pcItem[0].setTel("031-758-1234");
 
         pcItem[1] = new PCListItem();
         pcItem[1].setIcon(ContextCompat.getDrawable(getContext(), R.drawable.po2));
@@ -134,6 +138,10 @@ public class SearchByAddressFragment extends Fragment {
         pcItem[1].setTotalSeat(80);
         pcItem[1].setLocation_x(37.459219);
         pcItem[1].setLocation_y(127.126464);
+        pcItem[1].setCpu("i7-7770");
+        pcItem[1].setRam("8GB");
+        pcItem[1].setVga("GTX-1060 3GB");
+        pcItem[1].setTel("031-758-1235");
 
         pcItem[2] = new PCListItem();
         pcItem[2].setIcon(ContextCompat.getDrawable(getContext(), R.drawable.po3));
@@ -146,8 +154,12 @@ public class SearchByAddressFragment extends Fragment {
         pcItem[2].setSpaceSeat(2);
         pcItem[2].setUsingSeat(38);
         pcItem[2].setTotalSeat(40);
-        pcItem[2].setLocation_x(37.4574837);
-        pcItem[2].setLocation_y(127.1256681);
+        pcItem[2].setLocation_x(37.457661);
+        pcItem[2].setLocation_y(127.126680);
+        pcItem[2].setCpu("i7-7770K");
+        pcItem[2].setRam("16GB");
+        pcItem[2].setVga("GTX-1070Ti");
+        pcItem[2].setTel("031-758-1236");
 
         pcItem[3] = new PCListItem();
         pcItem[3].setIcon(ContextCompat.getDrawable(getContext(), R.drawable.po4));
@@ -162,6 +174,10 @@ public class SearchByAddressFragment extends Fragment {
         pcItem[3].setTotalSeat(60);
         pcItem[3].setLocation_x(37.454598);
         pcItem[3].setLocation_y(127.127243);
+        pcItem[3].setCpu("i7-7770K");
+        pcItem[3].setRam("16GB");
+        pcItem[3].setVga("GTX-1060 8GB");
+        pcItem[3].setTel("031-758-1237");
 
         pcItem[4] = new PCListItem();
         pcItem[4].setIcon(ContextCompat.getDrawable(getContext(), R.drawable.po5));
@@ -176,6 +192,10 @@ public class SearchByAddressFragment extends Fragment {
         pcItem[4].setTotalSeat(50);
         pcItem[4].setLocation_x(37.463818);
         pcItem[4].setLocation_y(127.140416);
+        pcItem[4].setCpu("i7-7770K");
+        pcItem[4].setRam("16GB");
+        pcItem[4].setVga("GTX-1080");
+        pcItem[4].setTel("031-758-1238");
 
         pcItem[5] = new PCListItem();
         pcItem[5].setIcon(ContextCompat.getDrawable(getContext(), R.drawable.po6));
@@ -188,8 +208,12 @@ public class SearchByAddressFragment extends Fragment {
         pcItem[5].setSpaceSeat(26);
         pcItem[5].setUsingSeat(22);
         pcItem[5].setTotalSeat(48);
-        pcItem[5].setLocation_x(37.4559859);
-        pcItem[5].setLocation_y(127.1254249);
+        pcItem[5].setLocation_x(37.454288);
+        pcItem[5].setLocation_y(127.127206);
+        pcItem[5].setCpu("i7-7770K");
+        pcItem[5].setRam("16GB");
+        pcItem[5].setVga("GTX-1080");
+        pcItem[5].setTel("031-758-1239");
 
         pcItem[6] = new PCListItem();
         pcItem[6].setIcon(ContextCompat.getDrawable(getContext(), R.drawable.po7));
@@ -204,6 +228,10 @@ public class SearchByAddressFragment extends Fragment {
         pcItem[6].setTotalSeat(40);
         pcItem[6].setLocation_x(37.472175);
         pcItem[6].setLocation_y(127.143076);
+        pcItem[6].setCpu("i7-7770K");
+        pcItem[6].setRam("16GB");
+        pcItem[6].setVga("GTX-1070");
+        pcItem[6].setTel("031-758-1240");
 
         for(PCListItem pc : pcItem)
             pcListAdapter.addItem(pc);

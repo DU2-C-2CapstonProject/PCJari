@@ -15,9 +15,11 @@ public class DetailedInformationActivity extends AppCompatActivity{
     public static final String POSITION = "포지션";
     int position;
     Intent get_intent, send_intent;
-    TextView di_notice;
+    TextView di_notice, di_address, di_tel;
     PCListItem pc;
     ImageView location_mark;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,13 +27,18 @@ public class DetailedInformationActivity extends AppCompatActivity{
         setContentView(R.layout.activity_detailedinformation);
 
         di_notice = (TextView) findViewById(R.id.di_notice);
+        di_address = (TextView)findViewById(R.id.di_address);
+        di_tel = (TextView)findViewById(R.id.di_tel);
         location_mark = (ImageView) findViewById(R.id.location_mark);
 
         get_intent = getIntent();
         position = get_intent.getIntExtra(POSITION, 0);
+
         pc = StaticData.pcItems[position];
 
         di_notice.setText(pc.getNotice());
+        di_address.setText(pc.getAddress());
+        di_tel.setText(pc.getTel());
 
         location_mark.setOnClickListener(new View.OnClickListener() {
             @Override
