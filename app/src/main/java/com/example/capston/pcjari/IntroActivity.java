@@ -1,4 +1,3 @@
-/*
 package com.example.capston.pcjari;
 
 import android.content.Intent;
@@ -6,6 +5,10 @@ import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 
 public class IntroActivity extends AppCompatActivity {
     Handler handler = new Handler();
@@ -25,6 +28,11 @@ public class IntroActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+
+        ImageView intro = (ImageView) findViewById(R.id.intro_gif);
+        GlideDrawableImageViewTarget gifImage = new GlideDrawableImageViewTarget(intro);
+        Glide.with(this).load(R.drawable.intro).into(gifImage);
+
     }
 
     @Override
@@ -39,4 +47,3 @@ public class IntroActivity extends AppCompatActivity {
         handler.removeCallbacks(r);
     }
 }
-*/
