@@ -4,13 +4,13 @@ package com.example.capston.pcjari.fragment;
  * Created by 94tig on 2017-10-27.
  */
 
-import android.support.v4.app.Fragment;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+        import android.support.v4.app.Fragment;
+        import android.os.Bundle;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.view.ViewGroup;
 
-import com.example.capston.pcjari.R;
+        import com.example.capston.pcjari.R;
 
 public class InformationFragment extends android.support.v4.app.Fragment {
     @Override

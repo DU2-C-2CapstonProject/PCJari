@@ -9,6 +9,7 @@
     <string name="title_search">검색</string>
     <string name="title_information">정보</string>
     <string name="jarinow">좌석현황</string>
+    <string name="juso_search">읍, 면, 동, 리 입력</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
