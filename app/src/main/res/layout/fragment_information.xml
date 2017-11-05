@@ -7,7 +7,8 @@
             android:id="@+id/textView_Info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
             android:text="정보"
             android:textSize="17sp"/>
         <TextView
@@ -71,6 +72,7 @@
         android:id="@+id/textView_Settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
         android:text="설정"
         android:textSize="17sp"/>
     <TextView
@@ -126,6 +128,7 @@
         android:id="@+id/textView_Others"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="13dp"
         android:text="기타"
         android:textSize="17sp"/>

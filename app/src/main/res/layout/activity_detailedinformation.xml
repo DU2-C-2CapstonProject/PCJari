@@ -142,7 +142,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:text="031-591-5566"/>
+                    android:text="031-591-5566"
+                    android:textColor="@color/colorPrimary"/>
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
