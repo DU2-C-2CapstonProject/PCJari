@@ -4,41 +4,39 @@ package com.example.capston.pcjari.fragment;
  * Created by 94tig on 2017-10-27.
  */
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.capston.pcjari.AddressSearchActivity;
 import com.example.capston.pcjari.DetailedInformationActivity;
-import com.example.capston.pcjari.MainActivity;
 import com.example.capston.pcjari.PCListAdapter;
 import com.example.capston.pcjari.PCListItem;
 import com.example.capston.pcjari.R;
 import com.example.capston.pcjari.StaticData;
 
-import java.util.ArrayList;
+import static android.app.Activity.RESULT_OK;
 
-public class SearchByAddressFragment extends Fragment{
+public class SearchByAddressFragment extends Fragment {
     private ListView pcListView;
     private PCListAdapter pcListAdapter;
     private PCListItem pcItem[] = StaticData.pcItems;
     private Button selectButton;
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    private TextView textView_SearchLocation;
+    private ImageView dropdown_mark;
+    private static String address;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,8 +50,13 @@ public class SearchByAddressFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_searchbyaddress, container, false);
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_layout);
         pcListView = (ListView)view.findViewById(R.id.listview1);
+        textView_SearchLocation = (TextView) view.findViewById(R.id.textView_SearchLocation);
+        dropdown_mark = (ImageView) view.findViewById(R.id.dropdown_mark);
         selectButton = (Button)view.findViewById(R.id.button_search);
         selectButton.setOnClickListener(selectListener);
+
+        if(address != null)
+            textView_SearchLocation.setText(address);
 
         pcListAdapter = new PCListAdapter();
         dataSetting();
@@ -89,23 +92,23 @@ public class SearchByAddressFragment extends Fragment{
 
         pcListView.setOnItemClickListener(ListshortListener);
         pcListView.setOnItemLongClickListener(ListlongListener);
+        textView_SearchLocation.setOnClickListener(addressSearch);
+        dropdown_mark.setOnClickListener(addressSearch);
 
         return view;
     }
 
     View.OnClickListener selectListener = new View.OnClickListener() {
         @Override
-        public void onClick(View v) {
-            String x = String.valueOf(StaticData.GPS_X);
-            String y = String.valueOf(StaticData.GPS_Y);
-            Toast.makeText(getContext(), "위도 : " + x + ", 경도 : " + y, Toast.LENGTH_SHORT).show();
+        public void onClick(View v) {           //검색 버튼 이벤트
+            Toast.makeText(getContext(), "아직 구현되지 않은 기능입니다.", Toast.LENGTH_SHORT).show();
         }
     };
 
     AdapterView.OnItemClickListener ListshortListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {          //리스트 아이템 클릭했을 때 나오는 이벤트
-            Intent intent = new Intent(getContext(), DetailedInformationActivity.class);
+            Intent intent = new Intent(getActivity(), DetailedInformationActivity.class);
             intent.putExtra(DetailedInformationActivity.POSITION, position);
             startActivity(intent);
 
@@ -138,6 +141,29 @@ public class SearchByAddressFragment extends Fragment{
             return true;
         }
     };
+
+    View.OnClickListener addressSearch = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {           //동 설정
+            Intent intent = new Intent(getContext(), AddressSearchActivity.class);
+            startActivityForResult(intent, 0);
+        }
+    };
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode != RESULT_OK) {
+
+        } else {
+            if(requestCode == 0) {
+                address = "경기도 성남시 수정구";
+                Toast.makeText(getContext(), data.getStringExtra("test"), Toast.LENGTH_LONG).show();
+                textView_SearchLocation.setText("경기도 성남시 수정구");
+            }
+        }
+    }
 
     private void dataSetting(){
         for(PCListItem pc : pcItem)
