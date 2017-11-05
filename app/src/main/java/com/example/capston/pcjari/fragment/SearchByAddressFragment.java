@@ -23,6 +23,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.capston.pcjari.AddressSearchActivity;
 import com.example.capston.pcjari.DetailedInformationActivity;
 import com.example.capston.pcjari.MainActivity;
 import com.example.capston.pcjari.PCListAdapter;
