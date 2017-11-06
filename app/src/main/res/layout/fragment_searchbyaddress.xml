@@ -16,7 +16,7 @@
                 android:id="@+id/textView_SearchLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="주소 입력란"
+                android:text="경기도 성남시 수정구"
                 android:textSize="18sp"
                 android:textStyle="bold" />
             <ImageView
