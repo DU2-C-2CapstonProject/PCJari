@@ -30,6 +30,21 @@ public class MainActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().replace(R.id.content, new SearchByAddressFragment()).commit();
                     return true;
                 case R.id.navigation_search_by_me:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content, new SearchByAddressFragment()).commit();
+                    return true;
+                case R.id.navigation_favorite:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content, new SearchByAddressFragment()).commit();
+                    return true;
+                case R.id.navigation_information:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content, new InformationFragment()).commit();
+                    return true;
+            }
+            /*
+            switch (item.getItemId()) {
+                case R.id.navigation_search_by_address:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content, new SearchByAddressFragment()).commit();
+                    return true;
+                case R.id.navigation_search_by_me:
                     getSupportFragmentManager().beginTransaction().replace(R.id.content, new SearchByMeFragment()).commit();
                     return true;
                 case R.id.navigation_favorite:
@@ -39,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().replace(R.id.content, new InformationFragment()).commit();
                     return true;
             }
+            */
             return false;
         }
     };

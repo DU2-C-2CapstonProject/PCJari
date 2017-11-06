@@ -54,21 +54,26 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
                         android:layout_marginTop="3dp">
 
                         <TextView
                             android:id="@+id/pc_price"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="시간당 요금" />
+                            android:background="@drawable/tag"
+                            android:text="시간당 요금"
+                            android:textSize="11sp"
+                            android:textColor="@color/colorPrimaryDark"/>
 
                         <TextView
                             android:id="@+id/pc_card"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
+                            android:background="@drawable/tag"
                             android:text="카드가능"
+                            android:textSize="11sp"
+                            android:textColor="@color/colorPrimaryDark"
                             android:visibility="visible"/>
                     </LinearLayout>
                 </LinearLayout>
