@@ -1,0 +1,1173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#4e4e4e"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@color/seat_ap"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:text="선불"
+                        android:textStyle="bold"
+                        android:textColor="@color/seat_ap"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp">
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@color/seat_dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:text="후불"
+                        android:textStyle="bold"
+                        android:textColor="@color/seat_dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp">
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@color/space_smoke"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:text="흡연부스"
+                        android:textStyle="bold"
+                        android:textColor="@color/space_smoke"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp">
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@color/space_counter"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:text="카운터"
+                        android:textStyle="bold"
+                        android:textColor="@color/space_counter"/>
+                </LinearLayout>
+            </LinearLayout><!--색 설명-->
+            <RelativeLayout
+                android:id="@+id/S001"
+                android:layout_width="85dp"
+                android:layout_height="65dp"
+                android:background="@drawable/seat_ap"
+                android:orientation="vertical"
+                android:layout_marginTop="40dp"
+                android:paddingBottom="6dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:paddingTop="3dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/textView_PCNum001"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+
+                <RelativeLayout
+                    android:id="@+id/seat_AP001"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:text="선불"
+                        android:textSize="13sp"
+                        android:textColor="@color/seat_ap"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true">
+                        <TextView
+                            android:id="@+id/textView_ST001"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="03:50"
+                            android:textSize="12sp"
+                            android:textColor="#FFFFFF" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:text="@string/pcuse_remain"
+                            android:textSize="12sp"
+                            android:textColor="#FFFFFF" />
+                    </LinearLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/seat_DP001"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:text="후불"
+                        android:textSize="13sp"
+                        android:textColor="@color/seat_dp"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true">
+                        <TextView
+                            android:id="@+id/textView_RT001"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="14:00"
+                            android:textSize="12sp"
+                            android:textColor="#FFFFFF" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:text="@string/pcuse_start"
+                            android:textSize="12sp"
+                            android:textColor="#FFFFFF" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </RelativeLayout><!--001-->
+            <RelativeLayout
+                android:id="@+id/S002"
+                android:layout_width="85dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="3dp"
+                android:layout_toEndOf="@+id/S001"
+                android:layout_alignTop="@id/S001"
+                android:background="@drawable/seat_ap"
+                android:orientation="vertical"
+                android:paddingBottom="6dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:paddingTop="3dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/textView_PCNum002"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+
+                <RelativeLayout
+                    android:id="@+id/seat_AP002"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:text="선불"
+                        android:textSize="13sp"
+                        android:textColor="@color/seat_ap"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true">
+                        <TextView
+                            android:id="@+id/textView_ST002"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="03:50"
+                            android:textSize="12sp"
+                            android:textColor="#FFFFFF" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:text="@string/pcuse_remain"
+                            android:textSize="12sp"
+                            android:textColor="#FFFFFF" />
+                    </LinearLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/seat_DP002"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:text="후불"
+                        android:textSize="13sp"
+                        android:textColor="@color/seat_dp"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true">
+                        <TextView
+                            android:id="@+id/textView_RT002"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="14:00"
+                            android:textSize="12sp"
+                            android:textColor="#FFFFFF" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:text="@string/pcuse_start"
+                            android:textSize="12sp"
+                            android:textColor="#FFFFFF" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </RelativeLayout><!--002-->
+            <RelativeLayout
+                android:id="@+id/S003"
+                android:layout_width="85dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="3dp"
+                android:layout_toEndOf="@+id/S002"
+                android:layout_alignTop="@id/S001"
+                android:background="@drawable/seat_va"
+                android:orientation="vertical"
+                android:paddingBottom="6dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:paddingTop="3dp"
+                android:visibility="invisible">
+
+                <TextView
+                    android:id="@+id/textView_PCNum03"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+
+                <RelativeLayout
+                    android:id="@+id/seat_AP03"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:text="선불"
+                        android:textColor="@color/seat_ap"
+                        android:textSize="13sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true">
+
+                        <TextView
+                            android:id="@+id/textView_ST03"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="03:50"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:text="@string/pcuse_remain"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/seat_DP03"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignBaseline="@+id/textView_PCNum03"
+                    android:layout_alignBottom="@+id/textView_PCNum03"
+                    android:layout_alignParentStart="true"
+                    android:visibility="invisible">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:text="후불"
+                        android:textColor="@color/seat_dp"
+                        android:textSize="13sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true">
+
+                        <TextView
+                            android:id="@+id/textView_RT03"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="14:00"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:text="@string/pcuse_start"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </RelativeLayout><!--003-->
+            <RelativeLayout
+                android:id="@+id/S004"
+                android:layout_width="85dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="3dp"
+                android:layout_toEndOf="@+id/S003"
+                android:layout_alignTop="@id/S001"
+                android:background="@drawable/seat_dp"
+                android:orientation="vertical"
+                android:paddingBottom="6dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:paddingTop="3dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/textView_PCNum004"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+
+                <RelativeLayout
+                    android:id="@+id/seat_AP004"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:text="선불"
+                        android:textColor="@color/seat_ap"
+                        android:textSize="13sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true">
+
+                        <TextView
+                            android:id="@+id/textView_ST004"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="03:50"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:text="@string/pcuse_remain"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/seat_DP004"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:text="후불"
+                        android:textSize="13sp"
+                        android:textColor="@color/seat_dp"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true">
+                        <TextView
+                            android:id="@+id/textView_RT004"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="14:00"
+                            android:textSize="12sp"
+                            android:textColor="#FFFFFF" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:text="@string/pcuse_start"
+                            android:textSize="12sp"
+                            android:textColor="#FFFFFF" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </RelativeLayout><!--004-->
+            <RelativeLayout
+                android:id="@+id/S005"
+                android:layout_width="85dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="3dp"
+                android:layout_toEndOf="@+id/S004"
+                android:layout_alignTop="@id/S001"
+                android:background="@drawable/seat_va"
+                android:orientation="vertical"
+                android:paddingBottom="6dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:paddingTop="3dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/textView_PCNum005"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+
+                <RelativeLayout
+                    android:id="@+id/seat_AP005"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:text="선불"
+                        android:textSize="13sp"
+                        android:textColor="@color/seat_ap"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true">
+                        <TextView
+                            android:id="@+id/textView_ST005"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="03:50"
+                            android:textSize="12sp"
+                            android:textColor="#FFFFFF" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:text="@string/pcuse_remain"
+                            android:textSize="12sp"
+                            android:textColor="#FFFFFF" />
+                    </LinearLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/seat_DP005"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:text="후불"
+                        android:textSize="13sp"
+                        android:textColor="@color/seat_dp"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true">
+                        <TextView
+                            android:id="@+id/textView_RT005"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="14:00"
+                            android:textSize="12sp"
+                            android:textColor="#FFFFFF" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:text="@string/pcuse_start"
+                            android:textSize="12sp"
+                            android:textColor="#FFFFFF" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </RelativeLayout><!--005-->
+            <!--2줄-->
+            <RelativeLayout
+            android:id="@+id/S021"
+            android:layout_width="85dp"
+            android:layout_height="65dp"
+            android:layout_marginTop="3dp"
+            android:layout_below="@+id/S001"
+            android:background="@drawable/seat_va"
+            android:orientation="vertical"
+            android:paddingBottom="6dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:paddingTop="3dp"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/textView_PCNum021"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="21"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
+
+                <RelativeLayout
+                    android:id="@+id/seat_AP021"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:text="선불"
+                        android:textColor="@color/seat_ap"
+                        android:textSize="13sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true">
+
+                        <TextView
+                            android:id="@+id/textView_ST021"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="03:50"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:text="@string/pcuse_remain"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/seat_DP021"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="invisible">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:text="후불"
+                    android:textSize="13sp"
+                    android:textColor="@color/seat_dp"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true">
+                    <TextView
+                        android:id="@+id/textView_RT021"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="14:00"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:text="@string/pcuse_start"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF" />
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout><!--021-->
+            <RelativeLayout
+                android:id="@+id/S022"
+                android:layout_width="85dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="3dp"
+                android:layout_toEndOf="@+id/S001"
+                android:layout_alignTop="@id/S021"
+                android:background="@drawable/seat_ap"
+                android:orientation="vertical"
+                android:paddingBottom="6dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:paddingTop="3dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/textView_PCNum022"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="22"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+
+                <RelativeLayout
+                    android:id="@+id/seat_AP022"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:text="선불"
+                        android:textSize="13sp"
+                        android:textColor="@color/seat_ap"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true">
+                        <TextView
+                            android:id="@+id/textView_ST022"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="03:50"
+                            android:textSize="12sp"
+                            android:textColor="#FFFFFF" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:text="@string/pcuse_remain"
+                            android:textSize="12sp"
+                            android:textColor="#FFFFFF" />
+                    </LinearLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/seat_DP022"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:text="후불"
+                        android:textSize="13sp"
+                        android:textColor="@color/seat_dp"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true">
+                        <TextView
+                            android:id="@+id/textView_RT022"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="14:00"
+                            android:textSize="12sp"
+                            android:textColor="#FFFFFF" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:text="@string/pcuse_start"
+                            android:textSize="12sp"
+                            android:textColor="#FFFFFF" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </RelativeLayout><!--022-->
+            <!--3줄-->
+            <RelativeLayout
+                android:id="@+id/S031"
+                android:layout_width="85dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="3dp"
+                android:layout_below="@+id/S021"
+                android:background="@drawable/seat_va"
+                android:orientation="vertical"
+                android:paddingBottom="6dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:paddingTop="3dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/textView_PCNum031"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="31"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+
+                <RelativeLayout
+                    android:id="@+id/seat_AP031"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:text="선불"
+                        android:textColor="@color/seat_ap"
+                        android:textSize="13sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true">
+
+                        <TextView
+                            android:id="@+id/textView_ST031"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="03:50"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:text="@string/pcuse_remain"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/seat_DP031"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:text="후불"
+                        android:textSize="13sp"
+                        android:textColor="@color/seat_dp"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true">
+                        <TextView
+                            android:id="@+id/textView_RT031"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="14:00"
+                            android:textSize="12sp"
+                            android:textColor="#FFFFFF" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:text="@string/pcuse_start"
+                            android:textSize="12sp"
+                            android:textColor="#FFFFFF" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </RelativeLayout><!--031-->
+            <RelativeLayout
+                android:id="@+id/S032"
+                android:layout_width="85dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="3dp"
+                android:layout_toEndOf="@+id/S001"
+                android:layout_alignTop="@id/S031"
+                android:background="@drawable/seat_ap"
+                android:orientation="vertical"
+                android:paddingBottom="6dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:paddingTop="3dp"
+                android:visibility="visible">
+                <RelativeLayout
+                    android:id="@+id/seat_ST032"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible">
+                    <TextView
+                        android:id="@+id/textView_PCNum032"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="32"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp" />
+
+                    <RelativeLayout
+                        android:id="@+id/seat_AP032"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentRight="true"
+                            android:text="선불"
+                            android:textSize="13sp"
+                            android:textColor="@color/seat_ap"/>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true">
+                            <TextView
+                                android:id="@+id/textView_ST032"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="03:50"
+                                android:textSize="12sp"
+                                android:textColor="#FFFFFF" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2dp"
+                                android:text="@string/pcuse_remain"
+                                android:textSize="12sp"
+                                android:textColor="#FFFFFF" />
+                        </LinearLayout>
+                    </RelativeLayout><!--선불-->
+                    <RelativeLayout
+                        android:id="@+id/seat_DP032"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="invisible">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentRight="true"
+                            android:text="후불"
+                            android:textSize="13sp"
+                            android:textColor="@color/seat_dp"/>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true">
+                            <TextView
+                                android:id="@+id/textView_RT032"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="14:00"
+                                android:textSize="12sp"
+                                android:textColor="#FFFFFF" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2dp"
+                                android:text="@string/pcuse_start"
+                                android:textSize="12sp"
+                                android:textColor="#FFFFFF" />
+                        </LinearLayout>
+                    </RelativeLayout><!--후불-->
+                </RelativeLayout><!--상태-->
+            </RelativeLayout><!--032-->
+            <!--4줄-->
+            <RelativeLayout
+                android:id="@+id/S041"
+                android:layout_width="85dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="3dp"
+                android:layout_below="@+id/S031"
+                android:background="@drawable/space_smoke"
+                android:orientation="vertical"
+                android:paddingBottom="6dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:paddingTop="3dp"
+                android:visibility="visible">
+                <ImageView
+                    android:id="@+id/SM041"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_smoking_rooms_black_24dp"
+                    android:visibility="visible"/>
+                <RelativeLayout
+                    android:id="@+id/seat_ST041"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible">
+                    <TextView
+                        android:id="@+id/textView_PCNum041"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="41"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp" />
+
+                    <RelativeLayout
+                        android:id="@+id/seat_AP041"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="invisible">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentTop="true"
+                            android:text="선불"
+                            android:textColor="@color/seat_ap"
+                            android:textSize="13sp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true">
+
+                            <TextView
+                                android:id="@+id/textView_ST041"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="03:50"
+                                android:textColor="#FFFFFF"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2dp"
+                                android:text="@string/pcuse_remain"
+                                android:textColor="#FFFFFF"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </RelativeLayout><!--선불-->
+                    <RelativeLayout
+                        android:id="@+id/seat_DP041"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="invisible">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentRight="true"
+                            android:text="후불"
+                            android:textSize="13sp"
+                            android:textColor="@color/seat_dp"/>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true">
+                            <TextView
+                                android:id="@+id/textView_RT041"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="14:00"
+                                android:textSize="12sp"
+                                android:textColor="#FFFFFF" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2dp"
+                                android:text="@string/pcuse_start"
+                                android:textSize="12sp"
+                                android:textColor="#FFFFFF" />
+                        </LinearLayout>
+                    </RelativeLayout><!--후불-->
+
+                </RelativeLayout><!--상태-->
+            </RelativeLayout><!--041-->
+            <!--5줄-->
+            <RelativeLayout
+            android:id="@+id/S051"
+            android:layout_width="85dp"
+            android:layout_height="65dp"
+            android:layout_marginTop="3dp"
+            android:layout_below="@+id/S041"
+            android:background="@drawable/space_counter"
+            android:orientation="vertical"
+            android:paddingBottom="6dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:paddingTop="3dp"
+            android:visibility="visible">
+            <ImageView
+                android:id="@+id/SM051"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_smoking_rooms_black_24dp"
+                android:visibility="invisible"/>
+            <RelativeLayout
+                android:id="@+id/seat_ST051"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible">
+                <TextView
+                    android:id="@+id/textView_PCNum051"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="41"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+
+                <RelativeLayout
+                    android:id="@+id/seat_AP051"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:text="선불"
+                        android:textColor="@color/seat_ap"
+                        android:textSize="13sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true">
+
+                        <TextView
+                            android:id="@+id/textView_ST051"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="03:50"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:text="@string/pcuse_remain"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </RelativeLayout><!--선불-->
+                <RelativeLayout
+                    android:id="@+id/seat_DP051"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:text="후불"
+                        android:textSize="13sp"
+                        android:textColor="@color/seat_dp"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true">
+                        <TextView
+                            android:id="@+id/textView_RT051"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="14:00"
+                            android:textSize="12sp"
+                            android:textColor="#FFFFFF" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:text="@string/pcuse_start"
+                            android:textSize="12sp"
+                            android:textColor="#FFFFFF" />
+                    </LinearLayout>
+                </RelativeLayout><!--후불-->
+
+            </RelativeLayout><!--공간 정보-->
+        </RelativeLayout><!--051-->
+
+        </RelativeLayout><!--큰 틀-->
+    </HorizontalScrollView>
+</ScrollView>
