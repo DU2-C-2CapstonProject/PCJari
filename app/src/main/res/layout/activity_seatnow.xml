@@ -100,7 +100,7 @@
                     android:id="@+id/textView_PCNum001"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1"
+                    android:text="@string/pcnum"
                     android:textColor="#FFFFFF"
                     android:textSize="12sp" />
 
@@ -122,7 +122,7 @@
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentEnd="true">
                         <TextView
-                            android:id="@+id/textView_ST001"
+                            android:id="@+id/textView_RT001"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="03:50"
@@ -157,7 +157,7 @@
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentEnd="true">
                         <TextView
-                            android:id="@+id/textView_RT001"
+                            android:id="@+id/textView_ST001"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="14:00"
@@ -215,7 +215,7 @@
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentEnd="true">
                         <TextView
-                            android:id="@+id/textView_ST002"
+                            android:id="@+id/textView_RT002"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="03:50"
@@ -250,7 +250,7 @@
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentEnd="true">
                         <TextView
-                            android:id="@+id/textView_RT002"
+                            android:id="@+id/textView_ST002"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="14:00"
@@ -312,7 +312,7 @@
                         android:layout_alignParentEnd="true">
 
                         <TextView
-                            android:id="@+id/textView_ST03"
+                            android:id="@+id/textView_RT03"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="03:50"
@@ -354,7 +354,7 @@
                         android:layout_alignParentEnd="true">
 
                         <TextView
-                            android:id="@+id/textView_RT03"
+                            android:id="@+id/textView_ST03"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="14:00"
@@ -416,7 +416,7 @@
                         android:layout_alignParentEnd="true">
 
                         <TextView
-                            android:id="@+id/textView_ST004"
+                            android:id="@+id/textView_RT004"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="03:50"
@@ -451,7 +451,7 @@
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentEnd="true">
                         <TextView
-                            android:id="@+id/textView_RT004"
+                            android:id="@+id/textView_ST004"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="14:00"
@@ -510,7 +510,7 @@
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentEnd="true">
                         <TextView
-                            android:id="@+id/textView_ST005"
+                            android:id="@+id/textView_RT005"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="03:50"
@@ -545,7 +545,7 @@
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentEnd="true">
                         <TextView
-                            android:id="@+id/textView_RT005"
+                            android:id="@+id/textView_ST005"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="14:00"
@@ -607,7 +607,7 @@
                         android:layout_alignParentEnd="true">
 
                         <TextView
-                            android:id="@+id/textView_ST021"
+                            android:id="@+id/textView_RT021"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="03:50"
@@ -642,7 +642,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentEnd="true">
                     <TextView
-                        android:id="@+id/textView_RT021"
+                        android:id="@+id/textView_ST021"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="14:00"
@@ -700,7 +700,7 @@
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentEnd="true">
                         <TextView
-                            android:id="@+id/textView_ST022"
+                            android:id="@+id/textView_RT022"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="03:50"
@@ -735,7 +735,7 @@
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentEnd="true">
                         <TextView
-                            android:id="@+id/textView_RT022"
+                            android:id="@+id/textView_ST022"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="14:00"
@@ -797,7 +797,7 @@
                         android:layout_alignParentEnd="true">
 
                         <TextView
-                            android:id="@+id/textView_ST031"
+                            android:id="@+id/textView_RT031"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="03:50"
@@ -832,7 +832,7 @@
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentEnd="true">
                         <TextView
-                            android:id="@+id/textView_RT031"
+                            android:id="@+id/textView_ST031"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="14:00"
@@ -894,7 +894,7 @@
                             android:layout_alignParentBottom="true"
                             android:layout_alignParentEnd="true">
                             <TextView
-                                android:id="@+id/textView_ST032"
+                                android:id="@+id/textView_RT032"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="03:50"
@@ -929,7 +929,7 @@
                             android:layout_alignParentBottom="true"
                             android:layout_alignParentEnd="true">
                             <TextView
-                                android:id="@+id/textView_RT032"
+                                android:id="@+id/textView_ST032"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="14:00"
@@ -1003,7 +1003,7 @@
                             android:layout_alignParentEnd="true">
 
                             <TextView
-                                android:id="@+id/textView_ST041"
+                                android:id="@+id/textView_RT041"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="03:50"
@@ -1038,7 +1038,7 @@
                             android:layout_alignParentBottom="true"
                             android:layout_alignParentEnd="true">
                             <TextView
-                                android:id="@+id/textView_RT041"
+                                android:id="@+id/textView_ST041"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="14:00"
@@ -1075,11 +1075,9 @@
                 android:id="@+id/SM051"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_centerInParent="true"
-                android:src="@drawable/ic_smoking_rooms_black_24dp"
-                android:visibility="invisible"/>
+                android:layout_centerInParent="true" />
             <RelativeLayout
-                android:id="@+id/seat_ST051"
+                android:id="@+id/seat_PCNum051"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="invisible">
@@ -1113,7 +1111,7 @@
                         android:layout_alignParentEnd="true">
 
                         <TextView
-                            android:id="@+id/textView_ST051"
+                            android:id="@+id/textView_RT051"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="03:50"
@@ -1148,7 +1146,7 @@
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentEnd="true">
                         <TextView
-                            android:id="@+id/textView_RT051"
+                            android:id="@+id/textView_ST051"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="14:00"
