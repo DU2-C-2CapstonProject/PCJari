@@ -17,6 +17,15 @@ import java.util.ArrayList;
 
 public class PCListAdapter extends BaseAdapter{
     private ArrayList<PCListItem> pcItems = new ArrayList<>();
+    private ImageView pc_img;
+    private TextView pc_title;
+    private TextView pc_address;
+    private TextView pc_price;
+    private TextView pc_card;
+    private ImageView pc_favoriteMark;
+    private TextView pc_spaceSeat;
+    private TextView pc_usingSeat;
+    private TextView pc_totalSeat;
 
     @Override
     public int getCount() {
@@ -39,18 +48,21 @@ public class PCListAdapter extends BaseAdapter{
 
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.pc_list_view, parent, false);
+            if(inflater != null) {
+                convertView = inflater.inflate(R.layout.pc_list_view, parent, false);
+                pc_img = (ImageView) convertView.findViewById(R.id.pc_img);
+                pc_title = (TextView) convertView.findViewById(R.id.pc_title);
+                pc_address = (TextView) convertView.findViewById(R.id.pc_address);
+                pc_price = (TextView) convertView.findViewById(R.id.pc_price);
+                pc_card = (TextView) convertView.findViewById(R.id.pc_card);
+                pc_favoriteMark = (ImageView) convertView.findViewById(R.id.favoriteMark);
+                pc_spaceSeat = (TextView) convertView.findViewById(R.id.pc_spaceSeat);
+                pc_usingSeat = (TextView) convertView.findViewById(R.id.pc_usingSeat);
+                pc_totalSeat = (TextView) convertView.findViewById(R.id.pc_totalSeat);
+            }
         }
 
-        ImageView pc_img = (ImageView) convertView.findViewById(R.id.pc_img) ;
-        TextView pc_title = (TextView) convertView.findViewById(R.id.pc_title) ;
-        TextView pc_address = (TextView) convertView.findViewById(R.id.pc_address) ;
-        TextView pc_price = (TextView) convertView.findViewById(R.id.pc_price) ;
-        TextView pc_card = (TextView) convertView.findViewById(R.id.pc_card) ;
-        ImageView pc_favoriteMark = (ImageView) convertView.findViewById(R.id.favoriteMark);
-        TextView pc_spaceSeat = (TextView) convertView.findViewById(R.id.pc_spaceSeat);
-        TextView pc_usingSeat = (TextView) convertView.findViewById(R.id.pc_usingSeat);
-        TextView pc_totalSeat = (TextView) convertView.findViewById(R.id.pc_totalSeat);
+
 
         PCListItem pcItem = getItem(position);
 
