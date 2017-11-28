@@ -38,13 +38,6 @@ public class IntroActivity extends AppCompatActivity {
         GlideDrawableImageViewTarget gifImage = new GlideDrawableImageViewTarget(intro);
         Glide.with(this).load(R.drawable.intro).into(gifImage);
 
-        /*
-        if ( Build.VERSION.SDK_INT >= 23 &&
-                ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
-            ActivityCompat.requestPermissions( this, new String[] {  android.Manifest.permission.ACCESS_FINE_LOCATION  }, 0 );
-        }
-        */
-
         dataSetting();
     }
 
