@@ -24,8 +24,7 @@ import com.example.capston.pcjari.sqlite.DataBaseTables;
 
 
 public class MainActivity extends AppCompatActivity {
-    private DataBaseHelper DBHelper;
-    private SQLiteDatabase db;
+    public static int position;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -83,14 +82,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void first_fragment(BottomNavigationView navigation) {
-        DBHelper = new DataBaseHelper(getApplicationContext());
-        db = DBHelper.getWritableDatabase();
+        DataBaseHelper DBHelper = new DataBaseHelper(getApplicationContext());
+        SQLiteDatabase db = DBHelper.getWritableDatabase();
 
         try{
             String sql = "SELECT * FROM " + DataBaseTables.CreateDB_setting._TABLENAME;
             Cursor results = db.rawQuery(sql, null);
             results.moveToFirst();
-            int position = results.getInt(1);
+            position = results.getInt(1);
 
             MenuItem prev = navigation.getMenu().getItem(position);
             prev.setChecked(true);
