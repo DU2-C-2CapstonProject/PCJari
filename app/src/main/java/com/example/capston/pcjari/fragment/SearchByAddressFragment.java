@@ -1,7 +1,7 @@
 package com.example.capston.pcjari.fragment;
 
 /**
- * Created by KangSeungho on 2017-10-27.
+ * Created by 94tig on 2017-10-27.
  */
 
 import android.content.Intent;
@@ -38,10 +38,8 @@ public class SearchByAddressFragment extends Fragment {
     private ListView pcListView;
     private PCListAdapter pcListAdapter;
     private PCListItem pcItem[] = StaticData.pcItems;
-    private Button selectButton;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private TextView textView_SearchLocation;
-    private ImageView dropdown_mark;
     private static String address;
 
     private DataBaseHelper DBHelper;
@@ -60,8 +58,8 @@ public class SearchByAddressFragment extends Fragment {
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_layout);
         pcListView = (ListView)view.findViewById(R.id.listview1);
         textView_SearchLocation = (TextView) view.findViewById(R.id.textView_SearchLocation);
-        dropdown_mark = (ImageView) view.findViewById(R.id.dropdown_mark);
-        selectButton = (Button)view.findViewById(R.id.button_search);
+        ImageView dropdown_mark = (ImageView) view.findViewById(R.id.dropdown_mark);
+        Button selectButton = (Button)view.findViewById(R.id.button_search);
         selectButton.setOnClickListener(selectListener);
 
         DBHelper = new DataBaseHelper(getContext());
@@ -216,13 +214,12 @@ public class SearchByAddressFragment extends Fragment {
         }
     };
 
+    //AddressSearchActivity(동 검색 액티비티)에서 결과값 반환
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode != RESULT_OK) {
-
-        } else {
+        if (resultCode == RESULT_OK) {
             if(requestCode == 0) {
                 address = "경기도 성남시 수정구";
                 Toast.makeText(getContext(), data.getStringExtra("test"), Toast.LENGTH_LONG).show();

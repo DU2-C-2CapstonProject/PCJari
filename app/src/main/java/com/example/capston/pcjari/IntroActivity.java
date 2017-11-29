@@ -34,7 +34,9 @@ public class IntroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_intro);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        if(actionBar != null) {
+            actionBar.hide();
+        }
 
         ImageView intro = (ImageView) findViewById(R.id.intro_gif);
         GlideDrawableImageViewTarget gifImage = new GlideDrawableImageViewTarget(intro);

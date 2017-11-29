@@ -38,7 +38,8 @@ public class MapViewActivity extends AppCompatActivity implements OnMapReadyCall
         setContentView(R.layout.activity_map_view);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        if(actionBar != null)
+            actionBar.hide();
 
         intent = getIntent();
         pc = StaticData.pcItems[intent.getIntExtra(DetailedInformationActivity.POSITION, 0)];
