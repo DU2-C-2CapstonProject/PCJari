@@ -29,8 +29,6 @@ public class PCListItem implements Serializable{
     private int spaceSeat;
     private int usingSeat;
 
-    private boolean favorite = false;
-
 
     public void setPcID(int pcID) {
         this.pcID = pcID;
@@ -96,10 +94,6 @@ public class PCListItem implements Serializable{
         this.location_y = location_y;
     }
 
-    public void setFavorite(boolean favorite) {
-        this.favorite = favorite;
-    }
-
 
     public int getPcID() {
         return pcID;
@@ -163,9 +157,5 @@ public class PCListItem implements Serializable{
 
     public double getLocation_y() {
         return location_y;
-    }
-
-    public boolean isFavorite() {
-        return favorite;
     }
 }

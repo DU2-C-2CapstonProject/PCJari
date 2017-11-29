@@ -22,12 +22,17 @@ import com.example.capston.pcjari.fragment.SearchByMeFragment;
 import com.example.capston.pcjari.sqlite.DataBaseHelper;
 import com.example.capston.pcjari.sqlite.DataBaseTables;
 
+import java.util.ArrayList;
+
 /**
  * Created by KangSeungho on 2017-09-25.
  */
 
 public class MainActivity extends AppCompatActivity {
     public static int position;
+    public static ArrayList<Integer> favorite;
+    DataBaseHelper DBHelper;
+    SQLiteDatabase db;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -76,7 +81,11 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        first_fragment(navigation);
+        DBHelper = new DataBaseHelper(getApplicationContext());
+        db = DBHelper.getWritableDatabase();
+
+        favorite = new ArrayList<Integer>();
+        firstSetting(navigation);
 
         if ( Build.VERSION.SDK_INT >= 23 &&
                 ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
@@ -84,12 +93,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void first_fragment(BottomNavigationView navigation) {
-        DataBaseHelper DBHelper = new DataBaseHelper(getApplicationContext());
-        SQLiteDatabase db = DBHelper.getWritableDatabase();
-
+    private void firstSetting(BottomNavigationView navigation) {
         try{
-            String sql = "SELECT * FROM " + DataBaseTables.CreateDB_setting._TABLENAME;
+            // 첫 화면 셋팅
+            String sql = "SELECT * FROM " + DataBaseTables.CreateDB_setting._TABLENAME + ";";
             Cursor results = db.rawQuery(sql, null);
             results.moveToFirst();
             position = results.getInt(1);
@@ -98,6 +105,20 @@ public class MainActivity extends AppCompatActivity {
             prev.setChecked(true);
 
             results.close();
+
+            // 즐겨찾기 셋팅
+            sql = "SELECT * FROM " + DataBaseTables.CreateDB_favorite._TABLENAME + ";";;
+            results = db.rawQuery(sql, null);
+            results.moveToFirst();
+
+            while(!results.isAfterLast()) {
+                String tmp = results.getString(0);
+                favorite.add(Integer.valueOf(tmp));
+                results.moveToNext();
+            }
+            results.close();
+
+            // 끝
         } catch (Exception e) {
 
         }

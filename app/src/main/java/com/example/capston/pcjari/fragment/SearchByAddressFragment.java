@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.capston.pcjari.AddressSearchActivity;
 import com.example.capston.pcjari.DetailedInformationActivity;
+import com.example.capston.pcjari.MainActivity;
 import com.example.capston.pcjari.PC.PCListAdapter;
 import com.example.capston.pcjari.PC.PCListItem;
 import com.example.capston.pcjari.R;
@@ -125,7 +126,7 @@ public class SearchByAddressFragment extends Fragment {
 
                 results.moveToNext();
             }
-
+            /*
             try {
                 String sql = "SELECT * FROM " + DataBaseTables.CreateDB_setting._TABLENAME + ";";
                 Cursor results = db.rawQuery(sql, null);
@@ -175,10 +176,11 @@ public class SearchByAddressFragment extends Fragment {
         @Override
         public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {       //리스트 아이템 꾹 눌렀을 때 나오는 이벤트
             PCListItem pc = pcListAdapter.getItem(position);
+            int pcId = pc.getPcID();
 
-            pc.setFavorite(!pc.isFavorite());
-            if(pc.isFavorite()) {
+            if(!MainActivity.favorite.contains(pcId)) {
                 try {
+                    MainActivity.favorite.add(pcId);
                     String sql = "INSERT INTO " + DataBaseTables.CreateDB_favorite._TABLENAME + " VALUES("
                             + pc.getPcID() + ");";
                     db.execSQL(sql);
@@ -189,6 +191,8 @@ public class SearchByAddressFragment extends Fragment {
             }
             else {
                 try {
+                    int index = MainActivity.favorite.indexOf(pcId);
+                    MainActivity.favorite.remove(index);
                     String sql = "DELETE FROM " + DataBaseTables.CreateDB_favorite._TABLENAME + " WHERE _ID="
                             + pc.getPcID() + ";";
                     db.execSQL(sql);

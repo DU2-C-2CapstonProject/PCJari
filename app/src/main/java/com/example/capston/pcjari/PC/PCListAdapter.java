@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.capston.pcjari.MainActivity;
 import com.example.capston.pcjari.R;
 
 import java.util.ArrayList;
@@ -67,7 +68,7 @@ public class PCListAdapter extends BaseAdapter{
             pc_card.setVisibility(View.INVISIBLE);
         }
 
-        if(pcItem.isFavorite()) {
+        if(MainActivity.favorite.contains(pcItem.getPcID())) {
             pc_favoriteMark.setVisibility(View.VISIBLE);
         } else {
             pc_favoriteMark.setVisibility(View.INVISIBLE);
@@ -81,34 +82,6 @@ public class PCListAdapter extends BaseAdapter{
     }
 
     public void addItem(PCListItem pcItem) {
-        pcItems.add(pcItem);
-    }
-
-    public void addItem(Drawable img, String name, String address, int price, boolean card, boolean favorite, int spaceSeat, int usingSeat, int totalSeat) {
-        PCListItem pcItem = new PCListItem();
-
-        pcItem.setIcon(img);
-        pcItem.setTitle(name);
-        pcItem.setAddress(address);
-        pcItem.setPrice(price);
-        pcItem.setCard(card);
-        pcItem.setFavorite(favorite);
-        pcItem.setSpaceSeat(spaceSeat);
-        pcItem.setUsingSeat(usingSeat);
-        pcItem.setTotalSeat(totalSeat);
-
-        pcItems.add(pcItem);
-    }
-
-    public void addItem(Drawable img, String name, String address, int price, boolean card) {
-        PCListItem pcItem = new PCListItem();
-
-        pcItem.setIcon(img);
-        pcItem.setTitle(name);
-        pcItem.setAddress(address);
-        pcItem.setPrice(price);
-        pcItem.setCard(card);
-
         pcItems.add(pcItem);
     }
 }

@@ -66,7 +66,6 @@ public class IntroActivity extends AppCompatActivity {
         pcItem[0].setAddress("경기도 성남시 수정구");
         pcItem[0].setPrice(1000);
         pcItem[0].setCard(true);
-        pcItem[0].setFavorite(false);
         pcItem[0].setSpaceSeat(12);
         pcItem[0].setUsingSeat(50);
         pcItem[0].setTotalSeat(62);
@@ -85,7 +84,6 @@ public class IntroActivity extends AppCompatActivity {
         pcItem[1].setAddress("경기도 성남시 수정구");
         pcItem[1].setPrice(1000);
         pcItem[1].setCard(false);
-        pcItem[1].setFavorite(true);
         pcItem[1].setSpaceSeat(8);
         pcItem[1].setUsingSeat(72);
         pcItem[1].setTotalSeat(80);
@@ -104,7 +102,6 @@ public class IntroActivity extends AppCompatActivity {
         pcItem[2].setAddress("경기도 성남시 수정구");
         pcItem[2].setPrice(1000);
         pcItem[2].setCard(true);
-        pcItem[2].setFavorite(false);
         pcItem[2].setSpaceSeat(2);
         pcItem[2].setUsingSeat(38);
         pcItem[2].setTotalSeat(40);
@@ -123,7 +120,6 @@ public class IntroActivity extends AppCompatActivity {
         pcItem[3].setAddress("경기도 성남시 수정구");
         pcItem[3].setPrice(1000);
         pcItem[3].setCard(true);
-        pcItem[3].setFavorite(false);
         pcItem[3].setSpaceSeat(5);
         pcItem[3].setUsingSeat(55);
         pcItem[3].setTotalSeat(60);
@@ -142,7 +138,6 @@ public class IntroActivity extends AppCompatActivity {
         pcItem[4].setAddress("경기도 성남시 수정구");
         pcItem[4].setPrice(1000);
         pcItem[4].setCard(true);
-        pcItem[4].setFavorite(false);
         pcItem[4].setSpaceSeat(38);
         pcItem[4].setUsingSeat(12);
         pcItem[4].setTotalSeat(50);
@@ -161,7 +156,6 @@ public class IntroActivity extends AppCompatActivity {
         pcItem[5].setAddress("경기도 성남시 수정구");
         pcItem[5].setPrice(1000);
         pcItem[5].setCard(true);
-        pcItem[5].setFavorite(false);
         pcItem[5].setSpaceSeat(26);
         pcItem[5].setUsingSeat(22);
         pcItem[5].setTotalSeat(48);
@@ -180,7 +174,6 @@ public class IntroActivity extends AppCompatActivity {
         pcItem[6].setAddress("경기도 성남시 수정구");
         pcItem[6].setPrice(1000);
         pcItem[6].setCard(true);
-        pcItem[6].setFavorite(false);
         pcItem[6].setSpaceSeat(4);
         pcItem[6].setUsingSeat(36);
         pcItem[6].setTotalSeat(40);
