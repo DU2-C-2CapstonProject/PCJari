@@ -3,6 +3,8 @@ package com.example.capston.pcjari;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,9 +19,13 @@ import com.example.capston.pcjari.fragment.FavoriteFragment;
 import com.example.capston.pcjari.fragment.InformationFragment;
 import com.example.capston.pcjari.fragment.SearchByAddressFragment;
 import com.example.capston.pcjari.fragment.SearchByMeFragment;
+import com.example.capston.pcjari.sqlite.DataBaseHelper;
+import com.example.capston.pcjari.sqlite.DataBaseTables;
 
 
 public class MainActivity extends AppCompatActivity {
+    private DataBaseHelper DBHelper;
+    private SQLiteDatabase db;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -68,9 +74,30 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        first_fragment(navigation);
+
         if ( Build.VERSION.SDK_INT >= 23 &&
                 ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
             ActivityCompat.requestPermissions( this, new String[] {  android.Manifest.permission.ACCESS_FINE_LOCATION  }, 0 );
+        }
+    }
+
+    private void first_fragment(BottomNavigationView navigation) {
+        DBHelper = new DataBaseHelper(getApplicationContext());
+        db = DBHelper.getWritableDatabase();
+
+        try{
+            String sql = "SELECT * FROM " + DataBaseTables.CreateDB_setting._TABLENAME;
+            Cursor results = db.rawQuery(sql, null);
+            results.moveToFirst();
+            int position = results.getInt(1);
+
+            MenuItem prev = navigation.getMenu().getItem(position);
+            prev.setChecked(true);
+
+            results.close();
+        } catch (Exception e) {
+
         }
     }
 }
