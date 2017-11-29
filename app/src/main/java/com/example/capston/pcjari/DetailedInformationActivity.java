@@ -44,8 +44,7 @@ public class DetailedInformationActivity extends AppCompatActivity{
         pc = StaticData.pcItems[position];
 
         ActionBar actionBar = getSupportActionBar();
-        if(actionBar != null)
-            actionBar.setTitle(pc.getTitle());
+        actionBar.setTitle(pc.getTitle());
 
         di_notice.setText(pc.getNotice());
         di_address.setText(pc.getAddress());

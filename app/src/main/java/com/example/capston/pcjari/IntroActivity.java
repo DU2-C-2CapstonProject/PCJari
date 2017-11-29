@@ -1,10 +1,8 @@
 package com.example.capston.pcjari;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Build;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Handler;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +11,10 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
+
+/**
+ * Created by KangSeungho on 2017-11-04.
+ */
 
 public class IntroActivity extends AppCompatActivity {
     private PCListItem pcItem[] = StaticData.pcItems;
@@ -57,6 +59,7 @@ public class IntroActivity extends AppCompatActivity {
 
     private void dataSetting(){
         pcItem[0] = new PCListItem();
+        pcItem[0].setPcID(0);
         pcItem[0].setIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.po1));
         pcItem[0].setTitle("바닐라PC방");
         pcItem[0].setNotice("12월 1일 전 좌석 그래픽카드 GTX 1080으로 업그레이드");
@@ -75,6 +78,7 @@ public class IntroActivity extends AppCompatActivity {
         pcItem[0].setTel("031-758-1234");
 
         pcItem[1] = new PCListItem();
+        pcItem[1].setPcID(1);
         pcItem[1].setIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.po2));
         pcItem[1].setTitle("더캠프 PC방");
         pcItem[1].setNotice("더캠프 공지");
@@ -93,6 +97,7 @@ public class IntroActivity extends AppCompatActivity {
         pcItem[1].setTel("031-758-1235");
 
         pcItem[2] = new PCListItem();
+        pcItem[2].setPcID(2);
         pcItem[2].setIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.po3));
         pcItem[2].setTitle("갤러리PC방");
         pcItem[2].setNotice("갤러리 공지");
@@ -111,6 +116,7 @@ public class IntroActivity extends AppCompatActivity {
         pcItem[2].setTel("031-758-1236");
 
         pcItem[3] = new PCListItem();
+        pcItem[3].setPcID(3);
         pcItem[3].setIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.po4));
         pcItem[3].setTitle("당근PC방");
         pcItem[3].setNotice("당근 공지");
@@ -129,6 +135,7 @@ public class IntroActivity extends AppCompatActivity {
         pcItem[3].setTel("031-758-1237");
 
         pcItem[4] = new PCListItem();
+        pcItem[4].setPcID(4);
         pcItem[4].setIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.po5));
         pcItem[4].setTitle("쓰리팝PC까페");
         pcItem[4].setNotice("쓰리팝 공지");
@@ -147,6 +154,7 @@ public class IntroActivity extends AppCompatActivity {
         pcItem[4].setTel("031-758-1238");
 
         pcItem[5] = new PCListItem();
+        pcItem[5].setPcID(5);
         pcItem[5].setIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.po6));
         pcItem[5].setTitle("허브 PC방");
         pcItem[5].setNotice("허브 공지");
@@ -165,6 +173,7 @@ public class IntroActivity extends AppCompatActivity {
         pcItem[5].setTel("031-758-1239");
 
         pcItem[6] = new PCListItem();
+        pcItem[6].setPcID(6);
         pcItem[6].setIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.po7));
         pcItem[6].setTitle("라이온PC방 위례본점");
         pcItem[6].setNotice("라이온 공지");
