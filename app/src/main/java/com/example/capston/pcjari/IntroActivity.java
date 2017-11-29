@@ -11,7 +11,10 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
-import com.example.capston.pcjari.sqlite.DataBaseHelper;
+
+/**
+ * Created by KangSeungho on 2017-11-04.
+ */
 
 public class IntroActivity extends AppCompatActivity {
     private PCListItem pcItem[] = StaticData.pcItems;

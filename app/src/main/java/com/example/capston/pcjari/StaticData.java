@@ -5,7 +5,7 @@ import android.content.Context;
 import java.util.ArrayList;
 
 /**
- * Created by 1307-00 on 2017-11-02.
+ * Created by KangSeungho on 2017-11-02.
  */
 
 public class StaticData {

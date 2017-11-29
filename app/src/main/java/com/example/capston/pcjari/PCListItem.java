@@ -1,7 +1,7 @@
 package com.example.capston.pcjari;
 
 /**
- * Created by 94tig on 2017-09-25.
+ * Created by KangSeungho on 2017-09-25.
  */
 
 import android.graphics.drawable.Drawable;

@@ -22,6 +22,9 @@ import com.example.capston.pcjari.fragment.SearchByMeFragment;
 import com.example.capston.pcjari.sqlite.DataBaseHelper;
 import com.example.capston.pcjari.sqlite.DataBaseTables;
 
+/**
+ * Created by KangSeungho on 2017-09-25.
+ */
 
 public class MainActivity extends AppCompatActivity {
     public static int position;

@@ -19,7 +19,7 @@ import com.example.capston.pcjari.sqlite.DataBaseHelper;
 import com.example.capston.pcjari.sqlite.DataBaseTables;
 
 /**
- * Created by 94tig on 2017-11-05.
+ * Created by KangSeungho on 2017-11-05.
  */
 
 public class AddressSearchActivity extends AppCompatActivity {

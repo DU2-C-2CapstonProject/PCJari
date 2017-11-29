@@ -1,7 +1,7 @@
 package com.example.capston.pcjari.fragment;
 
 /**
- * Created by 94tig on 2017-10-27.
+ * Created by KangSeungho on 2017-10-27.
  */
 
 import android.support.v4.app.Fragment;
