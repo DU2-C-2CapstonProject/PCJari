@@ -5,6 +5,8 @@ package com.example.capston.pcjari.fragment;
  */
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
@@ -25,6 +27,10 @@ import com.example.capston.pcjari.PCListAdapter;
 import com.example.capston.pcjari.PCListItem;
 import com.example.capston.pcjari.R;
 import com.example.capston.pcjari.StaticData;
+import com.example.capston.pcjari.sqlite.DataBaseHelper;
+import com.example.capston.pcjari.sqlite.DataBaseTables;
+
+import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -37,6 +43,9 @@ public class SearchByAddressFragment extends Fragment {
     private TextView textView_SearchLocation;
     private ImageView dropdown_mark;
     private static String address;
+
+    private DataBaseHelper DBHelper;
+    private SQLiteDatabase db;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,6 +63,9 @@ public class SearchByAddressFragment extends Fragment {
         dropdown_mark = (ImageView) view.findViewById(R.id.dropdown_mark);
         selectButton = (Button)view.findViewById(R.id.button_search);
         selectButton.setOnClickListener(selectListener);
+
+        DBHelper = new DataBaseHelper(getContext());
+        db = DBHelper.getWritableDatabase();
 
         if(address != null)
             textView_SearchLocation.setText(address);
@@ -101,6 +113,41 @@ public class SearchByAddressFragment extends Fragment {
     View.OnClickListener selectListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {           //검색 버튼 이벤트
+            // 밑의 코드는 즐겨찾기 테스트용 코드임.
+            /*
+            String sql = "SELECT * FROM " + DataBaseTables.CreateDB_favorite._TABLENAME + ";";
+            Cursor results = db.rawQuery(sql, null);
+            String str = "";
+
+            results.moveToFirst();
+
+            while(!results.isAfterLast()) {
+                str = str.concat(results.getString(0));
+
+                results.moveToNext();
+            }
+
+            try {
+                String sql = "SELECT * FROM " + DataBaseTables.CreateDB_setting._TABLENAME + ";";
+                Cursor results = db.rawQuery(sql, null);
+                String str = "";
+
+                results.moveToFirst();
+
+                while(!results.isAfterLast()) {
+                    String tmp = String.valueOf(results.getInt(1));
+                    str = str.concat(tmp);
+
+                    results.moveToNext();
+                }
+                results.close();
+
+                Toast.makeText(getContext(), "아직 구현되지 않은 기능입니다." + str, Toast.LENGTH_SHORT).show();
+            } catch (Exception e ) {
+                Toast.makeText(getContext(), "에러", Toast.LENGTH_SHORT).show();
+            }
+            */
+
             Toast.makeText(getContext(), "아직 구현되지 않은 기능입니다.", Toast.LENGTH_SHORT).show();
         }
     };
@@ -131,10 +178,29 @@ public class SearchByAddressFragment extends Fragment {
             PCListItem pc = pcListAdapter.getItem(position);
 
             pc.setFavorite(!pc.isFavorite());
-            if(pc.isFavorite())
-                Toast.makeText(getContext(), "즐겨찾기에 추가 되었습니다.", Toast.LENGTH_SHORT).show();
-            else
-                Toast.makeText(getContext(), "즐겨찾기에서 삭제 되었습니다.", Toast.LENGTH_SHORT).show();
+            if(pc.isFavorite()) {
+                try {
+                    String sql = "INSERT INTO " + DataBaseTables.CreateDB_favorite._TABLENAME + " VALUES("
+                            + pc.getPcID() + ");";
+                    db.execSQL(sql);
+
+                    Toast.makeText(getContext(), "즐겨찾기에 추가 되었습니다.", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    String sql = "DELETE FROM " + DataBaseTables.CreateDB_favorite._TABLENAME + " WHERE _ID="
+                            + pc.getPcID() + ";";
+                    db.execSQL(sql);
+
+                    Toast.makeText(getContext(), "즐겨찾기를 추가하던 도중 에러가 났습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+            else {
+                try {
+
+                    Toast.makeText(getContext(), "즐겨찾기에서 삭제 되었습니다.", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Toast.makeText(getContext(), "즐겨찾기를 추가하던 도중 에러가 났습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
 
             pcListAdapter.notifyDataSetChanged();
 
