@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 public class DetailedInformationActivity extends AppCompatActivity{
     public static final String POSITION = "포지션";
+    private DetailedInformationActivity activity;
     int position;
     Intent get_intent;
     TextView di_notice, di_address, di_tel;
@@ -29,6 +30,7 @@ public class DetailedInformationActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailedinformation);
+        activity = this;
 
         di_notice = (TextView) findViewById(R.id.di_notice);
         di_address = (TextView) findViewById(R.id.di_address);
@@ -42,8 +44,8 @@ public class DetailedInformationActivity extends AppCompatActivity{
         pc = StaticData.pcItems[position];
 
         ActionBar actionBar = getSupportActionBar();
-
         actionBar.setTitle(pc.getTitle());
+
         di_notice.setText(pc.getNotice());
         di_address.setText(pc.getAddress());
         di_tel.setText(pc.getTel());
@@ -52,9 +54,16 @@ public class DetailedInformationActivity extends AppCompatActivity{
         location_mark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent send_intent = new Intent(getApplicationContext(), MapViewActivity.class);
-                send_intent.putExtra(POSITION, position);
-                startActivity(send_intent);
+                // 위치 확인 권한 확인
+                if ( Build.VERSION.SDK_INT >= 23 &&
+                        ContextCompat.checkSelfPermission( getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
+                    ActivityCompat.requestPermissions( activity , new String[] {  android.Manifest.permission.ACCESS_FINE_LOCATION  }, 0 );
+                }
+                else {
+                    Intent send_intent = new Intent(getApplicationContext(), MapViewActivity.class);
+                    send_intent.putExtra(POSITION, position);
+                    startActivity(send_intent);
+                }
             }
         });
 
@@ -64,7 +73,7 @@ public class DetailedInformationActivity extends AppCompatActivity{
                 String tel_value[] = pc.getTel().split("-");
                 String tel = "tel:";
                 for(String str : tel_value)
-                    tel+=str;
+                    tel=tel.concat(str);
 
                 Intent tel_intent = new Intent(Intent.ACTION_DIAL, Uri.parse(tel));
                 startActivity(tel_intent);
