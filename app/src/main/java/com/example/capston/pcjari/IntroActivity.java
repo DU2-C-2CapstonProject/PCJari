@@ -1,7 +1,6 @@
 package com.example.capston.pcjari;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
@@ -11,6 +10,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
+import com.example.capston.pcjari.PC.PCListItem;
 
 /**
  * Created by KangSeungho on 2017-11-04.

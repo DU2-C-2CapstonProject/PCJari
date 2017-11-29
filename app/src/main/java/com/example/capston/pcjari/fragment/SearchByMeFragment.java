@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.example.capston.pcjari.PCListAdapter;
+import com.example.capston.pcjari.PC.PCListAdapter;
 import com.example.capston.pcjari.R;
 
 public class SearchByMeFragment extends Fragment {

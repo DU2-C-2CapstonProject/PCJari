@@ -1,30 +1,36 @@
 package com.example.capston.pcjari;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.capston.pcjari.fragment.SearchByAddressFragment;
+import com.example.capston.pcjari.Address.AddressAdapter;
 import com.example.capston.pcjari.sqlite.DataBaseHelper;
 import com.example.capston.pcjari.sqlite.DataBaseTables;
+
+import java.util.ArrayList;
 
 /**
  * Created by KangSeungho on 2017-11-05.
  */
 
-public class AddressSearchActivity extends AppCompatActivity {
+public class AddressSearchActivity extends AppCompatActivity implements EditText.OnEditorActionListener{
     Button button_search;
     EditText search_dong;
+    AddressAdapter jusoAdapter;
+    ArrayList<String> juso;
+    ListView addressListView;
 
     private DataBaseHelper DBHelper;
     private SQLiteDatabase db;
@@ -39,53 +45,73 @@ public class AddressSearchActivity extends AppCompatActivity {
         DBHelper = new DataBaseHelper(getApplicationContext());
         db = DBHelper.getWritableDatabase();
 
+        juso = new ArrayList<String>();
+
+        addressListView = (ListView) findViewById(R.id.content);
         search_dong = (EditText) findViewById(R.id.search_dong);
         button_search = (Button) findViewById(R.id.button_search);
 
-        button_search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String juso = "";
-                String dong = search_dong.getText().toString();
-                if(dong.equals("")) {
-                    Toast.makeText(getApplicationContext(), "아직 구현되지 않은 기능입니다.", Toast.LENGTH_SHORT).show();
+        search_dong.setOnEditorActionListener(this);
+        addressListView.setOnItemClickListener(addressClick);
+        button_search.setOnClickListener(addressSearch);
+    }
+
+    // 폰으로 엔터키 눌렀을 때 리스트 검색
+    @Override
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent keyEvent) {
+        if(v.getId() == R.id.search_dong && actionId == EditorInfo.IME_ACTION_DONE) {
+            list_search();
+        }
+        return false;
+    }
+
+    // 검색 버튼 눌렀을 때 검색
+    View.OnClickListener addressSearch = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            list_search();
+        }
+    };
+
+    // 리스트의 주소를 클릭 했을 때 이전 엑티비티로 전환
+    AdapterView.OnItemClickListener addressClick = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+            String address = juso.get(position);
+
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.putExtra("address", address);
+
+            setResult(RESULT_OK, intent);
+            finish();
+        }
+    };
+
+    // 리스트 검색
+    void list_search() {
+        String dong = search_dong.getText().toString();
+
+        if(!dong.equals("")) {
+            String sql = "SELECT * FROM " + DataBaseTables.CreateDB_juso._TABLENAME + " WHERE DONG LIKE'" + dong + "%';";
+            Cursor results = db.rawQuery(sql, null);
+
+            if(results.getCount() == 0)
+                Toast.makeText(getApplicationContext(), "검색 결과가 없습니다.", Toast.LENGTH_SHORT).show();
+            else {
+                results.moveToFirst();
+                juso.clear();
+                juso = new ArrayList<String>();
+
+                while(!results.isAfterLast()) {
+                    juso.add(results.getString(1) + " " + results.getString(2) + " " + results.getString(3));
+                    results.moveToNext();
                 }
-                else {
-                    String sql = "SELECT * FROM " + DataBaseTables.CreateDB_juso._TABLENAME + " WHERE DONG LIKE'" + dong + "%';";
-                    Cursor results = db.rawQuery(sql, null);
 
-                    if(results.getCount() == 0)
-                        Toast.makeText(getApplicationContext(), "검색 결과가 없습니다.", Toast.LENGTH_SHORT).show();
-                    else {
-                        results.moveToFirst();
-                        if(!results.isAfterLast()) {
-                            juso = results.getString(1) + " " + results.getString(2) + " " + results.getString(3);
-                        }
-
-                        Toast.makeText(getApplicationContext(), juso, Toast.LENGTH_SHORT).show();
-                    }
-
-                    results.close();
-                }
+                jusoAdapter = new AddressAdapter();
+                jusoAdapter.addItem(juso);
+                addressListView.setAdapter(jusoAdapter);
             }
-        });
-
-        /*
-        button_search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(v, "아직 구현되지 않은 기능입니다.", Snackbar.LENGTH_LONG)
-                        .setAction("OK", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                intent.putExtra("test", "내가 최고지!");
-                                setResult(RESULT_OK, intent);
-                                finish();
-                            }
-                        }).show();
-            }
-        });
-        */
+            results.close();
+        }
     }
 }

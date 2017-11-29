@@ -1,4 +1,4 @@
-package com.example.capston.pcjari;
+package com.example.capston.pcjari.PC;
 
 /**
  * Created by KangSeungho on 2017-09-25.

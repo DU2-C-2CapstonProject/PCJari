@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.capston.pcjari.PC.PCListItem;
+
 /**
  * Created by KangSeungho on 2017-11-01.
  */

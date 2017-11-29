@@ -1,11 +1,10 @@
 package com.example.capston.pcjari.fragment;
 
 /**
- * Created by 94tig on 2017-10-27.
+ * Created by KangSeungho on 2017-10-27.
  */
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
@@ -23,14 +22,12 @@ import android.widget.Toast;
 
 import com.example.capston.pcjari.AddressSearchActivity;
 import com.example.capston.pcjari.DetailedInformationActivity;
-import com.example.capston.pcjari.PCListAdapter;
-import com.example.capston.pcjari.PCListItem;
+import com.example.capston.pcjari.PC.PCListAdapter;
+import com.example.capston.pcjari.PC.PCListItem;
 import com.example.capston.pcjari.R;
 import com.example.capston.pcjari.StaticData;
 import com.example.capston.pcjari.sqlite.DataBaseHelper;
 import com.example.capston.pcjari.sqlite.DataBaseTables;
-
-import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -38,9 +35,11 @@ public class SearchByAddressFragment extends Fragment {
     private ListView pcListView;
     private PCListAdapter pcListAdapter;
     private PCListItem pcItem[] = StaticData.pcItems;
+    private Button selectButton;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private TextView textView_SearchLocation;
-    private static String address;
+    private ImageView dropdown_mark;
+    private String address[];
 
     private DataBaseHelper DBHelper;
     private SQLiteDatabase db;
@@ -53,20 +52,22 @@ public class SearchByAddressFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getActivity().setTitle("주소로 찾기");
-
         View view = inflater.inflate(R.layout.fragment_searchbyaddress, container, false);
+
+        address = new String[3];
+        address[0] = "경기도";
+        address[1] = "성남시 수정구";
+        address[2] = "복정동";
+
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_layout);
         pcListView = (ListView)view.findViewById(R.id.listview1);
         textView_SearchLocation = (TextView) view.findViewById(R.id.textView_SearchLocation);
-        ImageView dropdown_mark = (ImageView) view.findViewById(R.id.dropdown_mark);
-        Button selectButton = (Button)view.findViewById(R.id.button_search);
+        dropdown_mark = (ImageView) view.findViewById(R.id.dropdown_mark);
+        selectButton = (Button)view.findViewById(R.id.button_search);
         selectButton.setOnClickListener(selectListener);
 
         DBHelper = new DataBaseHelper(getContext());
         db = DBHelper.getWritableDatabase();
-
-        if(address != null)
-            textView_SearchLocation.setText(address);
 
         pcListAdapter = new PCListAdapter();
         dataSetting();
@@ -181,22 +182,19 @@ public class SearchByAddressFragment extends Fragment {
                     String sql = "INSERT INTO " + DataBaseTables.CreateDB_favorite._TABLENAME + " VALUES("
                             + pc.getPcID() + ");";
                     db.execSQL(sql);
-
                     Toast.makeText(getContext(), "즐겨찾기에 추가 되었습니다.", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
-                    String sql = "DELETE FROM " + DataBaseTables.CreateDB_favorite._TABLENAME + " WHERE _ID="
-                            + pc.getPcID() + ";";
-                    db.execSQL(sql);
-
                     Toast.makeText(getContext(), "즐겨찾기를 추가하던 도중 에러가 났습니다.", Toast.LENGTH_SHORT).show();
                 }
             }
             else {
                 try {
-
+                    String sql = "DELETE FROM " + DataBaseTables.CreateDB_favorite._TABLENAME + " WHERE _ID="
+                            + pc.getPcID() + ";";
+                    db.execSQL(sql);
                     Toast.makeText(getContext(), "즐겨찾기에서 삭제 되었습니다.", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
-                    Toast.makeText(getContext(), "즐겨찾기를 추가하던 도중 에러가 났습니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "즐겨찾기를 하던 도중 에러가 났습니다.", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -214,16 +212,25 @@ public class SearchByAddressFragment extends Fragment {
         }
     };
 
-    //AddressSearchActivity(동 검색 액티비티)에서 결과값 반환
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == RESULT_OK) {
+        if (resultCode != RESULT_OK) {
+
+        } else {
             if(requestCode == 0) {
-                address = "경기도 성남시 수정구";
-                Toast.makeText(getContext(), data.getStringExtra("test"), Toast.LENGTH_LONG).show();
-                textView_SearchLocation.setText("경기도 성남시 수정구");
+                String tmp[] = data.getStringExtra("address").split(" ");
+                address[0] = tmp[0];
+                if(tmp.length > 2){
+                    address[1] = tmp[1].concat(" " + tmp[2]);
+                    address[2] = tmp[3];
+                }
+                else {
+                    address[1] = tmp[1];
+                    address[2] = tmp[2];
+                }
+                textView_SearchLocation.setText(address[2]);
             }
         }
     }
