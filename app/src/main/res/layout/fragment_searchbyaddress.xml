@@ -18,7 +18,6 @@
                 android:layout_height="wrap_content"
                 android:text="복정동"
                 android:textSize="18sp"
-                android:inputType="text"
                 android:textStyle="bold" />
             <ImageView
                 android:id="@+id/dropdown_mark"
