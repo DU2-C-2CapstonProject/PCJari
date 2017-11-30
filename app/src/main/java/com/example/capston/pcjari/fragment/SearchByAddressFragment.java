@@ -226,7 +226,7 @@ public class SearchByAddressFragment extends Fragment {
             if(requestCode == 0) {
                 String tmp[] = data.getStringExtra("address").split(" ");
                 address[0] = tmp[0];
-                if(tmp.length > 2){
+                if(tmp.length > 3){
                     address[1] = tmp[1].concat(" " + tmp[2]);
                     address[2] = tmp[3];
                 }
