@@ -24,18 +24,4 @@ public final class DataBaseTables {
                         + _ID + " INTEGER PRIMARY KEY, "
                         + FIRST_ACTIVITY + " INTEGER);";
     }
-
-    // 주소 테이블
-    public static final class CreateDB_juso implements BaseColumns {
-        public static final String _TABLENAME = "juso";
-        public static final String SI = "si";
-        public static final String GU = "gu";
-        public static final String DONG = "dong";
-        public static final String _CREATE_JUSO =
-                "CREATE TABLE " + _TABLENAME + "("
-                        + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                        + SI + " text, "
-                        + GU + " text, "
-                        + DONG + " text);";
-    }
 }
