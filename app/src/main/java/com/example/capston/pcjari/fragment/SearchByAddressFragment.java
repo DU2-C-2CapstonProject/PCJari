@@ -41,9 +41,7 @@ public class SearchByAddressFragment extends Fragment {
     private TextView textView_SearchLocation;
     private ImageView dropdown_mark;
     private String address[];
-
-    private DataBaseHelper DBHelper;
-    private SQLiteDatabase db;
+    SQLiteDatabase db = MainActivity.db;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -66,9 +64,6 @@ public class SearchByAddressFragment extends Fragment {
         dropdown_mark = (ImageView) view.findViewById(R.id.dropdown_mark);
         selectButton = (Button)view.findViewById(R.id.button_search);
         selectButton.setOnClickListener(selectListener);
-
-        DBHelper = new DataBaseHelper(getContext());
-        db = DBHelper.getWritableDatabase();
 
         pcListAdapter = new PCListAdapter();
         dataSetting();

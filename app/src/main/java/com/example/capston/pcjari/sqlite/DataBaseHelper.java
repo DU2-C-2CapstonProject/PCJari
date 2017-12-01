@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "pcjari.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 4;
 
     public DataBaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -21,14 +21,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(DataBaseTables.CreateDB_favorite._CREATE_FAVORITE);
         db.execSQL(DataBaseTables.CreateDB_setting._CREATE_SETTING);
-        db.execSQL(DataBaseTables.CreateDB_juso._CREATE_JUSO);
         db.execSQL("INSERT INTO " + DataBaseTables.CreateDB_setting._TABLENAME + " VALUES(0, 0);");
-        JusoInsert.jusoInsert(db);
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS "+DataBaseTables.CreateDB_favorite._TABLENAME);
         db.execSQL("DROP TABLE IF EXISTS "+DataBaseTables.CreateDB_setting._TABLENAME);
+        db.execSQL("DROP TABLE IF EXISTS "+DataBaseTables.CreateDB_juso._TABLENAME);
         onCreate(db);
     }
 }

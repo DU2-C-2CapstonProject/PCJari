@@ -17,16 +17,12 @@ import com.example.capston.pcjari.sqlite.DataBaseHelper;
 import com.example.capston.pcjari.sqlite.DataBaseTables;
 
 public class InformationFragment extends android.support.v4.app.Fragment {
-    DataBaseHelper DBHelper;
-    SQLiteDatabase db;
+    SQLiteDatabase db = MainActivity.db;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getActivity().setTitle("정보");
         View view = inflater.inflate(R.layout.fragment_information, container, false);
-
-        DBHelper = new DataBaseHelper(getContext());
-        db = DBHelper.getWritableDatabase();
 
         final RadioGroup rg = (RadioGroup) view.findViewById(R.id.radioGroup);
         rg.setOnCheckedChangeListener(firstFragmentSetting);

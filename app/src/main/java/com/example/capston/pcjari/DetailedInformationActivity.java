@@ -51,7 +51,7 @@ public class DetailedInformationActivity extends AppCompatActivity{
         di_notice.setText(pc.getNotice());
         di_address.setText(pc.getAddress());
         di_tel.setText(pc.getTel());
-        imageView.setImageDrawable(pc.getIcon());
+        imageView.setImageResource(pc.getIcon());
 
         location_mark.setOnClickListener(new View.OnClickListener() {
             @Override

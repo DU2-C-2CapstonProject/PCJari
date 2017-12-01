@@ -9,10 +9,13 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.capston.pcjari.MainActivity;
 import com.example.capston.pcjari.R;
 
 import java.util.ArrayList;
+
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 /**
  * Created by KangSeungho on 2017-10-30.
@@ -57,7 +60,8 @@ public class PCListAdapter extends BaseAdapter{
 
         PCListItem pcItem = getItem(position);
 
-        pc_img.setImageDrawable(pcItem.getIcon());
+        Glide.with(context).load(pcItem.getIcon()).bitmapTransform(new CropCircleTransformation(new CustomBitmapPool())).into(pc_img);
+        //pc_img.setImageResource(pcItem.getIcon());
         pc_title.setText(pcItem.getTitle());
         pc_address.setText(pcItem.getAddress());
         pc_price.setText(String.valueOf(pcItem.getPrice()+"원"));

@@ -3,6 +3,7 @@ package com.example.capston.pcjari;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
@@ -19,6 +20,13 @@ import com.example.capston.pcjari.Address.AddressAdapter;
 import com.example.capston.pcjari.sqlite.DataBaseHelper;
 import com.example.capston.pcjari.sqlite.DataBaseTables;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -32,18 +40,12 @@ public class AddressSearchActivity extends AppCompatActivity implements EditText
     ArrayList<String> juso;
     ListView addressListView;
 
-    private DataBaseHelper DBHelper;
-    private SQLiteDatabase db;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.setTitle("주소 검색");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addresssearch);
-
-        DBHelper = new DataBaseHelper(getApplicationContext());
-        db = DBHelper.getWritableDatabase();
 
         juso = new ArrayList<String>();
 
@@ -60,7 +62,7 @@ public class AddressSearchActivity extends AppCompatActivity implements EditText
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent keyEvent) {
         if(v.getId() == R.id.search_dong && actionId == EditorInfo.IME_ACTION_DONE) {
-            list_search();
+            mysql_list_search();
         }
         return false;
     }
@@ -69,7 +71,7 @@ public class AddressSearchActivity extends AppCompatActivity implements EditText
     View.OnClickListener addressSearch = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            list_search();
+            mysql_list_search();
         }
     };
 
@@ -87,31 +89,73 @@ public class AddressSearchActivity extends AppCompatActivity implements EditText
         }
     };
 
-    // 리스트 검색
-    void list_search() {
+    void mysql_list_search() {
         String dong = search_dong.getText().toString();
+        if (!dong.equals("")) {
+            String url = "http://210.179.67.98:80/php/jusosearch.php?dong=";
+            GettingPHP gPHP = new GettingPHP();
 
-        if(!dong.equals("")) {
-            String sql = "SELECT * FROM " + DataBaseTables.CreateDB_juso._TABLENAME + " WHERE DONG LIKE'" + dong + "%';";
-            Cursor results = db.rawQuery(sql, null);
+            gPHP.execute(url.concat(dong));
+        }
+    }
 
-            if(results.getCount() == 0)
-                Toast.makeText(getApplicationContext(), "검색 결과가 없습니다.", Toast.LENGTH_SHORT).show();
-            else {
-                results.moveToFirst();
-                juso.clear();
-                juso = new ArrayList<String>();
+    class GettingPHP extends AsyncTask<String, Integer, String> {
 
-                while(!results.isAfterLast()) {
-                    juso.add(results.getString(1) + " " + results.getString(2) + " " + results.getString(3));
-                    results.moveToNext();
+        @Override
+        protected String doInBackground(String... params) {
+            StringBuilder jsonHtml = new StringBuilder();
+            try {
+                URL phpUrl = new URL(params[0]);
+                HttpURLConnection conn = (HttpURLConnection) phpUrl.openConnection();
+
+                if (conn != null) {
+                    conn.setConnectTimeout(10000);
+                    conn.setUseCaches(false);
+
+                    if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+
+                        while (true) {
+                            String line = br.readLine();
+                            if (line == null)
+                                break;
+                            jsonHtml.append(line + "\n");
+                        }
+                        br.close();
+                    }
+                    conn.disconnect();
                 }
-
-                jusoAdapter = new AddressAdapter();
-                jusoAdapter.addItem(juso);
-                addressListView.setAdapter(jusoAdapter);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            results.close();
+            return jsonHtml.toString();
+        }
+
+        protected void onPostExecute(String str) {
+            try {
+                JSONObject jObject = new JSONObject(str);
+                JSONArray results = jObject.getJSONArray("results");
+                if (jObject.get("status").equals("OK")) {
+                    juso.clear();
+                    juso = new ArrayList<String>();
+
+                    if(results.length() == 0) {
+                        Toast.makeText(getApplicationContext(), "검색 결과가 없습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        for (int i = 0; i < results.length(); i++) {
+                            JSONObject temp = results.getJSONObject(i);
+                            juso.add(temp.get("si") + " " + temp.get("gu") + " " + temp.get("dong"));
+                        }
+
+                        jusoAdapter = new AddressAdapter();
+                        jusoAdapter.addItem(juso);
+                        addressListView.setAdapter(jusoAdapter);
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }
