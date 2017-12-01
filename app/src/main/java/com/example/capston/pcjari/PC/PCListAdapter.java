@@ -22,7 +22,8 @@ import jp.wasabeef.glide.transformations.CropCircleTransformation;
  */
 
 public class PCListAdapter extends BaseAdapter{
-    private ArrayList<PCListItem> pcItems = new ArrayList<>();
+    ArrayList<PCListItem> pcItems = new ArrayList<>();
+    ViewHolder viewHolder;
 
     @Override
     public int getCount() {
@@ -46,46 +47,66 @@ public class PCListAdapter extends BaseAdapter{
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.pc_list_view, parent, false);
+
+            // 객체 생성
+            viewHolder = new ViewHolder();
+            viewHolder.pc_img = (ImageView) convertView.findViewById(R.id.pc_img) ;
+            viewHolder.pc_title = (TextView) convertView.findViewById(R.id.pc_title) ;
+            viewHolder.pc_address = (TextView) convertView.findViewById(R.id.pc_address) ;
+            viewHolder.pc_price = (TextView) convertView.findViewById(R.id.pc_price) ;
+            viewHolder.pc_card = (TextView) convertView.findViewById(R.id.pc_card) ;
+            viewHolder.pc_favoriteMark = (ImageView) convertView.findViewById(R.id.favoriteMark);
+            viewHolder.pc_spaceSeat = (TextView) convertView.findViewById(R.id.pc_spaceSeat);
+            viewHolder.pc_usingSeat = (TextView) convertView.findViewById(R.id.pc_usingSeat);
+            viewHolder.pc_totalSeat = (TextView) convertView.findViewById(R.id.pc_totalSeat);
+
+            convertView.setTag(viewHolder);
+        }
+        else {
+            viewHolder = (ViewHolder)convertView.getTag();
         }
 
-        ImageView pc_img = (ImageView) convertView.findViewById(R.id.pc_img) ;
-        TextView pc_title = (TextView) convertView.findViewById(R.id.pc_title) ;
-        TextView pc_address = (TextView) convertView.findViewById(R.id.pc_address) ;
-        TextView pc_price = (TextView) convertView.findViewById(R.id.pc_price) ;
-        TextView pc_card = (TextView) convertView.findViewById(R.id.pc_card) ;
-        ImageView pc_favoriteMark = (ImageView) convertView.findViewById(R.id.favoriteMark);
-        TextView pc_spaceSeat = (TextView) convertView.findViewById(R.id.pc_spaceSeat);
-        TextView pc_usingSeat = (TextView) convertView.findViewById(R.id.pc_usingSeat);
-        TextView pc_totalSeat = (TextView) convertView.findViewById(R.id.pc_totalSeat);
-
+        // 데이터 셋팅
         PCListItem pcItem = getItem(position);
 
-        Glide.with(context).load(pcItem.getIcon()).bitmapTransform(new CropCircleTransformation(new CustomBitmapPool())).into(pc_img);
+        Glide.with(context).load(pcItem.getIcon()).bitmapTransform(new CropCircleTransformation(new CustomBitmapPool())).into(viewHolder.pc_img);
         //pc_img.setImageResource(pcItem.getIcon());
-        pc_title.setText(pcItem.getTitle());
-        pc_address.setText(pcItem.getAddress());
-        pc_price.setText(String.valueOf(pcItem.getPrice()+"원"));
+        viewHolder.pc_title.setText(pcItem.getTitle());
+        viewHolder.pc_address.setText(pcItem.getAddress());
+        viewHolder.pc_price.setText(String.valueOf(pcItem.getPrice()+"원"));
 
         if(pcItem.isCard()) {
-            pc_card.setVisibility(View.VISIBLE);
+            viewHolder.pc_card.setVisibility(View.VISIBLE);
         } else {
-            pc_card.setVisibility(View.INVISIBLE);
+            viewHolder.pc_card.setVisibility(View.INVISIBLE);
         }
 
         if(MainActivity.favorite.contains(pcItem.getPcID())) {
-            pc_favoriteMark.setVisibility(View.VISIBLE);
+            viewHolder.pc_favoriteMark.setVisibility(View.VISIBLE);
         } else {
-            pc_favoriteMark.setVisibility(View.INVISIBLE);
+            viewHolder.pc_favoriteMark.setVisibility(View.INVISIBLE);
         }
 
-        pc_spaceSeat.setText(String.valueOf(pcItem.getSpaceSeat()));
-        pc_usingSeat.setText(String.valueOf(pcItem.getUsingSeat()));
-        pc_totalSeat.setText(String.valueOf(pcItem.getTotalSeat()));
+        viewHolder.pc_spaceSeat.setText(String.valueOf(pcItem.getSpaceSeat()));
+        viewHolder.pc_usingSeat.setText(String.valueOf(pcItem.getUsingSeat()));
+        viewHolder.pc_totalSeat.setText(String.valueOf(pcItem.getTotalSeat()));
 
         return convertView;
     }
 
     public void addItem(PCListItem pcItem) {
         pcItems.add(pcItem);
+    }
+
+    class ViewHolder {
+        ImageView pc_img;
+        TextView pc_title;
+        TextView pc_address;
+        TextView pc_price;
+        TextView pc_card;
+        ImageView pc_favoriteMark;
+        TextView pc_spaceSeat;
+        TextView pc_usingSeat;
+        TextView pc_totalSeat;
     }
 }

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 public class AddressAdapter extends BaseAdapter {
     ArrayList<String> addressItems;
+    ViewHolder viewHolder;
 
     @Override
     public int getCount() {
@@ -40,15 +41,27 @@ public class AddressAdapter extends BaseAdapter {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.address_list_view, parent, false);
+
+            viewHolder = new ViewHolder();
+            viewHolder.address = (TextView) convertView.findViewById(R.id.address_);
+
+            convertView.setTag(viewHolder);
         }
-        TextView address = (TextView) convertView.findViewById(R.id.address_);
+        else {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+
         String addressItem = getItem(position);
-        address.setText(addressItem);
+        viewHolder.address.setText(addressItem);
 
         return convertView;
     }
 
     public void addItem(ArrayList<String> addressItems) {
         this.addressItems = addressItems;
+    }
+
+    class ViewHolder {
+        TextView address;
     }
 }
