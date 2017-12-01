@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.capston.pcjari.PC.PCListItem;
 
 /**
@@ -51,7 +52,9 @@ public class DetailedInformationActivity extends AppCompatActivity{
         di_notice.setText(pc.getNotice());
         di_address.setText(pc.getAddress());
         di_tel.setText(pc.getTel());
-        imageView.setImageResource(pc.getIcon());
+        String img_url = MainActivity.server + "pc_images/" + pc.getIcon();
+        Glide.with(getApplicationContext()).load(img_url).into(imageView);
+        //imageView.setImageResource(pc.getIcon());
 
         location_mark.setOnClickListener(new View.OnClickListener() {
             @Override

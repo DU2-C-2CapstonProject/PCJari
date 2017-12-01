@@ -12,7 +12,7 @@ public class PCListItem implements Serializable{
 
     private int pcID;
     private String notice;
-    private int icon;
+    private String icon;
     private String title;
     private String address;
     private String tel;
@@ -38,7 +38,7 @@ public class PCListItem implements Serializable{
         this.notice = notice;
     }
 
-    public void setIcon(int icon) {
+    public void setIcon(String icon) {
         this.icon = icon;
     }
 
@@ -103,7 +103,7 @@ public class PCListItem implements Serializable{
         return notice;
     }
 
-    public int getIcon() {
+    public String getIcon() {
         return this.icon;
     }
 

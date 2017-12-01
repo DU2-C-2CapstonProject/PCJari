@@ -12,7 +12,6 @@ import android.widget.Button;
  */
 
 public class SeatNowActivity  extends AppCompatActivity {
-    Button button_search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

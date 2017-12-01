@@ -60,7 +60,7 @@ public class IntroActivity extends AppCompatActivity {
     private void dataSetting(){
         pcItem[0] = new PCListItem();
         pcItem[0].setPcID(0);
-        pcItem[0].setIcon(R.drawable.po1);
+        pcItem[0].setIcon("po1.jpg");
         pcItem[0].setTitle("바닐라PC방");
         pcItem[0].setNotice("12월 1일 전 좌석 그래픽카드 GTX 1080으로 업그레이드");
         pcItem[0].setAddress("경기도 성남시 수정구");
@@ -78,7 +78,7 @@ public class IntroActivity extends AppCompatActivity {
 
         pcItem[1] = new PCListItem();
         pcItem[1].setPcID(1);
-        pcItem[1].setIcon(R.drawable.po2);
+        pcItem[1].setIcon("po2.png");
         pcItem[1].setTitle("더캠프 PC방");
         pcItem[1].setNotice("더캠프 공지");
         pcItem[1].setAddress("경기도 성남시 수정구");
@@ -96,7 +96,7 @@ public class IntroActivity extends AppCompatActivity {
 
         pcItem[2] = new PCListItem();
         pcItem[2].setPcID(2);
-        pcItem[2].setIcon(R.drawable.po3);
+        pcItem[2].setIcon("po3.png");
         pcItem[2].setTitle("갤러리PC방");
         pcItem[2].setNotice("갤러리 공지");
         pcItem[2].setAddress("경기도 성남시 수정구");
@@ -114,7 +114,7 @@ public class IntroActivity extends AppCompatActivity {
 
         pcItem[3] = new PCListItem();
         pcItem[3].setPcID(3);
-        pcItem[3].setIcon(R.drawable.po4);
+        pcItem[3].setIcon("po4.png");
         pcItem[3].setTitle("당근PC방");
         pcItem[3].setNotice("당근 공지");
         pcItem[3].setAddress("경기도 성남시 수정구");
@@ -132,7 +132,7 @@ public class IntroActivity extends AppCompatActivity {
 
         pcItem[4] = new PCListItem();
         pcItem[4].setPcID(4);
-        pcItem[4].setIcon(R.drawable.po5);
+        pcItem[4].setIcon("po5.png");
         pcItem[4].setTitle("쓰리팝PC까페");
         pcItem[4].setNotice("쓰리팝 공지");
         pcItem[4].setAddress("경기도 성남시 수정구");
@@ -150,7 +150,7 @@ public class IntroActivity extends AppCompatActivity {
 
         pcItem[5] = new PCListItem();
         pcItem[5].setPcID(5);
-        pcItem[5].setIcon(R.drawable.po6);
+        pcItem[5].setIcon("po6.png");
         pcItem[5].setTitle("허브 PC방");
         pcItem[5].setNotice("허브 공지");
         pcItem[5].setAddress("경기도 성남시 수정구");
@@ -168,7 +168,7 @@ public class IntroActivity extends AppCompatActivity {
 
         pcItem[6] = new PCListItem();
         pcItem[6].setPcID(6);
-        pcItem[6].setIcon(R.drawable.po7);
+        pcItem[6].setIcon("po7.png");
         pcItem[6].setTitle("라이온PC방 위례본점");
         pcItem[6].setNotice("라이온 공지");
         pcItem[6].setAddress("경기도 성남시 수정구");

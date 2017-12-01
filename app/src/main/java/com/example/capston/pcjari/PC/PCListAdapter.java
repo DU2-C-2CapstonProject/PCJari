@@ -68,8 +68,9 @@ public class PCListAdapter extends BaseAdapter{
 
         // 데이터 셋팅
         PCListItem pcItem = getItem(position);
+        String img_url = MainActivity.server + "pc_images/" + pcItem.getIcon();
 
-        Glide.with(context).load(pcItem.getIcon()).bitmapTransform(new CropCircleTransformation(new CustomBitmapPool())).into(viewHolder.pc_img);
+        Glide.with(context).load(img_url).bitmapTransform(new CropCircleTransformation(new CustomBitmapPool())).into(viewHolder.pc_img);
         //pc_img.setImageResource(pcItem.getIcon());
         viewHolder.pc_title.setText(pcItem.getTitle());
         viewHolder.pc_address.setText(pcItem.getAddress());
