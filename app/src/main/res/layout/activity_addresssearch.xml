@@ -38,7 +38,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=' "사능리" ' />
+            android:text=' "복정동" ' />
     </LinearLayout>
     <ListView
         android:id="@+id/content"

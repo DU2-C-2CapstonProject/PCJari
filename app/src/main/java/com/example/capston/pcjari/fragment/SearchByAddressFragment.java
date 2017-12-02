@@ -27,7 +27,6 @@ import com.example.capston.pcjari.PC.PCListAdapter;
 import com.example.capston.pcjari.PC.PCListItem;
 import com.example.capston.pcjari.R;
 import com.example.capston.pcjari.StaticData;
-import com.example.capston.pcjari.sqlite.DataBaseHelper;
 import com.example.capston.pcjari.sqlite.DataBaseTables;
 
 import static android.app.Activity.RESULT_OK;
@@ -40,12 +39,15 @@ public class SearchByAddressFragment extends Fragment {
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private TextView textView_SearchLocation;
     private ImageView dropdown_mark;
-    private String address[];
+    private static String address[] = {"경기도", "성남시 수정구", "복정동"};
     SQLiteDatabase db = MainActivity.db;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        pcListAdapter = new PCListAdapter();
+        dataSetting();
     }
 
     @Override
@@ -53,52 +55,18 @@ public class SearchByAddressFragment extends Fragment {
         getActivity().setTitle("주소로 찾기");
         View view = inflater.inflate(R.layout.fragment_searchbyaddress, container, false);
 
-        address = new String[3];
-        address[0] = "경기도";
-        address[1] = "성남시 수정구";
-        address[2] = "복정동";
-
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_layout);
         pcListView = (ListView)view.findViewById(R.id.listview1);
         textView_SearchLocation = (TextView) view.findViewById(R.id.textView_SearchLocation);
         dropdown_mark = (ImageView) view.findViewById(R.id.dropdown_mark);
         selectButton = (Button)view.findViewById(R.id.button_search);
+
+        pcListView.setAdapter(pcListAdapter);
         selectButton.setOnClickListener(selectListener);
-
-        pcListAdapter = new PCListAdapter();
-        dataSetting();
-
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                int random[] = new int[7];
-                for(int i=0; i<7; i++) {
-                    int min=10;
-                    int max=0;
-                    int space = pcListAdapter.getItem(i).getSpaceSeat();
-                    if(space>=0 && space<10)
-                        max=0;
-                    else if(space>=10 && space<20)
-                        max=10;
-                    else if(space>=20 && space<30)
-                        max=20;
-                    else if(space>=30 && space<40)
-                        max=30;
-                    else
-                        max=1;
-                    random[i] = (int) (Math.random() * min) + max;
-
-                    pcListAdapter.getItem(i).setSpaceSeat(random[i]);
-                    pcListAdapter.getItem(i).setUsingSeat(pcListAdapter.getItem(i).getTotalSeat()-random[i]);
-                }
-
-                pcListView.setAdapter(pcListAdapter);
-                mSwipeRefreshLayout.setRefreshing(false);
-            }
-        });
-
+        mSwipeRefreshLayout.setOnRefreshListener(refreshListener);
         pcListView.setOnItemClickListener(ListshortListener);
         pcListView.setOnItemLongClickListener(ListlongListener);
+        textView_SearchLocation.setText(address[2]);
         textView_SearchLocation.setOnClickListener(addressSearch);
         dropdown_mark.setOnClickListener(addressSearch);
 
@@ -144,6 +112,35 @@ public class SearchByAddressFragment extends Fragment {
             */
 
             Toast.makeText(getContext(), "아직 구현되지 않은 기능입니다.", Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    SwipeRefreshLayout.OnRefreshListener refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+        @Override
+        public void onRefresh() {
+            int random[] = new int[7];
+            for(int i=0; i<7; i++) {
+                int min=10;
+                int max=0;
+                int space = pcListAdapter.getItem(i).getSpaceSeat();
+                if(space>=0 && space<10)
+                    max=0;
+                else if(space>=10 && space<20)
+                    max=10;
+                else if(space>=20 && space<30)
+                    max=20;
+                else if(space>=30 && space<40)
+                    max=30;
+                else
+                    max=1;
+                random[i] = (int) (Math.random() * min) + max;
+
+                pcListAdapter.getItem(i).setSpaceSeat(random[i]);
+                pcListAdapter.getItem(i).setUsingSeat(pcListAdapter.getItem(i).getTotalSeat()-random[i]);
+            }
+
+            pcListView.setAdapter(pcListAdapter);
+            mSwipeRefreshLayout.setRefreshing(false);
         }
     };
 
@@ -230,6 +227,7 @@ public class SearchByAddressFragment extends Fragment {
                     address[2] = tmp[2];
                 }
                 textView_SearchLocation.setText(address[2]);
+                // 데이터 셋팅 코드 추후 삽입
             }
         }
     }
@@ -237,7 +235,5 @@ public class SearchByAddressFragment extends Fragment {
     private void dataSetting(){
         for(PCListItem pc : pcItem)
             pcListAdapter.addItem(pc);
-
-        pcListView.setAdapter(pcListAdapter);
     }
 }
