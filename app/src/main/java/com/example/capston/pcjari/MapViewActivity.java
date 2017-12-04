@@ -39,7 +39,7 @@ public class MapViewActivity extends AppCompatActivity implements OnMapReadyCall
             actionBar.hide();
 
         intent = getIntent();
-        pc = StaticData.pcItems[intent.getIntExtra(DetailedInformationActivity.POSITION, 0)];
+        pc = MainActivity.pc;
         gps = new GPSTracker(getApplicationContext());
 
         // gps 받아올 수 있는 환경인지 Check~

@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.capston.pcjari.PC.PCListItem;
 import com.example.capston.pcjari.fragment.FavoriteFragment;
 import com.example.capston.pcjari.fragment.InformationFragment;
 import com.example.capston.pcjari.fragment.SearchByAddressFragment;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     public static ArrayList<Integer> favorite;
     public static SQLiteDatabase db;
     public final static String server = "http://210.179.67.98:80/php/";
+    public static PCListItem pc;
     DataBaseHelper DBHelper;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

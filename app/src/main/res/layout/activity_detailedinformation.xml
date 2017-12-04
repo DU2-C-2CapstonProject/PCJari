@@ -184,6 +184,7 @@
                     android:layout_marginLeft="15dp"
                     android:text="CPU"/>
                 <TextView
+                    android:id="@+id/di_cpu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="100dp"
@@ -199,6 +200,7 @@
                     android:layout_marginLeft="15dp"
                     android:text="그래픽카드"/>
                 <TextView
+                    android:id="@+id/di_vga"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="100dp"
@@ -214,6 +216,7 @@
                     android:layout_marginLeft="15dp"
                     android:text="RAM"/>
                 <TextView
+                    android:id="@+id/di_ram"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="100dp"
@@ -229,6 +232,7 @@
                     android:layout_marginLeft="15dp"
                     android:text="주변기기"/>
                 <TextView
+                    android:id="@+id/di_per"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="100dp"
@@ -265,6 +269,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/di_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"

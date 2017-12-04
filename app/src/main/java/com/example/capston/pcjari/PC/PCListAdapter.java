@@ -73,7 +73,7 @@ public class PCListAdapter extends BaseAdapter{
         Glide.with(context).load(img_url).bitmapTransform(new CropCircleTransformation(new CustomBitmapPool())).into(viewHolder.pc_img);
         //pc_img.setImageResource(pcItem.getIcon());
         viewHolder.pc_title.setText(pcItem.getTitle());
-        viewHolder.pc_address.setText(pcItem.getAddress());
+        viewHolder.pc_address.setText(pcItem.getSi() + " " + pcItem.getGu() + " " + pcItem.getDong());
         viewHolder.pc_price.setText(String.valueOf(pcItem.getPrice()+"원"));
 
         if(pcItem.isCard()) {
@@ -97,6 +97,9 @@ public class PCListAdapter extends BaseAdapter{
 
     public void addItem(PCListItem pcItem) {
         pcItems.add(pcItem);
+    }
+    public void setItem(ArrayList<PCListItem> pcItem) {
+        pcItems = new ArrayList<PCListItem>(pcItem);
     }
 
     class ViewHolder {

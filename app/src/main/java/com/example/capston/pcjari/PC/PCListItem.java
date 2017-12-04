@@ -4,8 +4,6 @@ package com.example.capston.pcjari.PC;
  * Created by KangSeungho on 2017-09-25.
  */
 
-import android.graphics.drawable.Drawable;
-
 import java.io.Serializable;
 
 public class PCListItem implements Serializable{
@@ -14,13 +12,18 @@ public class PCListItem implements Serializable{
     private String notice;
     private String icon;
     private String title;
-    private String address;
+    private String si;
+    private String gu;
+    private String dong;
+    private String etc_juso;
     private String tel;
     private String cpu;
     private String ram;
     private String vga;
+    private String peripheral;
     private int price;
-    private boolean card;
+    private boolean card=false;
+    private int seatLength;
 
     private double location_x;
     private double location_y;
@@ -46,8 +49,20 @@ public class PCListItem implements Serializable{
         this.title = title;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setSi(String si) {
+        this.si = si;
+    }
+
+    public void setGu(String gu) {
+        this.gu = gu;
+    }
+
+    public void setDong(String dong) {
+        this.dong = dong;
+    }
+
+    public void setEtc_juso(String etc_juso) {
+        this.etc_juso = etc_juso;
     }
 
     public void setTel(String tel) {
@@ -64,6 +79,10 @@ public class PCListItem implements Serializable{
 
     public void setVga(String vga) {
         this.vga = vga;
+    }
+
+    public void setPeripheral(String peripheral) {
+        this.peripheral = peripheral;
     }
 
     public void setPrice(int price) {
@@ -94,6 +113,10 @@ public class PCListItem implements Serializable{
         this.location_y = location_y;
     }
 
+    public void setSeatLength(int seatLength) {
+        this.seatLength = seatLength;
+    }
+
 
     public int getPcID() {
         return pcID;
@@ -111,8 +134,20 @@ public class PCListItem implements Serializable{
         return this.title;
     }
 
-    public String getAddress() {
-        return this.address;
+    public String getSi() {
+        return this.si;
+    }
+
+    public String getGu() {
+        return gu;
+    }
+
+    public String getDong() {
+        return dong;
+    }
+
+    public String getEtc_juso() {
+        return etc_juso;
     }
 
     public String getTel() {
@@ -129,6 +164,10 @@ public class PCListItem implements Serializable{
 
     public String getVga() {
         return vga;
+    }
+
+    public String getPeripheral() {
+        return peripheral;
     }
 
     public int getPrice() {
@@ -157,5 +196,9 @@ public class PCListItem implements Serializable{
 
     public double getLocation_y() {
         return location_y;
+    }
+
+    public int getSeatLength() {
+        return seatLength;
     }
 }
