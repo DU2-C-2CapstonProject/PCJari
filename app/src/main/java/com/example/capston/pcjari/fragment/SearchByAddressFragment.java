@@ -299,6 +299,7 @@ public class SearchByAddressFragment extends Fragment {
 
                     if(results.length() == 0) {
                         Toast.makeText(getContext(), "검색 결과가 없습니다.", Toast.LENGTH_SHORT).show();
+                        pcListAdapter.setItem(pcItem);
                         pcListView.setAdapter(pcListAdapter);
                     }
                     else {
