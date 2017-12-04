@@ -35,12 +35,14 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/editpc"
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:hint="@string/search_hint"
-            android:privateImeOptions="defaultInputmode=korean" />
+            android:inputType="text"
+            android:imeOptions="actionDone"
+            android:privateImeOptions="defaultInputmode=korean"
+            android:hint="@string/search_hint"/>
 
         <Button
             android:id="@+id/button_search"

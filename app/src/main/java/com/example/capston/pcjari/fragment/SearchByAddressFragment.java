@@ -11,11 +11,14 @@ import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -40,7 +43,7 @@ import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
 
-public class SearchByAddressFragment extends Fragment {
+public class SearchByAddressFragment extends Fragment implements EditText.OnEditorActionListener{
     private ListView pcListView;
     private PCListAdapter pcListAdapter;
     private ArrayList<PCListItem> pcItem = new ArrayList<PCListItem>();
@@ -48,8 +51,10 @@ public class SearchByAddressFragment extends Fragment {
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private TextView textView_SearchLocation;
     private ImageView dropdown_mark;
+    private EditText editPc;
     private static String address[] = {"경기도", "성남시 수정구", "복정동"};
     SQLiteDatabase db = MainActivity.db;
+    String url="";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,12 +69,14 @@ public class SearchByAddressFragment extends Fragment {
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_layout);
         pcListView = (ListView)view.findViewById(R.id.listview1);
         textView_SearchLocation = (TextView) view.findViewById(R.id.textView_SearchLocation);
+        editPc = (EditText) view.findViewById(R.id.editpc);
         dropdown_mark = (ImageView) view.findViewById(R.id.dropdown_mark);
         selectButton = (Button)view.findViewById(R.id.button_search);
 
         pcListAdapter = new PCListAdapter();
         dataSetting();
 
+        editPc.setOnEditorActionListener(this);
         pcListView.setAdapter(pcListAdapter);
         selectButton.setOnClickListener(selectListener);
         mSwipeRefreshLayout.setOnRefreshListener(refreshListener);
@@ -82,82 +89,36 @@ public class SearchByAddressFragment extends Fragment {
         return view;
     }
 
+    // 키보드로 엔터 눌렀을 때
+    @Override
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent keyEvent) {
+        if(v.getId() == R.id.editpc && actionId == EditorInfo.IME_ACTION_DONE) {
+            nameSearch();
+        }
+        return false;
+    }
+
+    // 검색 버튼
     View.OnClickListener selectListener = new View.OnClickListener() {
         @Override
-        public void onClick(View v) {           //검색 버튼 이벤트
-            // 밑의 코드는 즐겨찾기 테스트용 코드임.
-            /*
-            String sql = "SELECT * FROM " + DataBaseTables.CreateDB_favorite._TABLENAME + ";";
-            Cursor results = db.rawQuery(sql, null);
-            String str = "";
-
-            results.moveToFirst();
-
-            while(!results.isAfterLast()) {
-                str = str.concat(results.getString(0));
-
-                results.moveToNext();
-            }
-            /*
-            try {
-                String sql = "SELECT * FROM " + DataBaseTables.CreateDB_setting._TABLENAME + ";";
-                Cursor results = db.rawQuery(sql, null);
-                String str = "";
-
-                results.moveToFirst();
-
-                while(!results.isAfterLast()) {
-                    String tmp = String.valueOf(results.getInt(1));
-                    str = str.concat(tmp);
-
-                    results.moveToNext();
-                }
-                results.close();
-
-                Toast.makeText(getContext(), "아직 구현되지 않은 기능입니다." + str, Toast.LENGTH_SHORT).show();
-            } catch (Exception e ) {
-                Toast.makeText(getContext(), "에러", Toast.LENGTH_SHORT).show();
-            }
-            */
-
-            Toast.makeText(getContext(), "아직 구현되지 않은 기능입니다.", Toast.LENGTH_SHORT).show();
+        public void onClick(View v) {
+            nameSearch();
         }
     };
 
+    // 새로고침
     SwipeRefreshLayout.OnRefreshListener refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
-            /*
-            int random[] = new int[7];
-            for(int i=0; i<7; i++) {
-                int min=10;
-                int max=0;
-                int space = pcListAdapter.getItem(i).getSpaceSeat();
-                if(space>=0 && space<10)
-                    max=0;
-                else if(space>=10 && space<20)
-                    max=10;
-                else if(space>=20 && space<30)
-                    max=20;
-                else if(space>=30 && space<40)
-                    max=30;
-                else
-                    max=1;
-                random[i] = (int) (Math.random() * min) + max;
-
-                pcListAdapter.getItem(i).setSpaceSeat(random[i]);
-                pcListAdapter.getItem(i).setUsingSeat(pcListAdapter.getItem(i).getTotalSeat()-random[i]);
-            }
-
-            pcListView.setAdapter(pcListAdapter);
-            */
+            dataSetting();
             mSwipeRefreshLayout.setRefreshing(false);
         }
     };
 
+    //리스트 아이템 클릭했을 때 나오는 이벤트
     AdapterView.OnItemClickListener ListshortListener = new AdapterView.OnItemClickListener() {
         @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {          //리스트 아이템 클릭했을 때 나오는 이벤트
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Intent intent = new Intent(getActivity(), DetailedInformationActivity.class);
             intent.putExtra(DetailedInformationActivity.POSITION, position);
             MainActivity.pc = pcItem.get(position);
@@ -176,9 +137,10 @@ public class SearchByAddressFragment extends Fragment {
         }
     };
 
+    // 리스트 아이템 꾹 눌렀을 때 나오는 이벤트
     AdapterView.OnItemLongClickListener ListlongListener = new AdapterView.OnItemLongClickListener() {
         @Override
-        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {       //리스트 아이템 꾹 눌렀을 때 나오는 이벤트
+        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
             PCListItem pc = pcListAdapter.getItem(position);
             int pcId = pc.getPcID();
 
@@ -212,14 +174,16 @@ public class SearchByAddressFragment extends Fragment {
         }
     };
 
+    // 동 설정
     View.OnClickListener addressSearch = new View.OnClickListener() {
         @Override
-        public void onClick(View v) {           //동 설정
+        public void onClick(View v) {
             Intent intent = new Intent(getContext(), AddressSearchActivity.class);
             startActivityForResult(intent, 0);
         }
     };
 
+    // intent 이후 되돌아올 때 실행되는 메소드
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -244,14 +208,18 @@ public class SearchByAddressFragment extends Fragment {
         }
     }
 
+    // 데이터 검색
     void dataSetting() {
-        String url = MainActivity.server + "pclist_search.php?";
-        String code = "0";
-        String gu = address[1];
-        String dong = address[2];
+        url = MainActivity.server + "pclist_search.php?";
+        url+= "code=0&gu=" + address[1] + "&dong=" + address[2];
 
-        url+= "code=" + code + "&gu=" + gu + "&dong=" + dong;
+        GettingPHP gPHP = new GettingPHP();
+        gPHP.execute(url);
+    }
 
+    // 데이터 이름으로 검색
+    void nameSearch() {
+        url += "&namesearch=" + editPc.getText();
         GettingPHP gPHP = new GettingPHP();
         gPHP.execute(url);
     }
