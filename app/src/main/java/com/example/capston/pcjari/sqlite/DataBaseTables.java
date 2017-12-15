@@ -19,9 +19,11 @@ public final class DataBaseTables {
     public static final class CreateDB_setting implements BaseColumns {
         public static final String _TABLENAME = "setting";
         public static final String FIRST_ACTIVITY = "first_activity";
+        public static final String DIST = "dist";
         public static final String _CREATE_SETTING =
                 "CREATE TABLE " + _TABLENAME + "("
                         + _ID + " INTEGER PRIMARY KEY, "
-                        + FIRST_ACTIVITY + " INTEGER);";
+                        + FIRST_ACTIVITY + " INTEGER, "
+                        + DIST + " DOUBLE);";
     }
 }

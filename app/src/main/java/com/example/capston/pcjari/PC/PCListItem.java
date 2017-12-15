@@ -32,6 +32,8 @@ public class PCListItem implements Serializable{
     private int spaceSeat;
     private int usingSeat;
 
+    private double dist;
+
 
     public void setPcID(int pcID) {
         this.pcID = pcID;
@@ -117,6 +119,10 @@ public class PCListItem implements Serializable{
         this.seatLength = seatLength;
     }
 
+    public void setDist(double dist) {
+        this.dist = dist;
+    }
+
 
     public int getPcID() {
         return pcID;
@@ -200,5 +206,9 @@ public class PCListItem implements Serializable{
 
     public int getSeatLength() {
         return seatLength;
+    }
+
+    public double getDist() {
+        return dist;
     }
 }

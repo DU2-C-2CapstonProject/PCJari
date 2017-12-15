@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.capston.pcjari.MainActivity;
@@ -59,6 +60,7 @@ public class PCListAdapter extends BaseAdapter{
             viewHolder.pc_spaceSeat = (TextView) convertView.findViewById(R.id.pc_spaceSeat);
             viewHolder.pc_usingSeat = (TextView) convertView.findViewById(R.id.pc_usingSeat);
             viewHolder.pc_totalSeat = (TextView) convertView.findViewById(R.id.pc_totalSeat);
+            viewHolder.pc_dist = (TextView) convertView.findViewById(R.id.pc_dist);
 
             convertView.setTag(viewHolder);
         }
@@ -88,6 +90,15 @@ public class PCListAdapter extends BaseAdapter{
             viewHolder.pc_favoriteMark.setVisibility(View.INVISIBLE);
         }
 
+        if(pcItem.getDist() > 0) {
+            if(pcItem.getDist() > 1)
+                viewHolder.pc_dist.setText(pcItem.getDist() + "km");
+            else
+                viewHolder.pc_dist.setText((int)(pcItem.getDist()*1000) + "m");
+        } else {
+            viewHolder.pc_dist.setVisibility(View.INVISIBLE);
+        }
+
         viewHolder.pc_spaceSeat.setText(String.valueOf(pcItem.getSpaceSeat()));
         viewHolder.pc_usingSeat.setText(String.valueOf(pcItem.getUsingSeat()));
         viewHolder.pc_totalSeat.setText(String.valueOf(pcItem.getTotalSeat()));
@@ -112,5 +123,6 @@ public class PCListAdapter extends BaseAdapter{
         TextView pc_spaceSeat;
         TextView pc_usingSeat;
         TextView pc_totalSeat;
+        TextView pc_dist;
     }
 }
