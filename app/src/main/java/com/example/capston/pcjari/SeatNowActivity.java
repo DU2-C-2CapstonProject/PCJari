@@ -117,6 +117,7 @@ public class SeatNowActivity  extends AppCompatActivity {
                     seatGridView = (GridView) findViewById(R.id.gridView1);
                     seatGridView.setNumColumns(4);
                     seatGridView.setAdapter(seatAdapter);
+                    seatGridView.setClickable(false);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
