@@ -14,7 +14,7 @@ import com.example.capston.pcjari.R;
  * Created by KangSeungho on 2017-12-01.
  */
 
-public class SeatItem extends LinearLayout {
+public class SeatItem extends RelativeLayout {
     RelativeLayout space;
     RelativeLayout seat_PCNum;
 
@@ -46,14 +46,15 @@ public class SeatItem extends LinearLayout {
     }
 
     public void setData(Seat seat) {
-        if(seat.getPlace() > 0) {
+        if(seat.getSeat_id() > 0) {
+            /*
             seat_PCNum.setVisibility(VISIBLE);
             textView_PCNum.setText(seat.getSeat_id());
 
             if(seat.getPc_state() == 0) {
                 space.setBackgroundResource(R.drawable.seat_va);
-                ImageView_SM.setVisibility(INVISIBLE);
             }
+
             else {
                 int tmp = seat.getPc_time();
                 int hour = tmp/60;
@@ -62,28 +63,25 @@ public class SeatItem extends LinearLayout {
                 if(seat.getPc_state() == 1) {
                     space.setBackgroundResource(R.drawable.seat_ap);
                     seat_AP.setVisibility(VISIBLE);
-                    seat_DP.setVisibility(INVISIBLE);
                     textView_RT.setText(hour + ":" + minute);
                 }
                 else if(seat.getPc_state() == 2) {
                     space.setBackgroundResource(R.drawable.seat_dp);
-                    seat_AP.setVisibility(INVISIBLE);
                     seat_DP.setVisibility(VISIBLE);
                     textView_ST.setText(hour + ":" + minute);
                 }
             }
+            */
         }
-        else if(seat.getPlace() == SMOKE) {
+        else if(seat.getSeat_id() == SMOKE) {
             space.setBackgroundResource(R.drawable.space_smoke);
-            seat_PCNum.setVisibility(INVISIBLE);
             ImageView_SM.setVisibility(VISIBLE);
         }
-        else if(seat.getPlace() == COUNTER) {
+
+        else if(seat.getSeat_id() == COUNTER) {
             space.setBackgroundResource(R.drawable.space_counter);
-            seat_PCNum.setVisibility(INVISIBLE);
-            ImageView_SM.setVisibility(INVISIBLE);
         }
-        else {
+        else if(seat.getSeat_id() == 0) {
             space.setVisibility(INVISIBLE);
         }
     }

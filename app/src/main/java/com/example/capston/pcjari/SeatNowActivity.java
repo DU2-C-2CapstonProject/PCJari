@@ -35,16 +35,17 @@ public class SeatNowActivity  extends AppCompatActivity {
         setContentView(R.layout.activity_seatnow);
 
         dataSetting();
-        seatAdapter = new SeatAdapter(getApplicationContext());
-        seatAdapter.addSeats(seats);
-        seatGridView = (GridView) findViewById(R.id.gridView1);
-        seatGridView.setColumnWidth(1);
-        seatGridView.setAdapter(seatAdapter);
     }
 
     void dataSetting() {
+        /*
+        for(int i=0; i<5; i++) {
+            Seat seat = new Seat();
+            seat.setPc_id(i);
+            seats.add(seat);
+        }
+        */
         String url = MainActivity.server + "seat_search.php?id=" + MainActivity.pc.getPcID();
-        Toast.makeText(getApplicationContext(), url, Toast.LENGTH_SHORT).show();
         GettingPHP gettingPHP = new GettingPHP();
         gettingPHP.execute(url);
     }
@@ -98,15 +99,24 @@ public class SeatNowActivity  extends AppCompatActivity {
                             JSONObject temp = results.getJSONObject(i);
 
                             Seat seat = new Seat();
+
                             seat.setPc_id(temp.getInt("pc_id"));
                             seat.setPlace(temp.getInt("place_id"));
-                            seat.setSeat_id(temp.getInt("state_id"));
-                            seat.setPc_state(temp.getInt("state"));
-                            seat.setPc_time(temp.getInt("time"));
+                            seat.setSeat_id(temp.getInt("seat_id"));
+
+                            if(!temp.getString("state").equals("null"))
+                                seat.setPc_state(temp.getInt("state"));
+                            if(!temp.getString("time").equals("null"))
+                                seat.setPc_time(temp.getInt("time"));
 
                             seats.add(seat);
                         }
                     }
+                    seatAdapter = new SeatAdapter(getApplicationContext());
+                    seatAdapter.addSeats(seats);
+                    seatGridView = (GridView) findViewById(R.id.gridView1);
+                    seatGridView.setNumColumns(4);
+                    seatGridView.setAdapter(seatAdapter);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
