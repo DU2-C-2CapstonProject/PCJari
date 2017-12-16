@@ -44,4 +44,9 @@ public class SeatAdapter extends BaseAdapter{
 
         return convertView;
     }
+
+    public void addSeats(ArrayList<Seat> seats) {
+        this.seats.clear();
+        this.seats.addAll(seats);
+    }
 }
