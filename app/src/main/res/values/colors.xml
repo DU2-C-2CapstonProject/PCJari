@@ -6,7 +6,7 @@
     <color name="menu_character_color">#C8C9CA</color>
     <color name="seat_ap">#2a83ff</color>
     <color name="seat_dp">#ffb12a</color>
-    <color name="space_smoke">#2fc176</color>
-    <color name="space_counter">#ff4040</color>
+    <color name="space_smoke">#ff4040</color>
+    <color name="space_counter">#2fc176</color>
     <color name="black_overlay">#66000000</color>
 </resources>
