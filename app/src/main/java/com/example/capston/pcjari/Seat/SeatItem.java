@@ -47,9 +47,8 @@ public class SeatItem extends RelativeLayout {
 
     public void setData(Seat seat) {
         if(seat.getSeat_id() > 0) {
-            /*
             seat_PCNum.setVisibility(VISIBLE);
-            textView_PCNum.setText(seat.getSeat_id());
+            textView_PCNum.setText(String.valueOf(seat.getSeat_id()));
 
             if(seat.getPc_state() == 0) {
                 space.setBackgroundResource(R.drawable.seat_va);
@@ -63,15 +62,14 @@ public class SeatItem extends RelativeLayout {
                 if(seat.getPc_state() == 1) {
                     space.setBackgroundResource(R.drawable.seat_ap);
                     seat_AP.setVisibility(VISIBLE);
-                    textView_RT.setText(hour + ":" + minute);
+                    textView_RT.setText(String.valueOf(hour) + ":" + String.valueOf(minute));
                 }
                 else if(seat.getPc_state() == 2) {
                     space.setBackgroundResource(R.drawable.seat_dp);
                     seat_DP.setVisibility(VISIBLE);
-                    textView_ST.setText(hour + ":" + minute);
+                    textView_ST.setText(String.valueOf(hour) + ":" + String.valueOf(minute));
                 }
             }
-            */
         }
         else if(seat.getSeat_id() == SMOKE) {
             space.setBackgroundResource(R.drawable.space_smoke);
