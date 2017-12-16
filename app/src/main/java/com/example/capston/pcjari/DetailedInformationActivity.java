@@ -11,6 +11,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +40,7 @@ public class DetailedInformationActivity extends AppCompatActivity{
     TextView di_notice, di_address, di_tel, di_cpu, di_ram, di_vga, di_per, di_price;
     PCListItem pc;
     ImageView location_mark, imageView;
+    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,8 @@ public class DetailedInformationActivity extends AppCompatActivity{
 
         location_mark = (ImageView) findViewById(R.id.location_mark);
         imageView = (ImageView) findViewById(R.id.imageView);
+
+        button = (Button) findViewById(R.id.button);
 
         get_intent = getIntent();
         position = get_intent.getIntExtra(POSITION, 0);
@@ -79,6 +83,7 @@ public class DetailedInformationActivity extends AppCompatActivity{
 
         location_mark.setOnClickListener(locationListener);
         di_tel.setOnClickListener(telListener);
+        button.setOnClickListener(seatListener);
     }
 
     // 주소 보기 버튼 클릭
@@ -109,6 +114,14 @@ public class DetailedInformationActivity extends AppCompatActivity{
 
             Intent tel_intent = new Intent(Intent.ACTION_DIAL, Uri.parse(tel));
             startActivity(tel_intent);
+        }
+    };
+
+    View.OnClickListener seatListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent seat_intent = new Intent(getApplication(), SeatNowActivity.class);
+            startActivity(seat_intent);
         }
     };
 }

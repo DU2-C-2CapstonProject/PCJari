@@ -37,6 +37,7 @@
         <activity android:name=".DetailedInformationActivity" />
         <activity android:name=".MapViewActivity" />
         <activity android:name=".AddressSearchActivity" />
+        <activity android:name=".SeatNowActivity" />
     </application>
 
 </manifest>

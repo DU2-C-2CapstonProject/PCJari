@@ -47,15 +47,14 @@ public class SeatItem extends LinearLayout {
 
     public void setData(Seat seat) {
         if(seat.getPlace() > 0) {
+            seat_PCNum.setVisibility(VISIBLE);
+            textView_PCNum.setText(seat.getSeat_id());
+
             if(seat.getPc_state() == 0) {
                 space.setBackgroundResource(R.drawable.seat_va);
-                seat_PCNum.setVisibility(INVISIBLE);
                 ImageView_SM.setVisibility(INVISIBLE);
             }
             else {
-                seat_PCNum.setVisibility(VISIBLE);
-                textView_PCNum.setText(seat.getSeat_id());
-
                 int tmp = seat.getPc_time();
                 int hour = tmp/60;
                 int minute = tmp%60;

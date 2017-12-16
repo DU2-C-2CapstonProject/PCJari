@@ -37,13 +37,14 @@ public class SeatNowActivity  extends AppCompatActivity {
         dataSetting();
         seatAdapter = new SeatAdapter(getApplicationContext());
         seatAdapter.addSeats(seats);
-        //seatGridView = (GridView) findViewById(R.id.seatgrid);
-
+        seatGridView = (GridView) findViewById(R.id.gridView1);
+        seatGridView.setColumnWidth(1);
         seatGridView.setAdapter(seatAdapter);
     }
 
     void dataSetting() {
-        String url = MainActivity.server + "seat_search.php?" + MainActivity.pc.getPcID();
+        String url = MainActivity.server + "seat_search.php?id=" + MainActivity.pc.getPcID();
+        Toast.makeText(getApplicationContext(), url, Toast.LENGTH_SHORT).show();
         GettingPHP gettingPHP = new GettingPHP();
         gettingPHP.execute(url);
     }
