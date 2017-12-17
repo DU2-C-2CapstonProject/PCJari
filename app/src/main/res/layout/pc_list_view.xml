@@ -34,14 +34,26 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/pc_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="PC방명"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/pc_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="PC방명"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/pc_dist"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="80m"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:visibility="visible"/>
+                    </RelativeLayout>
 
                     <TextView
                         android:id="@+id/pc_address"
@@ -76,21 +88,11 @@
                             android:textColor="@color/colorPrimaryDark"
                             android:visibility="visible"/>
 
-                        <TextView
-                            android:id="@+id/pc_dist"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:background="@drawable/tag"
-                            android:text="80m"
-                            android:textSize="11sp"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:visibility="visible"/>
                     </LinearLayout>
                 </LinearLayout>
 
                 <RelativeLayout
-                    android:layout_width="60dp"
+                    android:layout_width="64dp"
                     android:layout_height="73dp"
                     android:layout_margin="5dp">
                     <LinearLayout

@@ -14,7 +14,8 @@
     <string name="pcnum">PC번호</string>
     <string name="pcuse_start">시작</string>
     <string name="pcuse_remain">남음</string>
-
+    <string name="settings_frontpage">첫 화면</string>
+    <string name="settings_gps">내 주변 거리 설정</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

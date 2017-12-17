@@ -7,9 +7,9 @@
             android:id="@+id/textView_Info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
-            android:text="정보"
+            android:text="@string/title_information"
             android:textSize="17sp"/>
         <TextView
             android:id="@+id/textView_InfoNotice"
@@ -64,7 +64,6 @@
             android:layout_width="match_parent"
             android:layout_height="1.5dp"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
             android:background="#c7c7c7" />
     </LinearLayout>
 
@@ -79,8 +78,8 @@
         android:id="@+id/textView_SettingsFrontPage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:text="첫 화면"
+        android:layout_marginStart="15dp"
+        android:text="@string/settings_frontpage"
         android:textSize="18sp"
         android:textColor="#3273e4"
         android:textStyle="bold"/>
@@ -89,20 +88,20 @@
         android:id="@+id/radioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp">
+        android:layout_marginStart="20dp">
         <android.support.v7.widget.AppCompatRadioButton
             android:id="@+id/radioButton_FP01"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="#ff4081"
             android:checked="true"
-            android:text="주소로 찾기"/>
+            android:text="@string/title_search_by_address"/>
         <android.support.v7.widget.AppCompatRadioButton
             android:id="@+id/radioButton_FP02"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="#ff4081"
-            android:text="내 주변"
+            android:text="@string/title_search_by_me"
             android:checked="false"/>
         <android.support.v7.widget.AppCompatRadioButton
             android:id="@+id/radioButton_FP03"
@@ -110,8 +109,23 @@
             android:layout_height="wrap_content"
             android:buttonTint="#ff4081"
             android:checked="false"
-            android:text="즐겨찾기"/>
+            android:text="@string/title_favorite"/>
     </RadioGroup>
+    <TextView
+        android:id="@+id/textView_SettingsGPS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="@string/settings_gps"
+        android:textSize="18sp"
+        android:textColor="#3273e4"
+        android:textStyle="bold"/>
+
+    <SeekBar
+        android:id="@+id/seekBar_SettingsGPS"
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
