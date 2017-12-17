@@ -1,107 +1,69 @@
 <RelativeLayout android:id="@+id/SPACE"
-    android:layout_width="85dp"
-    android:layout_height="65dp"
-    android:layout_marginTop="3dp"
+    android:layout_width="19.125dp"
+    android:layout_height="14.625dp"
+    android:layout_marginTop="0.9dp"
     android:background="@drawable/seat_ap"
     android:orientation="vertical"
-    android:paddingBottom="6dp"
-    android:paddingLeft="6dp"
-    android:paddingRight="6dp"
-    android:paddingTop="3dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <ImageView
-        android:id="@+id/ImageView_SM"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_centerInParent="true"
-        android:src="@drawable/ic_smoking_rooms_black_24dp"
-        android:visibility="invisible"/>
+
     <RelativeLayout
         android:id="@+id/seat_PCNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="invisible">
+        android:visibility="visible">
         <TextView
             android:id="@+id/textView_PCNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/pcnum"
             android:textColor="#FFFFFF"
-            android:textSize="12sp" />
+            android:textSize="2.7sp"
+            android:layout_marginTop="0.9dp"
+            android:layout_marginLeft="1.8dp"/>
 
         <RelativeLayout
-            android:id="@+id/seat_AP"
+            android:id="@+id/seat"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="invisible">
+            android:visibility="visible">
 
             <TextView
+                android:id="@+id/textView_seat_payment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
                 android:text="선불"
                 android:textColor="@color/seat_ap"
-                android:textSize="13sp" />
+                android:textSize="2.925sp"
+                android:layout_marginTop="0.9dp"
+                android:layout_marginRight="1.8dp"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true">
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="1.8dp"
+                android:layout_marginBottom="1.8dp">
 
                 <TextView
-                    android:id="@+id/textView_RT"
+                    android:id="@+id/textView_Time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="03:50"
                     android:textColor="#FFFFFF"
-                    android:textSize="12sp" />
+                    android:textSize="2.7sp" />
 
                 <TextView
+                    android:id="@+id/textView_seat_state"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
                     android:text="@string/pcuse_remain"
                     android:textColor="#FFFFFF"
-                    android:textSize="12sp" />
+                    android:textSize="2.7sp" />
             </LinearLayout>
-        </RelativeLayout><!--선불-->
-        <RelativeLayout
-            android:id="@+id/seat_DP"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="invisible">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:text="후불"
-                android:textSize="13sp"
-                android:textColor="@color/seat_dp"/>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true">
-                <TextView
-                    android:id="@+id/textView_ST"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="14:00"
-                    android:textSize="12sp"
-                    android:textColor="#FFFFFF" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="2dp"
-                    android:text="@string/pcuse_start"
-                    android:textSize="12sp"
-                    android:textColor="#FFFFFF" />
-            </LinearLayout>
-        </RelativeLayout><!--후불-->
-
+        </RelativeLayout>
     </RelativeLayout><!--공간 정보-->
 </RelativeLayout><!--051-->

@@ -175,7 +175,7 @@ public class FavoriteFragment extends android.support.v4.app.Fragment {
                     pcItem = new ArrayList<PCListItem>();
 
                     if(results.length() == 0) {
-                        Toast.makeText(getContext(), "검색 결과가 없습니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "즐겨찾기 목록이 없습니다.", Toast.LENGTH_SHORT).show();
                         pcListAdapter.setItem(pcItem);
                         pcListView.setAdapter(pcListAdapter);
                     }

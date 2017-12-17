@@ -176,7 +176,7 @@ public class SearchByMeFragment extends Fragment {
                     pcItem = new ArrayList<PCListItem>();
 
                     if(results.length() == 0) {
-                        Toast.makeText(getContext(), "검색 결과가 없습니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "주변에 PC방이 없습니다.", Toast.LENGTH_SHORT).show();
                         pcListAdapter.setItem(pcItem);
                         pcListView.setAdapter(pcListAdapter);
                     }

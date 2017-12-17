@@ -1,9 +1,15 @@
 package com.example.capston.pcjari;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.GridView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.capston.pcjari.Seat.Seat;
@@ -17,6 +23,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+
+import pl.polidea.view.ZoomView;
 
 /**
  * Created by KangSeungho on 2017-11-15.
@@ -35,6 +43,19 @@ public class SeatNowActivity  extends AppCompatActivity {
         setContentView(R.layout.activity_seatnow);
 
         dataSetting();
+
+        View v = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.item_seatnow, null, false);
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+
+        ZoomView zoomView = new ZoomView(getApplicationContext());
+        zoomView.addView(v);
+        zoomView.setLayoutParams(layoutParams);
+        zoomView.setMaxZoom(4f);
+        //zoomView.setMiniMapEnabled(true);
+        //zoomView.setMiniMapCaptionSize(10);
+
+        RelativeLayout container = (RelativeLayout) findViewById(R.id.seatnow_container);
+        container.addView(zoomView);
     }
 
     void dataSetting() {
@@ -92,7 +113,7 @@ public class SeatNowActivity  extends AppCompatActivity {
                     seats = new ArrayList<Seat>();
 
                     if(results.length() == 0) {
-                        Toast.makeText(getApplicationContext(), "좌석표시에서 오류", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "데이터를 가져오던 중 오류가 발생하였습니다.", Toast.LENGTH_SHORT).show();
                     }
                     else {
                         for (int i = 0; i < results.length(); i++) {
@@ -117,7 +138,7 @@ public class SeatNowActivity  extends AppCompatActivity {
                     seatGridView = (GridView) findViewById(R.id.gridView1);
                     seatGridView.setNumColumns(MainActivity.pc.getSeatLength());
                     seatGridView.setAdapter(seatAdapter);
-                    seatGridView.setClickable(false);
+                    seatGridView.setEnabled(false);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
