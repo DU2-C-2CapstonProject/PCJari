@@ -31,7 +31,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     public static int position;
-    public static double dist;
+    public static int dist;
     public static ArrayList<Integer> favorite;
     public static SQLiteDatabase db;
     public final static String server = "http://210.179.67.98:80/php/";
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         Cursor results = db.rawQuery(sql, null);
         results.moveToFirst();
         position = results.getInt(1);
-        dist = results.getDouble(2);
+        dist = results.getInt(2);
 
         MenuItem prev = navigation.getMenu().getItem(position);
         prev.setChecked(true);

@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "pcjari.db";
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 6;
 
     public DataBaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -21,7 +21,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(DataBaseTables.CreateDB_favorite._CREATE_FAVORITE);
         db.execSQL(DataBaseTables.CreateDB_setting._CREATE_SETTING);
-        db.execSQL("INSERT INTO " + DataBaseTables.CreateDB_setting._TABLENAME + " VALUES(0, 0, 40);");
+        db.execSQL("INSERT INTO " + DataBaseTables.CreateDB_setting._TABLENAME + " VALUES(0, 0, 5);");
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

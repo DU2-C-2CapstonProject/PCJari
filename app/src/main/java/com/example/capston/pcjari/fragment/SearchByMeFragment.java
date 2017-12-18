@@ -56,7 +56,7 @@ public class SearchByMeFragment extends Fragment {
         pcListView = (ListView)view.findViewById(R.id.listview2);
 
         gps = new GPSTracker(getContext());
-        dist = String.valueOf(MainActivity.dist);
+        dist = String.valueOf(((double)MainActivity.dist/10));
         dataSetting();
 
         pcListView.setOnItemClickListener(ListshortListener);

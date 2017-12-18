@@ -10,19 +10,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.example.capston.pcjari.MainActivity;
 import com.example.capston.pcjari.R;
 import com.example.capston.pcjari.sqlite.DataBaseHelper;
 import com.example.capston.pcjari.sqlite.DataBaseTables;
 
+import static com.example.capston.pcjari.MainActivity.dist;
+
 public class InformationFragment extends android.support.v4.app.Fragment {
     SQLiteDatabase db = MainActivity.db;
+    SeekBar seekbar;
+    TextView textView_SettingsGPS;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getActivity().setTitle("정보");
         View view = inflater.inflate(R.layout.fragment_information, container, false);
+
+        seekbarSetting(view);
 
         final RadioGroup rg = (RadioGroup) view.findViewById(R.id.radioGroup);
         rg.setOnCheckedChangeListener(firstFragmentSetting);
@@ -41,6 +49,46 @@ public class InformationFragment extends android.support.v4.app.Fragment {
         }
 
         return view;
+    }
+
+    void seekbarSetting(View view) {
+        seekbar = (SeekBar) view.findViewById(R.id.seekBar_SettingsGPS);
+        textView_SettingsGPS = (TextView) view.findViewById(R.id.textView_SettingsGPS);
+
+        seekbar.setProgress(dist-5);
+        if(dist >= 10) {
+            textView_SettingsGPS.setText(((double) dist/10) + "km");
+        }
+        else {
+            textView_SettingsGPS.setText((dist*100) + "m");
+        }
+        seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                int dist = seekBar.getProgress()+5;
+                if(dist >= 10) {
+                    textView_SettingsGPS.setText(((double) dist/10) + "km");
+                }
+                else {
+                    textView_SettingsGPS.setText((dist*100) + "m");
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                int dist = seekBar.getProgress()+5;
+                MainActivity.dist = dist;
+
+                String sql = "UPDATE " + DataBaseTables.CreateDB_setting._TABLENAME
+                        + " SET " + DataBaseTables.CreateDB_setting.DIST + "=" + dist + ";";
+                db.execSQL(sql);
+            }
+        });
     }
 
     // 라디오 버튼 클릭 시 초기 화면 설정

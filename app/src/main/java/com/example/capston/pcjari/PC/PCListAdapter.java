@@ -91,8 +91,10 @@ public class PCListAdapter extends BaseAdapter{
         }
 
         if(pcItem.getDist() > 0) {
-            if(pcItem.getDist() > 1)
-                viewHolder.pc_dist.setText(pcItem.getDist() + "km");
+            if(pcItem.getDist() > 1) {
+                double temp = Math.round(pcItem.getDist()*10);
+                viewHolder.pc_dist.setText((temp/10) + "km");
+            }
             else
                 viewHolder.pc_dist.setText((int)(pcItem.getDist()*1000) + "m");
         } else {
@@ -106,9 +108,6 @@ public class PCListAdapter extends BaseAdapter{
         return convertView;
     }
 
-    public void addItem(PCListItem pcItem) {
-        pcItems.add(pcItem);
-    }
     public void setItem(ArrayList<PCListItem> pcItem) {
         pcItems = new ArrayList<PCListItem>(pcItem);
     }
