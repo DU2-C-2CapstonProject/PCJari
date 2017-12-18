@@ -107,7 +107,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentTop="true"
                             android:text="20"
-                            android:textSize="40sp"
+                            android:textSize="35sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
