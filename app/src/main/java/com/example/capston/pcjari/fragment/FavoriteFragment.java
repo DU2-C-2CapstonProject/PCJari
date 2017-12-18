@@ -8,11 +8,17 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.capston.pcjari.DetailedInformationActivity;
@@ -33,8 +39,11 @@ import java.util.ArrayList;
 
 import static com.example.capston.pcjari.MainActivity.db;
 
-public class FavoriteFragment extends android.support.v4.app.Fragment {
+public class FavoriteFragment extends android.support.v4.app.Fragment implements EditText.OnEditorActionListener{
     private ListView pcListView;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private EditText editPc;
+    private Button selectButton;
     private PCListAdapter pcListAdapter;
     private ArrayList<PCListItem> pcItem = new ArrayList<PCListItem>();
     private String url;
@@ -45,14 +54,47 @@ public class FavoriteFragment extends android.support.v4.app.Fragment {
 
         View view = inflater.inflate(R.layout.fragment_favorite, container, false);
         pcListView = (ListView)view.findViewById(R.id.listview3);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_layout3);
+        editPc = (EditText) view.findViewById(R.id.editpc3);
+        selectButton = (Button)view.findViewById(R.id.button_search3);
 
+        pcListAdapter = new PCListAdapter();
         dataSetting();
 
+        editPc.setOnEditorActionListener(this);
+        selectButton.setOnClickListener(selectListener);
+        mSwipeRefreshLayout.setOnRefreshListener(refreshListener);
         pcListView.setOnItemClickListener(ListshortListener);
         pcListView.setOnItemLongClickListener(ListlongListener);
 
         return view;
     }
+
+    // 키보드로 엔터 눌렀을 때
+    @Override
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent keyEvent) {
+        if(v.getId() == R.id.editpc3 && actionId == EditorInfo.IME_ACTION_DONE) {
+            nameSearch();
+        }
+        return false;
+    }
+
+    // 검색 버튼
+    View.OnClickListener selectListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            nameSearch();
+        }
+    };
+
+    // 새로고침
+    SwipeRefreshLayout.OnRefreshListener refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+        @Override
+        public void onRefresh() {
+            dataSetting();
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
+    };
 
     //리스트 아이템 클릭했을 때 나오는 이벤트
     AdapterView.OnItemClickListener ListshortListener = new AdapterView.OnItemClickListener() {
@@ -116,7 +158,6 @@ public class FavoriteFragment extends android.support.v4.app.Fragment {
     };
 
     private void dataSetting(){
-        pcListAdapter = new PCListAdapter();
         String favoriteList="";
 
         for(int i=0; i<MainActivity.favorite.size(); i++) {
@@ -128,6 +169,25 @@ public class FavoriteFragment extends android.support.v4.app.Fragment {
 
         url = MainActivity.server + "pclist_search.php?";
         url+= "code=2&favorite=" + favoriteList;
+
+        GettingPHP gPHP = new GettingPHP();
+        gPHP.execute(url);
+    }
+
+    // 데이터 이름으로 검색
+    void nameSearch() {
+        String favoriteList="";
+
+        for(int i=0; i<MainActivity.favorite.size(); i++) {
+            if(i!=0)
+                favoriteList += "," + MainActivity.favorite.get(i);
+            else
+                favoriteList = String.valueOf(MainActivity.favorite.get(i));
+        }
+
+        url = MainActivity.server + "pclist_search.php?";
+        url+= "code=2&favorite=" + favoriteList;
+        url += "&namesearch=" + editPc.getText();
 
         GettingPHP gPHP = new GettingPHP();
         gPHP.execute(url);
