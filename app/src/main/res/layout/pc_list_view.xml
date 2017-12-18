@@ -34,16 +34,49 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/pc_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PC방명"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/pc_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="주소"
+                        android:textSize="15sp" />
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-                        <TextView
-                            android:id="@+id/pc_title"
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="PC방명"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
+                            android:layout_marginTop="3dp">
+                            <TextView
+                                android:id="@+id/pc_price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/tag"
+                                android:text="시간당 요금"
+                                android:textSize="11sp"
+                                android:textColor="@color/colorPrimaryDark"/>
+                            <TextView
+                                android:id="@+id/pc_card"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:background="@drawable/tag"
+                                android:text="카드가능"
+                                android:textSize="11sp"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:visibility="visible"/>
+                        </LinearLayout>
                         <TextView
                             android:id="@+id/pc_dist"
                             android:layout_width="wrap_content"
@@ -55,40 +88,6 @@
                             android:visibility="visible"/>
                     </RelativeLayout>
 
-                    <TextView
-                        android:id="@+id/pc_address"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="주소"
-                        android:textSize="15sp" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp">
-
-                        <TextView
-                            android:id="@+id/pc_price"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/tag"
-                            android:text="시간당 요금"
-                            android:textSize="11sp"
-                            android:textColor="@color/colorPrimaryDark"/>
-
-                        <TextView
-                            android:id="@+id/pc_card"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:background="@drawable/tag"
-                            android:text="카드가능"
-                            android:textSize="11sp"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:visibility="visible"/>
-
-                    </LinearLayout>
                 </LinearLayout>
 
                 <RelativeLayout
