@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     public static int dist;
     public static ArrayList<Integer> favorite;
     public static SQLiteDatabase db;
-    public final static String server = "http://210.179.67.98:80/php/";
+    public final static String server = "http://sosocom.duckdns.org:80/php/";
     public static PCListItem pc;
     DataBaseHelper DBHelper;
 

@@ -92,7 +92,7 @@ public class AddressSearchActivity extends AppCompatActivity implements EditText
     void mysql_list_search() {
         String dong = search_dong.getText().toString();
         if (!dong.equals("")) {
-            String url = "http://210.179.67.98:80/php/jusosearch.php?dong=";
+            String url = MainActivity.server + "jusosearch.php?dong=";
             GettingPHP gPHP = new GettingPHP();
 
             gPHP.execute(url.concat(dong));
