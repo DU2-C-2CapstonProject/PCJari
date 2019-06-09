@@ -5,8 +5,6 @@ package com.example.capston.pcjari.fragment;
  */
 
 import android.content.Intent;
-import android.os.AsyncTask;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.KeyEvent;
@@ -22,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.capston.pcjari.DetailedInformationActivity;
+import com.example.capston.pcjari.GettingPHP;
 import com.example.capston.pcjari.MainActivity;
 import com.example.capston.pcjari.PC.PCListAdapter;
 import com.example.capston.pcjari.PC.PCListItem;
@@ -31,15 +30,11 @@ import com.example.capston.pcjari.sqlite.DataBaseTables;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 
 import static com.example.capston.pcjari.MainActivity.db;
 
-public class FavoriteFragment extends android.support.v4.app.Fragment implements EditText.OnEditorActionListener{
+public class SearchByFavoriteFragment extends android.support.v4.app.Fragment implements EditText.OnEditorActionListener{
     private ListView pcListView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private EditText editPc;
@@ -104,17 +99,6 @@ public class FavoriteFragment extends android.support.v4.app.Fragment implements
             intent.putExtra(DetailedInformationActivity.POSITION, position);
             MainActivity.pc = pcItem.get(position);
             startActivity(intent);
-
-            /*
-            Bundle args = new Bundle();
-            args.putSerializable("PCItem", pc);
-            Fragment detailedInformationFragment = new DetailedInformationFragment();
-            detailedInformationFragment.setArguments(args);
-            getFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.container, detailedInformationFragment, "PCItemTag")
-                    .addToBackStack("PCItemTag").commit();
-            */
         }
     };
 
@@ -170,8 +154,7 @@ public class FavoriteFragment extends android.support.v4.app.Fragment implements
         url = MainActivity.server + "pclist_search.php?";
         url+= "code=2&favorite=" + favoriteList;
 
-        GettingPHP gPHP = new GettingPHP();
-        gPHP.execute(url);
+        importData(url);
     }
 
     // 데이터 이름으로 검색
@@ -189,100 +172,75 @@ public class FavoriteFragment extends android.support.v4.app.Fragment implements
         url+= "code=2&favorite=" + favoriteList;
         url += "&namesearch=" + editPc.getText();
 
-        GettingPHP gPHP = new GettingPHP();
-        gPHP.execute(url);
+        importData(url);
     }
 
-    class GettingPHP extends AsyncTask<String, Integer, String> {
+    private void importData(String url) {
+        GettingPHP gPHP;
 
-        @Override
-        protected String doInBackground(String... params) {
-            StringBuilder jsonHtml = new StringBuilder();
-            try {
-                URL phpUrl = new URL(params[0]);
-                HttpURLConnection conn = (HttpURLConnection) phpUrl.openConnection();
+        try {
+            gPHP = new GettingPHP();
+            String strData = gPHP.execute(url).get();
+            JSONObject jObject = new JSONObject(strData);
+            JSONArray results = jObject.getJSONArray("results");
 
-                if (conn != null) {
-                    conn.setConnectTimeout(10000);
-                    conn.setUseCaches(false);
+            if (jObject.get("status").equals("OK")) {
+                pcItem.clear();
+                pcItem = new ArrayList<PCListItem>();
 
-                    if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-
-                        while (true) {
-                            String line = br.readLine();
-                            if (line == null)
-                                break;
-                            jsonHtml.append(line + "\n");
-                        }
-                        br.close();
-                    }
-                    conn.disconnect();
+                if(results.length() == 0) {
+                    Toast.makeText(getContext(), "검색 결과가 없습니다.", Toast.LENGTH_SHORT).show();
+                    pcListAdapter.setItem(pcItem);
+                    pcListView.setAdapter(pcListAdapter);
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return jsonHtml.toString();
-        }
+                else {
+                    for (int i = 0; i < results.length(); i++) {
+                        JSONObject temp = results.getJSONObject(i);
 
-        protected void onPostExecute(String str) {
-            try {
-                JSONObject jObject = new JSONObject(str);
-                JSONArray results = jObject.getJSONArray("results");
+                        PCListItem pc = new PCListItem();
+                        pc.setPcID(temp.getInt("id"));
+                        pc.setTitle(temp.getString("name"));
+                        pc.setIcon(temp.getString("url"));
+                        pc.setSi(temp.getString("si"));
+                        pc.setGu(temp.getString("gu"));
+                        pc.setDong(temp.getString("dong"));
+                        pc.setPrice(temp.getInt("price"));
+                        pc.setTotalSeat(temp.getInt("total"));
+                        pc.setSpaceSeat(temp.getInt("space"));
+                        pc.setUsingSeat(temp.getInt("using"));
+                        pc.setLocation_x(temp.getDouble("x"));
+                        pc.setLocation_y(temp.getDouble("y"));
 
-                if (jObject.get("status").equals("OK")) {
-                    pcItem.clear();
-                    pcItem = new ArrayList<PCListItem>();
+                        pc.setEtc_juso(temp.getString("etc_juso"));
+                        pc.setNotice(temp.getString("notice"));
+                        pc.setTel(temp.getString("tel"));
+                        pc.setCpu(temp.getString("cpu"));
+                        pc.setRam(temp.getString("ram"));
+                        pc.setVga(temp.getString("vga"));
+                        pc.setPeripheral(temp.getString("peripheral"));
+                        pc.setSeatLength(temp.getInt("seatlength"));
 
-                    if(results.length() == 0) {
-                        Toast.makeText(getContext(), "즐겨찾기 목록이 없습니다.", Toast.LENGTH_SHORT).show();
-                        pcListAdapter.setItem(pcItem);
-                        pcListView.setAdapter(pcListAdapter);
-                    }
-                    else {
-                        for (int i = 0; i < results.length(); i++) {
-                            JSONObject temp = results.getJSONObject(i);
-
-                            PCListItem pc = new PCListItem();
-                            pc.setPcID(temp.getInt("id"));
-                            pc.setTitle(temp.getString("name"));
-                            pc.setIcon(temp.getString("url"));
-                            pc.setSi(temp.getString("si"));
-                            pc.setGu(temp.getString("gu"));
-                            pc.setDong(temp.getString("dong"));
-                            pc.setPrice(temp.getInt("price"));
-                            pc.setTotalSeat(temp.getInt("total"));
-                            pc.setSpaceSeat(temp.getInt("space"));
-                            pc.setUsingSeat(temp.getInt("using"));
-                            pc.setLocation_x(temp.getDouble("x"));
-                            pc.setLocation_y(temp.getDouble("y"));
-
-                            pc.setEtc_juso(temp.getString("etc_juso"));
-                            pc.setNotice(temp.getString("notice"));
-                            pc.setTel(temp.getString("tel"));
-                            pc.setCpu(temp.getString("cpu"));
-                            pc.setRam(temp.getString("ram"));
-                            pc.setVga(temp.getString("vga"));
-                            pc.setPeripheral(temp.getString("peripheral"));
-                            pc.setSeatLength(temp.getInt("seatlength"));
-
-                            if(temp.getInt("card") == 0) {
-                                pc.setCard(false);
-                            } else {
-                                pc.setCard(true);
-                            }
-
-                            pcItem.add(pc);
+                        if(temp.isNull("distance")) {
+                            pc.setDist(temp.getDouble("distance"));
                         }
 
-                        pcListAdapter = new PCListAdapter();
-                        pcListAdapter.setItem(pcItem);
-                        pcListView.setAdapter(pcListAdapter);
+                        if(temp.getInt("card") == 0) {
+                            pc.setCard(false);
+                        } else {
+                            pc.setCard(true);
+                        }
+
+                        pcItem.add(pc);
                     }
+
+                    pcListAdapter = new PCListAdapter();
+                    pcListAdapter.setItem(pcItem);
+                    pcListView.setAdapter(pcListAdapter);
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
+        } catch (Exception e) {
+            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            e.printStackTrace();
         }
     }
 }

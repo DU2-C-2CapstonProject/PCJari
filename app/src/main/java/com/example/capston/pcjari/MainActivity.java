@@ -1,7 +1,5 @@
 package com.example.capston.pcjari;
 
-import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,10 +11,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.capston.pcjari.PC.PCListItem;
-import com.example.capston.pcjari.fragment.FavoriteFragment;
+import com.example.capston.pcjari.fragment.SearchByFavoriteFragment;
 import com.example.capston.pcjari.fragment.InformationFragment;
 import com.example.capston.pcjari.fragment.SearchByAddressFragment;
 import com.example.capston.pcjari.fragment.SearchByMeFragment;
@@ -34,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     public static int dist;
     public static ArrayList<Integer> favorite;
     public static SQLiteDatabase db;
-    public final static String server = "http://sosocom.duckdns.org:80/php/";
+    public final static String server = "http://sosocom.iptime.org:80/php/";
     public static PCListItem pc;
     DataBaseHelper DBHelper;
 
@@ -50,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().replace(R.id.content, new SearchByMeFragment()).commit();
                     return true;
                 case R.id.navigation_favorite:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.content, new FavoriteFragment()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content, new SearchByFavoriteFragment()).commit();
                     return true;
                 case R.id.navigation_information:
                     getSupportFragmentManager().beginTransaction().replace(R.id.content, new InformationFragment()).commit();
@@ -107,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction().replace(R.id.content, new SearchByMeFragment()).commit();
                 break;
             case 2:
-                getSupportFragmentManager().beginTransaction().replace(R.id.content, new FavoriteFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, new SearchByFavoriteFragment()).commit();
                 break;
         }
     }
