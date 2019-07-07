@@ -39,6 +39,7 @@ public class AddressSearchActivity extends AppCompatActivity implements EditText
     AddressAdapter jusoAdapter;
     ArrayList<String> juso;
     ListView addressListView;
+    TextView searchResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,7 @@ public class AddressSearchActivity extends AppCompatActivity implements EditText
         addressListView = (ListView) findViewById(R.id.content);
         search_dong = (EditText) findViewById(R.id.search_dong);
         button_search = (Button) findViewById(R.id.button_search);
+        searchResult = (TextView) findViewById(R.id.search_result);
 
         search_dong.setOnEditorActionListener(this);
         addressListView.setOnItemClickListener(addressClick);
@@ -91,6 +93,8 @@ public class AddressSearchActivity extends AppCompatActivity implements EditText
 
     void mysql_list_search() {
         String dong = search_dong.getText().toString();
+        searchResult.setText(" \"" + dong + "\"");
+
         if (!dong.equals("")) {
             String url = MainActivity.server + "jusosearch.php?dong=";
             GettingPHP gPHP = new GettingPHP();

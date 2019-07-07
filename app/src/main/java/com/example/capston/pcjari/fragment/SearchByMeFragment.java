@@ -219,9 +219,7 @@ public class SearchByMeFragment extends Fragment implements EditText.OnEditorAct
                         pc.setPeripheral(temp.getString("peripheral"));
                         pc.setSeatLength(temp.getInt("seatlength"));
 
-                        if(temp.isNull("distance")) {
-                            pc.setDist(temp.getDouble("distance"));
-                        }
+                        pc.setDist(temp.getDouble("distance"));
 
                         if(temp.getInt("card") == 0) {
                             pc.setCard(false);

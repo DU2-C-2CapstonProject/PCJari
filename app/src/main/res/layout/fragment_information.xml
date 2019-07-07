@@ -140,7 +140,7 @@
         android:id="@+id/seekBar_SettingsGPS"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:max="15"
+        android:max="1500"
         />
 
     <LinearLayout
