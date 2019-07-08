@@ -42,6 +42,7 @@ public class SearchByFavoriteFragment extends android.support.v4.app.Fragment im
     private PCListAdapter pcListAdapter;
     private ArrayList<PCListItem> pcItem = new ArrayList<PCListItem>();
     private String url;
+    private GettingPHP gPHP;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -176,8 +177,6 @@ public class SearchByFavoriteFragment extends android.support.v4.app.Fragment im
     }
 
     private void importData(String url) {
-        GettingPHP gPHP;
-
         try {
             gPHP = new GettingPHP();
             String strData = gPHP.execute(url).get();

@@ -34,12 +34,13 @@ import java.util.ArrayList;
  */
 
 public class AddressSearchActivity extends AppCompatActivity implements EditText.OnEditorActionListener{
-    Button button_search;
-    EditText search_dong;
-    AddressAdapter jusoAdapter;
-    ArrayList<String> juso;
-    ListView addressListView;
-    TextView searchResult;
+    private Button button_search;
+    private EditText search_dong;
+    private AddressAdapter jusoAdapter;
+    private ArrayList<String> juso;
+    private ListView addressListView;
+    private TextView searchResult;
+    private GettingPHP gPHP;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,70 +97,42 @@ public class AddressSearchActivity extends AppCompatActivity implements EditText
         searchResult.setText(" \"" + dong + "\"");
 
         if (!dong.equals("")) {
-            String url = MainActivity.server + "jusosearch.php?dong=";
+            String url = MainActivity.server + "jusosearch.php?dong=" + dong;
+            importData(url);
             GettingPHP gPHP = new GettingPHP();
 
             gPHP.execute(url.concat(dong));
         }
     }
 
-    class GettingPHP extends AsyncTask<String, Integer, String> {
+    void importData(String url) {
+        try {
+            gPHP = new GettingPHP();
+            String strData = gPHP.execute(url).get();
+            JSONObject jObject = new JSONObject(strData);
+            JSONArray results = jObject.getJSONArray("results");
 
-        @Override
-        protected String doInBackground(String... params) {
-            StringBuilder jsonHtml = new StringBuilder();
-            try {
-                URL phpUrl = new URL(params[0]);
-                HttpURLConnection conn = (HttpURLConnection) phpUrl.openConnection();
+            if (jObject.get("status").equals("OK")) {
+                juso.clear();
+                juso = new ArrayList<String>();
 
-                if (conn != null) {
-                    conn.setConnectTimeout(10000);
-                    conn.setUseCaches(false);
-
-                    if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-
-                        while (true) {
-                            String line = br.readLine();
-                            if (line == null)
-                                break;
-                            jsonHtml.append(line + "\n");
-                        }
-                        br.close();
-                    }
-                    conn.disconnect();
+                if(results.length() == 0) {
+                    Toast.makeText(getApplicationContext(), "검색 결과가 없습니다.", Toast.LENGTH_SHORT).show();
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return jsonHtml.toString();
-        }
-
-        protected void onPostExecute(String str) {
-            try {
-                JSONObject jObject = new JSONObject(str);
-                JSONArray results = jObject.getJSONArray("results");
-                if (jObject.get("status").equals("OK")) {
-                    juso.clear();
-                    juso = new ArrayList<String>();
-
-                    if(results.length() == 0) {
-                        Toast.makeText(getApplicationContext(), "검색 결과가 없습니다.", Toast.LENGTH_SHORT).show();
+                else {
+                    for (int i = 0; i < results.length(); i++) {
+                        JSONObject temp = results.getJSONObject(i);
+                        juso.add(temp.get("si") + " " + temp.get("gu") + " " + temp.get("dong"));
                     }
-                    else {
-                        for (int i = 0; i < results.length(); i++) {
-                            JSONObject temp = results.getJSONObject(i);
-                            juso.add(temp.get("si") + " " + temp.get("gu") + " " + temp.get("dong"));
-                        }
 
-                        jusoAdapter = new AddressAdapter();
-                        jusoAdapter.addItem(juso);
-                        addressListView.setAdapter(jusoAdapter);
-                    }
+                    jusoAdapter = new AddressAdapter();
+                    jusoAdapter.addItem(juso);
+                    addressListView.setAdapter(jusoAdapter);
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
+        } catch (Exception e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+            e.printStackTrace();
         }
     }
 }

@@ -51,6 +51,7 @@ public class SearchByMeFragment extends Fragment implements EditText.OnEditorAct
     private String url;
     private GPSTracker gps;
     private String dist;
+    private GettingPHP gPHP;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -175,8 +176,6 @@ public class SearchByMeFragment extends Fragment implements EditText.OnEditorAct
     }
 
     private void importData(String url) {
-        GettingPHP gPHP;
-
         try {
             gPHP = new GettingPHP();
             String strData = gPHP.execute(url).get();

@@ -55,6 +55,7 @@ public class SearchByAddressFragment extends Fragment implements EditText.OnEdit
     private ImageView dropdown_mark;
     private EditText editPc;
     private static String address[] = {"경기도", "성남시 수정구", "복정동"};
+    private GettingPHP gPHP;
     SQLiteDatabase db = MainActivity.db;
     String url="";
 
@@ -214,8 +215,6 @@ public class SearchByAddressFragment extends Fragment implements EditText.OnEdit
     }
 
     private void importData(String url) {
-        GettingPHP gPHP;
-
         try {
             gPHP = new GettingPHP();
             String strData = gPHP.execute(url).get();
