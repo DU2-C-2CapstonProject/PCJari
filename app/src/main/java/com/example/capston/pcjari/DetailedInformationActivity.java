@@ -34,7 +34,6 @@ import java.util.ArrayList;
 
 public class DetailedInformationActivity extends AppCompatActivity{
     public static final String POSITION = "포지션";
-    private DetailedInformationActivity activity;
     int position;
     Intent get_intent;
     TextView di_notice, di_address, di_tel, di_cpu, di_ram, di_vga, di_per, di_price;
@@ -46,7 +45,6 @@ public class DetailedInformationActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailedinformation);
-        activity = this;
 
         di_notice = (TextView) findViewById(R.id.di_notice);
         di_address = (TextView) findViewById(R.id.di_address);
@@ -93,7 +91,7 @@ public class DetailedInformationActivity extends AppCompatActivity{
             // 위치 확인 권한 확인
             if ( Build.VERSION.SDK_INT >= 23 &&
                     ContextCompat.checkSelfPermission( getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
-                ActivityCompat.requestPermissions( activity , new String[] {  android.Manifest.permission.ACCESS_FINE_LOCATION  }, 0 );
+                ActivityCompat.requestPermissions( getParent() , new String[] {  android.Manifest.permission.ACCESS_FINE_LOCATION  }, 0 );
             }
             else {
                 Intent send_intent = new Intent(getApplicationContext(), MapViewActivity.class);
