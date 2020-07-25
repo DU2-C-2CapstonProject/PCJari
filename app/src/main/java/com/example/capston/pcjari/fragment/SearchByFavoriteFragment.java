@@ -6,7 +6,6 @@ package com.example.capston.pcjari.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,9 +31,12 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import static com.example.capston.pcjari.MainActivity.db;
 
-public class SearchByFavoriteFragment extends android.support.v4.app.Fragment implements EditText.OnEditorActionListener{
+public class SearchByFavoriteFragment extends Fragment implements EditText.OnEditorActionListener{
     private ListView pcListView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private EditText editPc;

@@ -89,21 +89,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp">
-        <android.support.v7.widget.AppCompatRadioButton
+        <RadioButton
             android:id="@+id/radioButton_FP01"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="#ff4081"
             android:checked="true"
             android:text="@string/title_search_by_address"/>
-        <android.support.v7.widget.AppCompatRadioButton
+        <RadioButton
             android:id="@+id/radioButton_FP02"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="#ff4081"
             android:text="@string/title_search_by_me"
             android:checked="false"/>
-        <android.support.v7.widget.AppCompatRadioButton
+        <RadioButton
             android:id="@+id/radioButton_FP03"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

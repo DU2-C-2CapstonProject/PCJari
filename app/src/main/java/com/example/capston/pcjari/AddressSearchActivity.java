@@ -1,11 +1,7 @@
 package com.example.capston.pcjari;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -17,17 +13,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.capston.pcjari.Address.AddressAdapter;
-import com.example.capston.pcjari.sqlite.DataBaseHelper;
-import com.example.capston.pcjari.sqlite.DataBaseTables;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by KangSeungho on 2017-11-05.

@@ -15,12 +15,13 @@ import android.widget.TextView;
 
 import com.example.capston.pcjari.MainActivity;
 import com.example.capston.pcjari.R;
-import com.example.capston.pcjari.sqlite.DataBaseHelper;
 import com.example.capston.pcjari.sqlite.DataBaseTables;
+
+import androidx.fragment.app.Fragment;
 
 import static com.example.capston.pcjari.MainActivity.dist;
 
-public class InformationFragment extends android.support.v4.app.Fragment {
+public class InformationFragment extends Fragment {
     SQLiteDatabase db = MainActivity.db;
     SeekBar seekbar;
     TextView textView_SettingsGPS;

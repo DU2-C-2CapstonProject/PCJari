@@ -3,7 +3,6 @@ package com.example.capston.pcjari;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +23,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import androidx.appcompat.app.AppCompatActivity;
 import pl.polidea.view.ZoomView;
 
 /**
