@@ -12,7 +12,7 @@ import com.bumptech.glide.request.target.GlideDrawableImageViewTarget
 /**
  * Created by KangSeungho on 2017-11-04.
  */
-class IntroActivity : AppCompatActivity() {
+class IntroActivity : BaseActivity() {
     var handler: Handler? = Handler()
     var r: Runnable? = Runnable {
         val intent = Intent(applicationContext, MainActivity::class.java)

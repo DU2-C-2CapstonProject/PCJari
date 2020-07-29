@@ -10,7 +10,6 @@ import android.widget.RadioGroup
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import com.example.capston.pcjari.MainActivity
 import com.example.capston.pcjari.R
 import com.example.capston.pcjari.sqlite.DataBaseTables.CreateDB_setting
@@ -19,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_information.view.*
 /**
  * Created by KangSeungho on 2017-10-27.
  */
-class InformationFragment : Fragment() {
+class InformationFragment : BaseFragment() {
     var db: SQLiteDatabase? = MainActivity.db
 
     lateinit var radioGroup : RadioGroup

@@ -9,7 +9,6 @@ import android.view.inputmethod.EditorInfo
 import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.TextView.OnEditorActionListener
-import androidx.appcompat.app.AppCompatActivity
 import com.example.capston.pcjari.Address.AddressAdapter
 import kotlinx.android.synthetic.main.activity_addresssearch.*
 import org.json.JSONObject
@@ -18,7 +17,7 @@ import java.util.*
 /**
  * Created by KangSeungho on 2017-11-05.
  */
-class AddressSearchActivity : AppCompatActivity(), OnEditorActionListener {
+class AddressSearchActivity : BaseActivity(), OnEditorActionListener {
     private lateinit var jusoAdapter: AddressAdapter
     private lateinit var juso: ArrayList<String>
     private lateinit var gPHP: GettingPHP

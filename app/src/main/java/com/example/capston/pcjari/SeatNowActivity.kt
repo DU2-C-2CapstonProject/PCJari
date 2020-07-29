@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.example.capston.pcjari.Seat.Seat
 import com.example.capston.pcjari.Seat.SeatAdapter
 import kotlinx.android.synthetic.main.activity_seatnow.*
@@ -23,7 +22,7 @@ import java.util.*
 /**
  * Created by KangSeungho on 2017-11-15.
  */
-class SeatNowActivity : AppCompatActivity() {
+class SeatNowActivity : BaseActivity() {
     var seats: ArrayList<Seat> = ArrayList()
     lateinit var seatAdapter: SeatAdapter
 

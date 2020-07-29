@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_detailedinformation.*
 /**
  * Created by KangSeungho on 2017-11-01.
  */
-class DetailedInformationActivity : AppCompatActivity() {
+class DetailedInformationActivity : BaseActivity() {
     var position = 0
     lateinit var pc: PCListItem
 

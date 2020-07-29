@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.capston.pcjari.PC.PCListItem
@@ -22,13 +21,13 @@ import java.util.*
 /**
  * Created by KangSeungho on 2017-09-25.
  */
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     companion object {
+        val server: String = "http://sosocom.iptime.org:80/php/"
         var position = 0
         var dist = 0
         lateinit var favorite: ArrayList<Int>
         var db: SQLiteDatabase? = null
-        val server: String = "http://sosocom.iptime.org:80/php/"
         lateinit var pc: PCListItem
     }
 

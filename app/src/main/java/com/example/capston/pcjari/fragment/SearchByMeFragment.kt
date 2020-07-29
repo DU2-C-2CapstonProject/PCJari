@@ -12,7 +12,6 @@ import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.AdapterView.OnItemLongClickListener
 import android.widget.TextView.OnEditorActionListener
-import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import com.example.capston.pcjari.*
@@ -26,7 +25,7 @@ import java.util.*
 /**
  * Created by KangSeungho on 2017-10-27.
  */
-class SearchByMeFragment : Fragment(), OnEditorActionListener {
+class SearchByMeFragment : BaseFragment(), OnEditorActionListener {
     private lateinit var pcListAdapter: PCListAdapter
 
     private var pcItem: ArrayList<PCListItem> = ArrayList()
