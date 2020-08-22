@@ -75,8 +75,8 @@
                 android:textColor="@color/space_counter"/>
         </LinearLayout>
     </LinearLayout><!--색 설명-->
-    <GridView
-        android:id="@+id/gridView1"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/seat_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="40dp"
@@ -84,5 +84,5 @@
         android:horizontalSpacing="2dp"
         android:verticalSpacing="2dp"
         android:numColumns="20" >
-    </GridView>
+    </androidx.recyclerview.widget.RecyclerView>
 </FrameLayout>

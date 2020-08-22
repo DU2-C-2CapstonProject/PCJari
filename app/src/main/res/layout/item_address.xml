@@ -27,7 +27,7 @@
                 android:visibility="visible"
                 app:srcCompat="@drawable/pointer_1915456_640" />
             <TextView
-                android:id="@+id/address_"
+                android:id="@+id/address_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@+id/address_location_mark"

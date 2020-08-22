@@ -7,10 +7,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.Toast
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.capston.pcjari.Seat.Seat
 import com.example.capston.pcjari.Seat.SeatAdapter
 import kotlinx.android.synthetic.main.activity_seatnow.*
-import kotlinx.android.synthetic.main.item_seatnow.*
+import kotlinx.android.synthetic.main.include_seat_info.*
 import org.json.JSONObject
 import pl.polidea.view.ZoomView
 import java.io.BufferedReader
@@ -33,7 +34,7 @@ class SeatNowActivity : BaseActivity() {
 
         dataSetting()
 
-        val v = (getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater).inflate(R.layout.item_seatnow, null, false)
+        val v = (getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater).inflate(R.layout.include_seat_info, null, false)
 
         val layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         val zoomView = ZoomView(applicationContext)
@@ -45,7 +46,7 @@ class SeatNowActivity : BaseActivity() {
     }
 
     fun dataSetting() {
-        val url: String = MainActivity.Companion.server + "seat_search.php?id=" + MainActivity.pc.pcID
+        val url: String = MainActivity.server + "seat_search.php?id=" + MainActivity.pc.pcID
         val gettingPHP = GettingPHP()
         gettingPHP.execute(url)
     }
@@ -97,9 +98,9 @@ class SeatNowActivity : BaseActivity() {
                     seatAdapter = SeatAdapter(applicationContext)
                     seatAdapter.addSeats(seats)
 
-                    gridView1.numColumns = MainActivity.Companion.pc.seatLength
-                    gridView1.adapter = seatAdapter
-                    gridView1.isEnabled = false
+                    seat_list.adapter = seatAdapter
+                    seat_list.layoutManager = GridLayoutManager(applicationContext, MainActivity.pc.seatLength)
+                    seat_list.isEnabled = false
                 }
             } catch (e: Exception) {
                 e.printStackTrace()

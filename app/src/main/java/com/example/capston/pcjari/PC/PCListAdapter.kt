@@ -40,7 +40,7 @@ class PCListAdapter(var mContext:Context) : BaseAdapter() {
 
         if (view == null) {
             val inflater = mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            view = inflater.inflate(R.layout.pc_list_view, parent, false)
+            view = inflater.inflate(R.layout.item_pc, parent, false)
 
             // 객체 생성
             holder = ViewHolder()
@@ -60,18 +60,34 @@ class PCListAdapter(var mContext:Context) : BaseAdapter() {
             holder = view.tag as ViewHolder
         }
 
-        // 데이터 셋팅
-        val pcItem = getItem(position)
+        showPCInfo(getItem(position), holder)
 
+        return view
+    }
+
+    @SuppressLint("SetTextI18n")
+    fun showPCInfo(pcItem: PCListItem, holder: ViewHolder) {
+
+        // 이미지
         val img_url: String = MainActivity.server + "pc_images/" + pcItem.icon
         Glide.with(mContext).load(img_url).bitmapTransform(CropCircleTransformation(CustomBitmapPool())).into(holder.pc_img)
 
+        // 제목
         holder.pc_title.text = pcItem.title
+
+        // 주소
         holder.pc_address.text = "${pcItem.si} ${pcItem.gu} ${pcItem.dong}"
+
+        // 가격
         holder.pc_price.text = "${pcItem.price}원"
+
+        // 카드 사용 여부
         holder.pc_card.visibility = if(pcItem.isCard) View.VISIBLE else View.GONE
+
+        // 즐겨찾기 마크
         holder.pc_favoriteMark.visibility = if(MainActivity.favorite.contains(pcItem.pcID)) View.VISIBLE else View.INVISIBLE
 
+        // 거리 표시
         if (pcItem.dist > 0) {
             if (pcItem.dist > 1) {
                 val temp = (pcItem.dist * 10).roundToInt().toDouble()
@@ -82,18 +98,22 @@ class PCListAdapter(var mContext:Context) : BaseAdapter() {
         } else {
             holder.pc_dist.visibility = View.INVISIBLE
         }
-        holder.pc_spaceSeat.text = pcItem.spaceSeat.toString()
-        holder.pc_usingSeat.text = pcItem.usingSeat.toString()
-        holder.pc_totalSeat.text = pcItem.totalSeat.toString()
 
-        return view
+        // 빈 자리 개수
+        holder.pc_spaceSeat.text = pcItem.spaceSeat.toString()
+
+        // 사용 자리 개수
+        holder.pc_usingSeat.text = pcItem.usingSeat.toString()
+
+        // 전체 자리 개수
+        holder.pc_totalSeat.text = pcItem.totalSeat.toString()
     }
 
     fun setItem(pcItem: ArrayList<PCListItem>) {
         pcItems = ArrayList(pcItem)
     }
 
-    internal inner class ViewHolder {
+    inner class ViewHolder {
         lateinit var pc_img: ImageView
         lateinit var pc_title: TextView
         lateinit var pc_address: TextView

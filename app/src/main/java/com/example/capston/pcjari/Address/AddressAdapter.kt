@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.example.capston.pcjari.R
+import kotlinx.android.synthetic.main.item_address.view.*
 import kotlin.collections.ArrayList
 
 /**
@@ -34,10 +35,10 @@ class AddressAdapter(var mContext:Context) : BaseAdapter() {
 
         if (view == null) {
             val inflater = mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            view = inflater.inflate(R.layout.address_list_view, parent, false) as View
+            view = inflater.inflate(R.layout.item_address, parent, false) as View
 
             holder = ViewHolder()
-            holder.address = view.findViewById<TextView>(R.id.address_)
+            holder.address = view.address_text
 
             view.tag = holder
         } else {

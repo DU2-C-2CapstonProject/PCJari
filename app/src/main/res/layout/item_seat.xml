@@ -1,4 +1,5 @@
-<RelativeLayout android:id="@+id/SPACE"
+<RelativeLayout
+    android:id="@+id/seat_background"
     android:layout_width="19.125dp"
     android:layout_height="14.625dp"
     android:layout_marginTop="0.9dp"
@@ -7,12 +8,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <RelativeLayout
-        android:id="@+id/seat_PCNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="visible">
         <TextView
-            android:id="@+id/textView_PCNum"
+            android:id="@+id/seat_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/pcnum"
@@ -22,13 +22,12 @@
             android:layout_marginLeft="1.8dp"/>
 
         <RelativeLayout
-            android:id="@+id/seat"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="visible">
 
             <TextView
-                android:id="@+id/textView_seat_payment"
+                android:id="@+id/seat_payment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -48,7 +47,7 @@
                 android:layout_marginBottom="1.8dp">
 
                 <TextView
-                    android:id="@+id/textView_Time"
+                    android:id="@+id/seat_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="03:50"
@@ -56,7 +55,7 @@
                     android:textSize="2.7sp" />
 
                 <TextView
-                    android:id="@+id/textView_seat_state"
+                    android:id="@+id/seat_state"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"

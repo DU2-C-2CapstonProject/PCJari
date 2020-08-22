@@ -1,19 +1,20 @@
 <RelativeLayout
+    android:id="@+id/none_seat_background"
     android:layout_width="19.125dp"
     android:layout_height="14.625dp"
     android:layout_marginTop="0.9dp"
-    android:background="@drawable/space_smoke"
     android:orientation="vertical"
     android:paddingBottom="1.8dp"
     android:paddingLeft="1.8dp"
     android:paddingRight="1.8dp"
     android:paddingTop="0.9dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
     <ImageView
-        android:id="@+id/ImageView_SM"
+        android:id="@+id/none_seat_smoke"
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:layout_centerInParent="true"
         android:src="@drawable/ic_smoking_rooms_black_24dp"
-        android:visibility="visible"/>
+        android:visibility="gone"/>
 </RelativeLayout>
