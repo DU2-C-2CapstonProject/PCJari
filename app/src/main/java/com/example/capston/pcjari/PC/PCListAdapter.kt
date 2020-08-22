@@ -9,7 +9,7 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.example.capston.pcjari.MainActivity
+import com.example.capston.pcjari.Activity.A2_MainActivity
 import com.example.capston.pcjari.R
 import jp.wasabeef.glide.transformations.CropCircleTransformation
 import java.util.*
@@ -18,7 +18,7 @@ import kotlin.math.roundToInt
 /**
  * Created by KangSeungho on 2017-10-30.
  */
-class PCListAdapter(var mContext:Context) : BaseAdapter() {
+class PCListAdapter(var main: A2_MainActivity) : BaseAdapter() {
     var pcItems: ArrayList<PCListItem> = ArrayList()
 
     override fun getCount(): Int {
@@ -39,7 +39,7 @@ class PCListAdapter(var mContext:Context) : BaseAdapter() {
         var holder:ViewHolder
 
         if (view == null) {
-            val inflater = mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val inflater = main.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             view = inflater.inflate(R.layout.item_pc, parent, false)
 
             // 객체 생성
@@ -69,8 +69,8 @@ class PCListAdapter(var mContext:Context) : BaseAdapter() {
     fun showPCInfo(pcItem: PCListItem, holder: ViewHolder) {
 
         // 이미지
-        val img_url: String = MainActivity.server + "pc_images/" + pcItem.icon
-        Glide.with(mContext).load(img_url).bitmapTransform(CropCircleTransformation(CustomBitmapPool())).into(holder.pc_img)
+        val img_url: String = A2_MainActivity.server + "pc_images/" + pcItem.icon
+        Glide.with(main).load(img_url).bitmapTransform(CropCircleTransformation(CustomBitmapPool())).into(holder.pc_img)
 
         // 제목
         holder.pc_title.text = pcItem.title
@@ -85,7 +85,7 @@ class PCListAdapter(var mContext:Context) : BaseAdapter() {
         holder.pc_card.visibility = if(pcItem.isCard) View.VISIBLE else View.GONE
 
         // 즐겨찾기 마크
-        holder.pc_favoriteMark.visibility = if(MainActivity.favorite.contains(pcItem.pcID)) View.VISIBLE else View.INVISIBLE
+        holder.pc_favoriteMark.visibility = if(main.favorite.contains(pcItem.pcID)) View.VISIBLE else View.INVISIBLE
 
         // 거리 표시
         if (pcItem.dist > 0) {
@@ -110,10 +110,10 @@ class PCListAdapter(var mContext:Context) : BaseAdapter() {
     }
 
     fun setItem(pcItem: ArrayList<PCListItem>) {
-        pcItems = ArrayList(pcItem)
+        pcItems = pcItem
     }
 
-    inner class ViewHolder {
+    class ViewHolder {
         lateinit var pc_img: ImageView
         lateinit var pc_title: TextView
         lateinit var pc_address: TextView

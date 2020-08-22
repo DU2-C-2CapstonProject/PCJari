@@ -1,31 +1,32 @@
 package com.example.capston.pcjari.PC
 
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 /**
  * Created by KangSeungho on 2017-09-25.
  */
 class PCListItem : Serializable {
-    var pcID = 0
-    var notice: String? = null
-    var icon: String? = null
-    var title: String? = null
-    var si: String? = null
-    var gu: String? = null
-    var dong: String? = null
-    var etc_juso: String? = null
-    var tel: String? = null
-    var cpu: String? = null
-    var ram: String? = null
-    var vga: String? = null
-    var peripheral: String? = null
-    var price = 0
-    var isCard = false
-    var seatLength = 0
-    var location_x = 0.0
-    var location_y = 0.0
-    var totalSeat = 0
-    var spaceSeat = 0
-    var usingSeat = 0
-    var dist = 0.0
+    @SerializedName("id") var pcID = 0
+    @SerializedName("notice") var notice: String? = null
+    @SerializedName("url") var icon: String? = null
+    @SerializedName("name") var title: String? = null
+    @SerializedName("si") var si: String? = null
+    @SerializedName("gu") var gu: String? = null
+    @SerializedName("dong") var dong: String? = null
+    @SerializedName("etc_juso") var etc_juso: String? = null
+    @SerializedName("tel") var tel: String? = null
+    @SerializedName("cpu") var cpu: String? = null
+    @SerializedName("ram") var ram: String? = null
+    @SerializedName("vga") var vga: String? = null
+    @SerializedName("peripheral") var peripheral: String? = null
+    @SerializedName("price") var price = 0
+    @SerializedName("card") var isCard = false
+    @SerializedName("seatlength") var seatLength = 0
+    @SerializedName("x") var location_x = 0.0
+    @SerializedName("y") var location_y = 0.0
+    @SerializedName("total") var totalSeat = 0
+    @SerializedName("space") var spaceSeat = 0
+    @SerializedName("using") var usingSeat = 0
+    @SerializedName("distance") var dist = 0.0
 }
