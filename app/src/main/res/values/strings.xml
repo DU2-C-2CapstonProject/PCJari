@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">PC 자리</string>
+
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -16,53 +17,4 @@
     <string name="pcuse_remain">남음</string>
     <string name="settings_frontpage">첫 화면</string>
     <string name="settings_gps">내 주변 거리 설정</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <string-array name="spinner_do">
-        <item>서울</item>
-        <item>경기</item>
-        <item>충북</item>
-        <item>충남</item>
-        <item>전북</item>
-        <item>전남</item>
-        <item>경북</item>
-        <item>경남</item>
-        <item>제주</item>
-        <item>광주</item>
-        <item>대구</item>
-        <item>대전</item>
-        <item>부산</item>
-        <item>울산</item>
-        <item>인천</item>
-    </string-array>
-    <string-array name="spinner_do_seoul">
-        <item>강남구</item>
-        <item>강동구</item>
-        <item>강서구</item>
-        <item>강북구</item>
-        <item>관악구</item>
-        <item>광진구</item>
-        <item>구로구</item>
-        <item>금천구</item>
-        <item>노원구</item>
-        <item>도봉구</item>
-    </string-array>
-    <string-array name="spinner_do_gyeonggi">
-        <item>고양시</item>
-        <item>과천시</item>
-        <item>광명시</item>
-        <item>광주시</item>
-        <item>구리시</item>
-        <item>군포시</item>
-        <item>김포시</item>
-        <item>남양주시</item>
-        <item>성남시</item>
-        <item>수원시</item>
-    </string-array>
-
-    <string name="title_activity_map_view">MapViewActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="title_activity_main2">Main2Activity</string>
 </resources>
