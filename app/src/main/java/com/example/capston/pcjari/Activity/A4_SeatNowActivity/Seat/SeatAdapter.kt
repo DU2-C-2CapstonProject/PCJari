@@ -143,12 +143,12 @@ class SeatAdapter(var context: Context) : RecyclerView.Adapter<RecyclerView.View
         holder.smoke.visibility = View.GONE
     }
 
-    fun addSeats(seats: ArrayList<Seat>) {
+    fun setItems(seats: ArrayList<Seat>) {
         this.seats.clear()
         this.seats.addAll(seats)
     }
 
-    inner class SeatHolder constructor(view: View) : RecyclerView.ViewHolder(view){
+    class SeatHolder constructor(view: View) : RecyclerView.ViewHolder(view){
         var background: RelativeLayout = view.seat_background
         var number: TextView = view.seat_number
         var time: TextView = view.seat_time
@@ -156,7 +156,7 @@ class SeatAdapter(var context: Context) : RecyclerView.Adapter<RecyclerView.View
         var state: TextView = view.seat_state
     }
 
-    inner class NoneSeatHolder constructor(view: View) : RecyclerView.ViewHolder(view) {
+    class NoneSeatHolder constructor(view: View) : RecyclerView.ViewHolder(view) {
         var background: RelativeLayout = view.none_seat_background
         var smoke: ImageView = view.none_seat_smoke
     }

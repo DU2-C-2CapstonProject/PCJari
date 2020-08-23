@@ -45,7 +45,7 @@
             android:hint="@string/search_hint"/>
 
         <Button
-            android:id="@+id/address_search_button"
+            android:id="@+id/location_search_button"
             android:layout_width="60dp"
             android:layout_height="45dp"
             android:elevation="0dp"

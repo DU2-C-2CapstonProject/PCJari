@@ -39,19 +39,19 @@ class A2_MainActivity : A0_BaseActivity() {
     private val mOnNavigationItemSelectedListener: BottomNavigationView.OnNavigationItemSelectedListener? = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_search_by_address -> {
-                supportFragmentManager.beginTransaction().replace(R.id.content, F1_S_AddressFragment()).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.location_listview, F1_S_AddressFragment()).commit()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_search_by_me -> {
-                supportFragmentManager.beginTransaction().replace(R.id.content, F2_S_GpsFragment()).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.location_listview, F2_S_GpsFragment()).commit()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_favorite -> {
-                supportFragmentManager.beginTransaction().replace(R.id.content, F3_S_FavoriteFragment()).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.location_listview, F3_S_FavoriteFragment()).commit()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_information -> {
-                supportFragmentManager.beginTransaction().replace(R.id.content, F4_SettingFragment()).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.location_listview, F4_SettingFragment()).commit()
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -61,7 +61,7 @@ class A2_MainActivity : A0_BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.a2_activity_main)
-        supportFragmentManager.beginTransaction().add(R.id.content, F1_S_AddressFragment()).commit()
+        supportFragmentManager.beginTransaction().add(R.id.location_listview, F1_S_AddressFragment()).commit()
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         DBHelper = DataBaseHelper(applicationContext)
@@ -96,9 +96,9 @@ class A2_MainActivity : A0_BaseActivity() {
         prev.isChecked = true
 
         when (position) {
-            0 -> supportFragmentManager.beginTransaction().replace(R.id.content, F1_S_AddressFragment()).commit()
-            1 -> supportFragmentManager.beginTransaction().replace(R.id.content, F2_S_GpsFragment()).commit()
-            2 -> supportFragmentManager.beginTransaction().replace(R.id.content, F3_S_FavoriteFragment()).commit()
+            0 -> supportFragmentManager.beginTransaction().replace(R.id.location_listview, F1_S_AddressFragment()).commit()
+            1 -> supportFragmentManager.beginTransaction().replace(R.id.location_listview, F2_S_GpsFragment()).commit()
+            2 -> supportFragmentManager.beginTransaction().replace(R.id.location_listview, F3_S_FavoriteFragment()).commit()
         }
     }
 

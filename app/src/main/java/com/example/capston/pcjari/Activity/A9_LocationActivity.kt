@@ -3,93 +3,80 @@ package com.example.capston.pcjari.Activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.view.KeyEvent
-import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
-import android.widget.TextView.OnEditorActionListener
 import com.example.capston.pcjari.Activity.A9_Location_Activity.Location.LocationAdapter
+import com.example.capston.pcjari.Activity.A9_Location_Activity.Location.LocationListItem
+import com.example.capston.pcjari.Activity.A9_Location_Activity.Location.LocationListResponse
 import com.example.capston.pcjari.R
-import com.example.capston.pcjari.Util.GettingPHP
 import kotlinx.android.synthetic.main.a9_activity_location.*
-import org.json.JSONObject
-import java.util.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 /**
  * Created by KangSeungho on 2017-11-05.
  */
-class A9_LocationActivity : A0_BaseActivity(), OnEditorActionListener {
-    private lateinit var jusoAdapter: LocationAdapter
-    private lateinit var juso: ArrayList<String>
-    private lateinit var gPHP: GettingPHP
+class A9_LocationActivity : A0_BaseActivity() {
+    companion object {
+        val LOCATION_INFO = "location"
+    }
+
+    private lateinit var locationAdapter: LocationAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         this.title = "주소 검색"
         super.onCreate(savedInstanceState)
         setContentView(R.layout.a9_activity_location)
 
-        juso = ArrayList()
-        search_dong.setOnEditorActionListener(this)
-        content.onItemClickListener = addressClick
-        address_search_button.setOnClickListener(addressSearch)
-    }
+        // 폰으로 엔터키 눌렀을 때 리스트 검색
+        location_search_edit.setOnEditorActionListener { v, actionId, event ->
+            if (v.id == R.id.location_search_edit && actionId == EditorInfo.IME_ACTION_DONE) {
+                mysql_list_search()
+            }
 
-    // 폰으로 엔터키 눌렀을 때 리스트 검색
-    override fun onEditorAction(v: TextView, actionId: Int, keyEvent: KeyEvent): Boolean {
-        if (v.id == R.id.search_dong && actionId == EditorInfo.IME_ACTION_DONE) {
+            return@setOnEditorActionListener false
+        }
+        location_search_button.setOnClickListener {
             mysql_list_search()
         }
-        return false
+
+        locationAdapter = LocationAdapter(this)
+        location_listview.adapter = locationAdapter
+        location_listview.onItemClickListener = locationClick
     }
 
-    // 검색 버튼 눌렀을 때 검색
-    var addressSearch: View.OnClickListener = View.OnClickListener { mysql_list_search() }
-
-    // 리스트의 주소를 클릭 했을 때 이전 엑티비티로 전환
-    var addressClick: OnItemClickListener = OnItemClickListener { adapterView, view, position, id ->
-        val address = juso.get(position)
+    // 리스트의 지역을 클릭 했을 때 이전 엑티비티로 전환
+    var locationClick: OnItemClickListener = OnItemClickListener { adapterView, view, position, id ->
+        val location = locationAdapter.getItem(position)
         val intent = Intent(applicationContext, A2_MainActivity::class.java)
-        intent.putExtra("address", address)
+        intent.putExtra(LOCATION_INFO, location)
         setResult(Activity.RESULT_OK, intent)
         finish()
     }
 
-    fun mysql_list_search() {
-        val dong = search_dong.getText().toString()
-        search_result.text = " \"$dong\""
+    private fun mysql_list_search() {
+        val dong = location_search_edit.getText().toString()
+        location_search_text.text = " \"$dong\""
         if (dong != "") {
-            val url: String = A2_MainActivity.server + "jusosearch.php?dong=" + dong
-            importData(url)
-            val gPHP = GettingPHP()
-            gPHP.execute(url + dong)
-        }
-    }
+            networkAPI.getLocationList(dong)
+                    .enqueue(object : Callback<LocationListResponse> {
+                        override fun onResponse(call: Call<LocationListResponse>, response: Response<LocationListResponse>) {
+                            val result = response.body() as LocationListResponse
 
-    fun importData(url: String?) {
-        try {
-            gPHP = GettingPHP()
-            val strData = gPHP.execute(url).get()
-            val jObject = JSONObject(strData)
-            val results = jObject.getJSONArray("results")
-            if (jObject["status"] == "OK") {
-                juso.clear()
-                juso = ArrayList()
-                if (results.length() == 0) {
-                    Toast.makeText(applicationContext, "검색 결과가 없습니다.", Toast.LENGTH_SHORT).show()
-                } else {
-                    for (i in 0 until results.length()) {
-                        val temp = results.getJSONObject(i)
-                        juso.add(temp["si"].toString() + " " + temp["gu"] + " " + temp["dong"])
-                    }
-                    jusoAdapter = LocationAdapter(this)
-                    jusoAdapter.addItem(juso)
-                    content.adapter = jusoAdapter
-                }
-            }
-        } catch (e: Exception) {
-            Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
-            e.printStackTrace()
+                            if(result.status == "OK") {
+                                val locationList = result.locationList as ArrayList<LocationListItem>
+
+                                locationAdapter.addItem(locationList)
+                                locationAdapter.notifyDataSetChanged()
+                            }
+                        }
+
+                        override fun onFailure(call: Call<LocationListResponse>, t: Throwable) {
+                            logE("mysql_list_search error!!")
+                            logE(t.stackTraceToString())
+                        }
+                    })
         }
     }
 }

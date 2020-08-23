@@ -11,9 +11,10 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.capston.pcjari.Activity.A3_InformationActivity
 import com.example.capston.pcjari.Activity.A2_MainActivity
 import com.example.capston.pcjari.PC.PCListAdapter
-import com.example.capston.pcjari.PC.PCListManager
 import com.example.capston.pcjari.R
 import com.example.capston.pcjari.DB.DataBaseTables
+import com.example.capston.pcjari.Util.Retrofit.RetrofitClient
+import com.example.capston.pcjari.Util.Retrofit.RetrofitNetwork
 
 open class F0_S_BaseFragment : F0_BaseFragment() {
     lateinit var main : A2_MainActivity
@@ -23,7 +24,7 @@ open class F0_S_BaseFragment : F0_BaseFragment() {
     }
     lateinit var mListener: RefreshListener
 
-    val pcListManager = PCListManager()
+    protected val networkAPI : RetrofitNetwork = RetrofitClient.getInstance()
     protected lateinit var pcListAdapter : PCListAdapter
 
     protected lateinit var search_name: EditText
@@ -71,7 +72,7 @@ open class F0_S_BaseFragment : F0_BaseFragment() {
         }
 
         // 리스트뷰 리스너너
-       listview.adapter = pcListAdapter
+        listview.adapter = pcListAdapter
         listview.onItemClickListener = listshortListener
         listview.onItemLongClickListener = listlongListener
     }

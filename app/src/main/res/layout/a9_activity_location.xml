@@ -10,7 +10,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/search_dong"
+            android:id="@+id/location_search_edit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -18,7 +18,7 @@
             android:privateImeOptions="defaultInputmode=korean"
             android:hint="@string/juso_search" />
         <Button
-            android:id="@+id/address_search_button"
+            android:id="@+id/location_search_button"
             android:layout_width="60dp"
             android:layout_height="45dp"
             android:text="@string/title_search" />
@@ -36,16 +36,15 @@
             android:text="주소검색 결과" />
 
         <TextView
-            android:id="@+id/search_result"
+            android:id="@+id/location_search_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=' "" ' />
     </LinearLayout>
     <ListView
-        android:id="@+id/content"
+        android:id="@+id/location_listview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
-
     </ListView>
 </LinearLayout>

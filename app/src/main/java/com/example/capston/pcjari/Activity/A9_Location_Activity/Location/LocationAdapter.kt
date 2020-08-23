@@ -1,5 +1,6 @@
 package com.example.capston.pcjari.Activity.A9_Location_Activity.Location
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -14,13 +15,13 @@ import kotlin.collections.ArrayList
  * Created by KangSeungho on 2017-11-29.
  */
 class LocationAdapter(var mContext:Context) : BaseAdapter() {
-    lateinit var locationList: ArrayList<String>
+    var locationList = ArrayList<LocationListItem>()
 
     override fun getCount(): Int {
         return locationList.size
     }
 
-    override fun getItem(position: Int): String {
+    override fun getItem(position: Int): LocationListItem {
         return locationList[position]
     }
 
@@ -28,10 +29,11 @@ class LocationAdapter(var mContext:Context) : BaseAdapter() {
         return 0
     }
 
+    @SuppressLint("SetTextI18n")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var view = convertView
         val holder:ViewHolder
-        val addressItem = getItem(position)
+        val locationItem = getItem(position)
 
         if (view == null) {
             val inflater = mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -45,12 +47,12 @@ class LocationAdapter(var mContext:Context) : BaseAdapter() {
             holder = view.tag as ViewHolder
         }
 
-        holder.address.text = addressItem
+        holder.address.text = locationItem.si + " " + locationItem.gu + " " + locationItem.dong
         return view
     }
 
-    fun addItem(addressItems: ArrayList<String>) {
-        this.locationList = addressItems
+    fun addItem(locationList: ArrayList<LocationListItem>) {
+        this.locationList = locationList
     }
 
     class ViewHolder {

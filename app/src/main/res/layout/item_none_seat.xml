@@ -2,7 +2,6 @@
     android:id="@+id/none_seat_background"
     android:layout_width="19.125dp"
     android:layout_height="14.625dp"
-    android:layout_marginTop="0.9dp"
     android:orientation="vertical"
     android:paddingBottom="1.8dp"
     android:paddingLeft="1.8dp"

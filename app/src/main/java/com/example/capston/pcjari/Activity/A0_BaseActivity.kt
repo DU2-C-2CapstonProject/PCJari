@@ -3,6 +3,8 @@ package com.example.capston.pcjari.Activity
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.example.capston.pcjari.Util.Retrofit.RetrofitClient
+import com.example.capston.pcjari.Util.Retrofit.RetrofitNetwork
 
 /**
  * Created by KangSeungho on 2020-07-29.
@@ -14,6 +16,8 @@ open class A0_BaseActivity : AppCompatActivity() {
     }
 
     var TITLE = "[${this.javaClass.simpleName}]"
+
+    protected val networkAPI : RetrofitNetwork = RetrofitClient.getInstance()
 
     // region override =============================
 
