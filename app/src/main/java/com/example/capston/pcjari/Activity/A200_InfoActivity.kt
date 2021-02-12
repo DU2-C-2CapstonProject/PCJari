@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.capston.pcjari.Base.BaseActivity
 import com.example.capston.pcjari.PC.PCListItem
 import com.example.capston.pcjari.R
+import com.example.capston.pcjari.Util.Retrofit.RetrofitClient
 import kotlinx.android.synthetic.main.a200_activity_info.*
 
 /**
@@ -44,7 +45,7 @@ class A200_InfoActivity : BaseActivity() {
         di_per.text = pc.peripheral
         di_price.text = "1시간 당 " + pc.price + "원"
 
-        val imgUrl: String = A100_MainActivity.server + "pc_images/" + pc.icon
+        val imgUrl: String = RetrofitClient.serverUrl + "pc_images/" + pc.icon
         Glide.with(applicationContext).load(imgUrl).into(imageView)
 
         location_mark.setOnClickListener(locationListener)

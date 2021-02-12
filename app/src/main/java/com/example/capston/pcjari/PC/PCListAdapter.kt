@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.capston.pcjari.Activity.A100_MainActivity
 import com.example.capston.pcjari.R
 import com.example.capston.pcjari.Util.CustomBitmapPool
+import com.example.capston.pcjari.Util.Retrofit.RetrofitClient
 import jp.wasabeef.glide.transformations.CropCircleTransformation
 import java.util.*
 import kotlin.math.roundToInt
@@ -70,7 +71,7 @@ class PCListAdapter(var main: A100_MainActivity) : BaseAdapter() {
     fun showPCInfo(pcItem: PCListItem, holder: ViewHolder) {
 
         // 이미지
-        val img_url: String = A100_MainActivity.server + "pc_images/" + pcItem.icon
+        val img_url: String = RetrofitClient.serverUrl + "pc_images/" + pcItem.icon
         Glide.with(main).load(img_url).bitmapTransform(CropCircleTransformation(CustomBitmapPool())).into(holder.pc_img)
 
         // 제목

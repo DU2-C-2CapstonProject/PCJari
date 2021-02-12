@@ -24,9 +24,6 @@ import java.util.*
  * Created by KangSeungho on 2017-09-25.
  */
 class A100_MainActivity : BaseActivity() {
-    companion object {
-        val server: String = "http://sosocom.iptime.org:80/php/"
-    }
 
     lateinit var favorite: ArrayList<Int>
     var position = 0
