@@ -1,4 +1,4 @@
-package com.example.capston.pcjari.Fragment
+package com.example.capston.pcjari.Activity.A100_Main
 
 import android.os.Bundle
 import android.util.Log
@@ -6,11 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.capston.pcjari.*
-import com.example.capston.pcjari.Activity.A0_BaseActivity
+import com.example.capston.pcjari.Base.BaseActivity
 import com.example.capston.pcjari.PC.PCListItem
 import com.example.capston.pcjari.PC.PCListResponse
 import com.example.capston.pcjari.Util.GPSTracker
-import kotlinx.android.synthetic.main.f2_s_fragment_gps.view.*
+import kotlinx.android.synthetic.main.f120_fragment_gps.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,7 +19,7 @@ import java.util.*
 /**
  * Created by KangSeungho on 2017-10-27.
  */
-class F2_S_GpsFragment : F0_S_BaseFragment() {
+class F120_MainGpsFragment : MainBaseFragment() {
     private lateinit var gps: GPSTracker
     private lateinit var dist: String
 
@@ -27,7 +27,7 @@ class F2_S_GpsFragment : F0_S_BaseFragment() {
         super.onCreateView(inflater, container, savedInstanceState)
 
         requireActivity().title = "내 주변"
-        val view = inflater.inflate(R.layout.f2_s_fragment_gps, container, false)
+        val view = inflater.inflate(R.layout.f120_fragment_gps, container, false)
 
         initUI(view)
         setListener()
@@ -45,7 +45,7 @@ class F2_S_GpsFragment : F0_S_BaseFragment() {
                     networkAPI.getPCListByGps(1, lat, lng, dist, name)
                             .enqueue(object : Callback<PCListResponse> {
                                 override fun onResponse(call: Call<PCListResponse>, response: Response<PCListResponse>) {
-                                    Log.d(A0_BaseActivity.TAG, "retrofit result : " + response.body())
+                                    Log.d(BaseActivity.TAG, "retrofit result : " + response.body())
                                     var result = response.body() as PCListResponse
 
                                     if(result.status == "OK") {
@@ -55,7 +55,7 @@ class F2_S_GpsFragment : F0_S_BaseFragment() {
                                 }
 
                                 override fun onFailure(call: Call<PCListResponse>, t: Throwable) {
-                                    Log.e(A0_BaseActivity.TAG, "retrofit getPCListByGps error")
+                                    Log.e(BaseActivity.TAG, "retrofit getPCListByGps error")
                                 }
                             })
                 }

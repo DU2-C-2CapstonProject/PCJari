@@ -1,4 +1,4 @@
-package com.example.capston.pcjari.Fragment
+package com.example.capston.pcjari.Activity.A100_Main
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,16 +8,17 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.*
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.capston.pcjari.Activity.A3_InformationActivity
-import com.example.capston.pcjari.Activity.A2_MainActivity
+import com.example.capston.pcjari.Activity.A200_InfoActivity
+import com.example.capston.pcjari.Activity.A100_MainActivity
+import com.example.capston.pcjari.Base.BaseFragment
 import com.example.capston.pcjari.PC.PCListAdapter
 import com.example.capston.pcjari.R
-import com.example.capston.pcjari.DB.DataBaseTables
+import com.example.capston.pcjari.Util.DB.DataBaseTables
 import com.example.capston.pcjari.Util.Retrofit.RetrofitClient
 import com.example.capston.pcjari.Util.Retrofit.RetrofitNetwork
 
-open class F0_S_BaseFragment : F0_BaseFragment() {
-    lateinit var main : A2_MainActivity
+open class MainBaseFragment : BaseFragment() {
+    lateinit var main : A100_MainActivity
 
     interface RefreshListener {
         fun done(name: String?)
@@ -36,7 +37,7 @@ open class F0_S_BaseFragment : F0_BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = super.onCreateView(inflater, container, savedInstanceState)
 
-        main = activity as A2_MainActivity
+        main = activity as A100_MainActivity
         pcListAdapter = PCListAdapter(main)
 
         return view
@@ -81,9 +82,9 @@ open class F0_S_BaseFragment : F0_BaseFragment() {
     protected var listshortListener: AdapterView.OnItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
         main.pc = pcListAdapter.getItem(position)
 
-        val intent = Intent(activity, A3_InformationActivity::class.java)
-        intent.putExtra(A3_InformationActivity.POSITION, position)
-        intent.putExtra(A3_InformationActivity.PCITEM, main.pc)
+        val intent = Intent(activity, A200_InfoActivity::class.java)
+        intent.putExtra(A200_InfoActivity.POSITION, position)
+        intent.putExtra(A200_InfoActivity.PCITEM, main.pc)
         startActivity(intent)
     }
 

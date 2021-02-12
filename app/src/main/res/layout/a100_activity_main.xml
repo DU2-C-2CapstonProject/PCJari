@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.capston.pcjari.Activity.A2_MainActivity"
+    tools:context="com.example.capston.pcjari.Activity.A100_MainActivity"
     android:weightSum="1">
     <FrameLayout
         android:id="@+id/location_listview"

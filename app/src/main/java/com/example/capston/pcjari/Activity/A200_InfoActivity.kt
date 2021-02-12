@@ -9,14 +9,15 @@ import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import com.example.capston.pcjari.Base.BaseActivity
 import com.example.capston.pcjari.PC.PCListItem
 import com.example.capston.pcjari.R
-import kotlinx.android.synthetic.main.a3_activity_information.*
+import kotlinx.android.synthetic.main.a200_activity_info.*
 
 /**
  * Created by KangSeungho on 2017-11-01.
  */
-class A3_InformationActivity : A0_BaseActivity() {
+class A200_InfoActivity : BaseActivity() {
     var position = 0
     lateinit var pc: PCListItem
 
@@ -27,12 +28,12 @@ class A3_InformationActivity : A0_BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.a3_activity_information)
+        setContentView(R.layout.a200_activity_info)
 
         position = intent.getIntExtra(POSITION, 0)
         pc = intent.getSerializableExtra(PCITEM) as PCListItem
 
-        supportActionBar?.setTitle(pc.title)
+        supportActionBar?.title = pc.title
 
         di_notice.text = pc.notice
         di_address.text = pc.si + " " + pc.gu + " " + pc.dong + " " + pc.etc_juso
@@ -43,8 +44,8 @@ class A3_InformationActivity : A0_BaseActivity() {
         di_per.text = pc.peripheral
         di_price.text = "1시간 당 " + pc.price + "원"
 
-        val img_url: String = A2_MainActivity.server + "pc_images/" + pc.icon
-        Glide.with(applicationContext).load(img_url).into(imageView)
+        val imgUrl: String = A100_MainActivity.server + "pc_images/" + pc.icon
+        Glide.with(applicationContext).load(imgUrl).into(imageView)
 
         location_mark.setOnClickListener(locationListener)
         di_tel.setOnClickListener(telListener)
@@ -56,7 +57,7 @@ class A3_InformationActivity : A0_BaseActivity() {
         if (ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(parent, arrayOf<String>(Manifest.permission.ACCESS_FINE_LOCATION), 0)
         } else {
-            val send_intent = Intent(applicationContext, A5_MapViewActivity::class.java)
+            val send_intent = Intent(applicationContext, A201_MapActivity::class.java)
             send_intent.putExtra(POSITION, position)
             send_intent.putExtra(PCITEM, pc)
             startActivity(send_intent)
@@ -72,7 +73,7 @@ class A3_InformationActivity : A0_BaseActivity() {
         startActivity(tel_intent)
     }
     var seatListener: View.OnClickListener? = View.OnClickListener {
-        val seat_intent = Intent(application, A4_SeatActivity::class.java)
+        val seat_intent = Intent(application, A210_SeatActivity::class.java)
         seat_intent.putExtra(PCITEM, pc)
         startActivity(seat_intent)
     }

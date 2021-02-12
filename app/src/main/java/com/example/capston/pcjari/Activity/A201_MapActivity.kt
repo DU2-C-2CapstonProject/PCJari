@@ -8,7 +8,8 @@ import android.provider.Settings
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
-import com.example.capston.pcjari.Activity.A3_InformationActivity.Companion.PCITEM
+import com.example.capston.pcjari.Activity.A200_InfoActivity.Companion.PCITEM
+import com.example.capston.pcjari.Base.BaseActivity
 import com.example.capston.pcjari.PC.PCListItem
 import com.example.capston.pcjari.R
 import com.example.capston.pcjari.Util.GPSTracker
@@ -22,7 +23,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 /**
  * Created by KangSeungho on 2017-11-04.
  */
-class A5_MapViewActivity : A0_BaseActivity(), OnMapReadyCallback {
+class A201_MapActivity : BaseActivity(), OnMapReadyCallback {
     var mMap: GoogleMap? = null
     lateinit var pc: PCListItem
     lateinit var gps: GPSTracker
@@ -30,7 +31,7 @@ class A5_MapViewActivity : A0_BaseActivity(), OnMapReadyCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.a5_activity_map_view)
+        setContentView(R.layout.a201_activity_map)
 
         supportActionBar?.hide()
 

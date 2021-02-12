@@ -1,14 +1,14 @@
-package com.example.capston.pcjari.Fragment
+package com.example.capston.pcjari.Activity.A100_Main
 
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.capston.pcjari.Activity.A0_BaseActivity
+import com.example.capston.pcjari.Base.BaseActivity
 import com.example.capston.pcjari.PC.PCListResponse
 import com.example.capston.pcjari.R
-import kotlinx.android.synthetic.main.f3_s_fragment_favorite.view.*
+import kotlinx.android.synthetic.main.f130_fragment_favorite.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,12 +16,12 @@ import retrofit2.Response
 /**
  * Created by KangSeungho on 2017-10-27.
  */
-class F3_S_FavoriteFragment : F0_S_BaseFragment() {
+class F130_MainFavoriteFragment : MainBaseFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
         requireActivity().title = "즐겨찾기"
-        val view = inflater.inflate(R.layout.f3_s_fragment_favorite, container, false)
+        val view = inflater.inflate(R.layout.f130_fragment_favorite, container, false)
 
         initUI(view)
         setListener()
@@ -31,7 +31,7 @@ class F3_S_FavoriteFragment : F0_S_BaseFragment() {
                 networkAPI.getPCListByFavorite(2, main.favorite, name)
                         .enqueue(object : Callback<PCListResponse> {
                             override fun onResponse(call: Call<PCListResponse>, response: Response<PCListResponse>) {
-                                Log.d(A0_BaseActivity.TAG, "retrofit result : " + response.body())
+                                Log.d(BaseActivity.TAG, "retrofit result : " + response.body())
                                 var result = response.body() as PCListResponse
 
                                 if(result.status == "OK") {
@@ -41,7 +41,7 @@ class F3_S_FavoriteFragment : F0_S_BaseFragment() {
                             }
 
                             override fun onFailure(call: Call<PCListResponse>, t: Throwable) {
-                                Log.e(A0_BaseActivity.TAG, "retrofit getPCListByFavorite error")
+                                Log.e(BaseActivity.TAG, "retrofit getPCListByFavorite error")
                             }
                         })
             }

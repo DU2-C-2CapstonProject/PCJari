@@ -1,7 +1,7 @@
 package com.example.capston.pcjari.Util.Retrofit
 
-import com.example.capston.pcjari.Activity.A4_SeatNowActivity.Seat.SeatResponse
-import com.example.capston.pcjari.Activity.A9_Location_Activity.Location.LocationListResponse
+import com.example.capston.pcjari.Activity.A210_Seat.Seat.SeatResponse
+import com.example.capston.pcjari.Activity.A111_Location.Location.LocationListResponse
 import com.example.capston.pcjari.PC.PCListResponse
 import retrofit2.Call
 import retrofit2.http.GET

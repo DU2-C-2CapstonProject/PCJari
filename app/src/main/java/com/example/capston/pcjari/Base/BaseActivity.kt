@@ -1,4 +1,4 @@
-package com.example.capston.pcjari.Activity
+package com.example.capston.pcjari.Base
 
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +10,7 @@ import com.example.capston.pcjari.Util.Retrofit.RetrofitNetwork
  * Created by KangSeungho on 2020-07-29.
  * Activity에서 공통으로 사용하는 메소드, 변수를 정의
  */
-open class A0_BaseActivity : AppCompatActivity() {
+open class BaseActivity : AppCompatActivity() {
     companion object {
         const val TAG = "PCJR"
     }

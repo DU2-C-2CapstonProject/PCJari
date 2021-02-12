@@ -1,4 +1,4 @@
-package com.example.capston.pcjari.Fragment
+package com.example.capston.pcjari.Activity.A100_Main
 
 import android.app.Activity
 import android.content.Intent
@@ -9,12 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.example.capston.pcjari.*
-import com.example.capston.pcjari.Activity.A0_BaseActivity
-import com.example.capston.pcjari.Activity.A9_LocationActivity
-import com.example.capston.pcjari.Activity.A9_LocationActivity.Companion.LOCATION_INFO
-import com.example.capston.pcjari.Activity.A9_Location_Activity.Location.LocationListItem
+import com.example.capston.pcjari.Base.BaseActivity
+import com.example.capston.pcjari.Activity.A111_LocationActivity
+import com.example.capston.pcjari.Activity.A111_Location.Location.LocationListItem
+import com.example.capston.pcjari.Activity.A111_LocationActivity.Companion.LOCATION_INFO
 import com.example.capston.pcjari.PC.PCListResponse
-import kotlinx.android.synthetic.main.f1_s_fragment_address.view.*
+import kotlinx.android.synthetic.main.f110_fragment_address.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,7 +22,7 @@ import retrofit2.Response
 /**
  * Created by KangSeungho on 2017-10-27.
  */
-class F1_S_AddressFragment : F0_S_BaseFragment() {
+class F110_MainAddressFragment : MainBaseFragment() {
     companion object {
         private var location = LocationListItem("경기도", "성남시 수정구", "복정동")
     }
@@ -34,7 +34,7 @@ class F1_S_AddressFragment : F0_S_BaseFragment() {
         super.onCreateView(inflater, container, savedInstanceState)
 
         requireActivity().title = "주소로 찾기"
-        val view = inflater.inflate(R.layout.f1_s_fragment_address, container, false)
+        val view = inflater.inflate(R.layout.f110_fragment_address, container, false)
 
         initUI(view)
         setListener()
@@ -44,7 +44,7 @@ class F1_S_AddressFragment : F0_S_BaseFragment() {
                 networkAPI.getPCListByAddress(0, location.gu, location.dong, name)
                         .enqueue(object : Callback<PCListResponse> {
                             override fun onResponse(call: Call<PCListResponse>, response: Response<PCListResponse>) {
-                                Log.d(A0_BaseActivity.TAG, "retrofit result : " + response.body())
+                                Log.d(BaseActivity.TAG, "retrofit result : " + response.body())
                                 val result = response.body() as PCListResponse
 
                                 if(result.status == "OK") {
@@ -54,7 +54,7 @@ class F1_S_AddressFragment : F0_S_BaseFragment() {
                             }
 
                             override fun onFailure(call: Call<PCListResponse>, t: Throwable) {
-                                Log.e(A0_BaseActivity.TAG, "retrofit getPCListByAddress error")
+                                Log.e(BaseActivity.TAG, "retrofit getPCListByAddress error")
                             }
                         })
             }
@@ -79,7 +79,7 @@ class F1_S_AddressFragment : F0_S_BaseFragment() {
     override fun setListener() {
         // 지역 설정 페이지로 이동
         location_layer.setOnClickListener {
-            val intent = Intent(context, A9_LocationActivity::class.java)
+            val intent = Intent(context, A111_LocationActivity::class.java)
             startActivityForResult(intent, 0)
         }
         location_text.text = location.dong
@@ -88,10 +88,10 @@ class F1_S_AddressFragment : F0_S_BaseFragment() {
     }
 
     // intent 이후 되돌아올 때 실행되는 메소드
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == 0) {
+            if (requestCode == 0 && data != null) {
                 location = data.getSerializableExtra(LOCATION_INFO) as LocationListItem
                 location_text.text = location.dong
                 mListener.done(null)

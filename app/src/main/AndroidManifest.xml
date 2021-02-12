@@ -19,7 +19,7 @@
             android:value="AIzaSyAFgQSeCkrIgJhJ0O9PLprXEXJBQJp0m9w" />
 
         <activity
-            android:name=".Activity.A1_IntroActivity"
+            android:name=".Activity.A001_IntroActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,13 +28,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activity.A2_MainActivity"
+            android:name=".Activity.A100_MainActivity"
             android:label="@string/app_name"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity android:name=".Activity.A3_InformationActivity" />
-        <activity android:name=".Activity.A5_MapViewActivity" />
-        <activity android:name=".Activity.A9_LocationActivity" />
-        <activity android:name=".Activity.A4_SeatActivity" />
+        <activity android:name=".Activity.A200_InfoActivity" />
+        <activity android:name=".Activity.A201_MapActivity" />
+        <activity android:name=".Activity.A111_LocationActivity" />
+        <activity android:name=".Activity.A210_SeatActivity" />
     </application>
 
 </manifest>

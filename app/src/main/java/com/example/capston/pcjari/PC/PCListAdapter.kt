@@ -9,8 +9,9 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.example.capston.pcjari.Activity.A2_MainActivity
+import com.example.capston.pcjari.Activity.A100_MainActivity
 import com.example.capston.pcjari.R
+import com.example.capston.pcjari.Util.CustomBitmapPool
 import jp.wasabeef.glide.transformations.CropCircleTransformation
 import java.util.*
 import kotlin.math.roundToInt
@@ -18,7 +19,7 @@ import kotlin.math.roundToInt
 /**
  * Created by KangSeungho on 2017-10-30.
  */
-class PCListAdapter(var main: A2_MainActivity) : BaseAdapter() {
+class PCListAdapter(var main: A100_MainActivity) : BaseAdapter() {
     var pcItems: ArrayList<PCListItem> = ArrayList()
 
     override fun getCount(): Int {
@@ -69,7 +70,7 @@ class PCListAdapter(var main: A2_MainActivity) : BaseAdapter() {
     fun showPCInfo(pcItem: PCListItem, holder: ViewHolder) {
 
         // 이미지
-        val img_url: String = A2_MainActivity.server + "pc_images/" + pcItem.icon
+        val img_url: String = A100_MainActivity.server + "pc_images/" + pcItem.icon
         Glide.with(main).load(img_url).bitmapTransform(CropCircleTransformation(CustomBitmapPool())).into(holder.pc_img)
 
         // 제목

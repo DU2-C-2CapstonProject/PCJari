@@ -1,4 +1,4 @@
-package com.example.capston.pcjari.DB
+package com.example.capston.pcjari.Util.DB
 
 import android.provider.BaseColumns
 

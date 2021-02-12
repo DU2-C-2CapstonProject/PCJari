@@ -1,4 +1,4 @@
-package com.example.capston.pcjari.Fragment
+package com.example.capston.pcjari.Activity.A100_Main
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -9,16 +9,17 @@ import android.widget.RadioGroup
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import android.widget.TextView
-import com.example.capston.pcjari.Activity.A2_MainActivity
+import com.example.capston.pcjari.Activity.A100_MainActivity
+import com.example.capston.pcjari.Base.BaseFragment
 import com.example.capston.pcjari.R
-import com.example.capston.pcjari.DB.DataBaseTables.CreateDB_setting
-import kotlinx.android.synthetic.main.f4_fragment_setting.view.*
+import com.example.capston.pcjari.Util.DB.DataBaseTables.CreateDB_setting
+import kotlinx.android.synthetic.main.f140_fragment_setting.view.*
 
 /**
  * Created by KangSeungho on 2017-10-27.
  */
-class F4_SettingFragment : F0_BaseFragment() {
-    lateinit var main: A2_MainActivity
+class F140_SettingFragment : BaseFragment() {
+    lateinit var main: A100_MainActivity
 
     lateinit var radio_group : RadioGroup
     lateinit var gps_distance_seekbar : SeekBar
@@ -26,9 +27,9 @@ class F4_SettingFragment : F0_BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         activity?.title = "정보"
-        val view = inflater.inflate(R.layout.f4_fragment_setting, container, false)
+        val view = inflater.inflate(R.layout.f140_fragment_setting, container, false)
 
-        main = activity as A2_MainActivity
+        main = activity as A100_MainActivity
 
         radio_group = view.setting_first_screen_radio_group
 

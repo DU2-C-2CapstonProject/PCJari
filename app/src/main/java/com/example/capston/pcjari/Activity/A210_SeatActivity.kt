@@ -7,12 +7,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.capston.pcjari.Activity.A3_InformationActivity.Companion.PCITEM
-import com.example.capston.pcjari.Activity.A4_SeatNowActivity.Seat.SeatAdapter
-import com.example.capston.pcjari.Activity.A4_SeatNowActivity.Seat.SeatResponse
+import com.example.capston.pcjari.Activity.A200_InfoActivity.Companion.PCITEM
+import com.example.capston.pcjari.Activity.A210_Seat.Seat.SeatAdapter
+import com.example.capston.pcjari.Activity.A210_Seat.Seat.SeatResponse
+import com.example.capston.pcjari.Base.BaseActivity
 import com.example.capston.pcjari.PC.PCListItem
 import com.example.capston.pcjari.R
-import kotlinx.android.synthetic.main.a4_activity_seat.*
+import kotlinx.android.synthetic.main.a210_activity_seat.*
 import kotlinx.android.synthetic.main.include_seat_info.*
 import pl.polidea.view.ZoomView
 import retrofit2.Call
@@ -22,14 +23,14 @@ import retrofit2.Response
 /**
  * Created by KangSeungho on 2017-11-15.
  */
-class A4_SeatActivity : A0_BaseActivity() {
+class A210_SeatActivity : BaseActivity() {
     lateinit var pc : PCListItem
     lateinit var seatAdapter: SeatAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         this.title = "좌석현황"
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.a4_activity_seat)
+        setContentView(R.layout.a210_activity_seat)
 
         pc = intent.getSerializableExtra(PCITEM) as PCListItem
 
@@ -54,7 +55,7 @@ class A4_SeatActivity : A0_BaseActivity() {
         networkAPI.getSeatList(pc.pcID)
                 .enqueue(object : Callback<SeatResponse> {
                     override fun onResponse(call: Call<SeatResponse>, response: Response<SeatResponse>) {
-                        Log.d(A0_BaseActivity.TAG, "retrofit result : " + response.body())
+                        Log.d(BaseActivity.TAG, "retrofit result : " + response.body())
                         val result = response.body() as SeatResponse
 
                         if(result.status == "OK") {

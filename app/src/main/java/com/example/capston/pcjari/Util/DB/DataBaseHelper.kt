@@ -1,10 +1,10 @@
-package com.example.capston.pcjari.DB
+package com.example.capston.pcjari.Util.DB
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.example.capston.pcjari.DB.DataBaseTables.CreateDB_favorite
-import com.example.capston.pcjari.DB.DataBaseTables.CreateDB_setting
+import com.example.capston.pcjari.Util.DB.DataBaseTables.CreateDB_favorite
+import com.example.capston.pcjari.Util.DB.DataBaseTables.CreateDB_setting
 
 /**
  * Created by KangSeungho on 2017-11-29.

@@ -7,22 +7,23 @@ import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget
+import com.example.capston.pcjari.Base.BaseActivity
 import com.example.capston.pcjari.R
 
 /**
  * Created by KangSeungho on 2017-11-04.
  */
-class A1_IntroActivity : A0_BaseActivity() {
+class A001_IntroActivity : BaseActivity() {
     var handler: Handler? = Handler()
     var r: Runnable? = Runnable {
-        val intent = Intent(applicationContext, A2_MainActivity::class.java)
+        val intent = Intent(applicationContext, A100_MainActivity::class.java)
         startActivity(intent) // 다음 화면으로 전환
         finish() // Activity화면 제거
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.a1_activity_intro)
+        setContentView(R.layout.a001_activity_intro)
         val actionBar = supportActionBar
         actionBar?.hide()
         val intro = findViewById<View?>(R.id.intro_gif) as ImageView

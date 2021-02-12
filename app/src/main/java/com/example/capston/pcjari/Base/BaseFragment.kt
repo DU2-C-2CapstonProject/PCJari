@@ -1,4 +1,4 @@
-package com.example.capston.pcjari.Fragment
+package com.example.capston.pcjari.Base
 
 import android.os.Bundle
 import android.util.Log
@@ -6,14 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.capston.pcjari.Activity.A0_BaseActivity
 
 /**
  * Created by KangSeungho on 2020-07-29.
  * Fragment에서 공통으로 사용하는 메소드, 변수를 정의
  */
-open class F0_BaseFragment : Fragment() {
-    val TAG = A0_BaseActivity.TAG
+open class BaseFragment : Fragment() {
+    val TAG = BaseActivity.TAG
     var TITLE = "[${this.javaClass.simpleName}]"
 
     // region override =============================

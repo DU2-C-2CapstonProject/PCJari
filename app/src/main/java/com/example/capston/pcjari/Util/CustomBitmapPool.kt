@@ -1,4 +1,4 @@
-package com.example.capston.pcjari.PC
+package com.example.capston.pcjari.Util
 
 import android.graphics.Bitmap
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool
