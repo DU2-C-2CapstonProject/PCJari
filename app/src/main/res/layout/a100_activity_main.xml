@@ -9,7 +9,7 @@
     tools:context="com.example.capston.pcjari.activity.A100MainActivity"
     android:weightSum="1">
     <FrameLayout
-        android:id="@+id/location_listview"
+        android:id="@+id/location_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">

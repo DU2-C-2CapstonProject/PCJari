@@ -37,19 +37,19 @@ class A100MainActivity : BaseActivity() {
     private val mOnNavigationItemSelectedListener: BottomNavigationView.OnNavigationItemSelectedListener? = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_search_by_address -> {
-                supportFragmentManager.beginTransaction().replace(R.id.location_listview, F110MainAddressFragment()).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.location_recyclerview, F110MainAddressFragment()).commit()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_search_by_me -> {
-                supportFragmentManager.beginTransaction().replace(R.id.location_listview, F120MainGpsFragment()).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.location_recyclerview, F120MainGpsFragment()).commit()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_favorite -> {
-                supportFragmentManager.beginTransaction().replace(R.id.location_listview, F130MainFavoriteFragment()).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.location_recyclerview, F130MainFavoriteFragment()).commit()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_information -> {
-                supportFragmentManager.beginTransaction().replace(R.id.location_listview, F140SettingFragment()).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.location_recyclerview, F140SettingFragment()).commit()
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -59,7 +59,7 @@ class A100MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.a100_activity_main)
-        supportFragmentManager.beginTransaction().add(R.id.location_listview, F110MainAddressFragment()).commit()
+        supportFragmentManager.beginTransaction().add(R.id.location_recyclerview, F110MainAddressFragment()).commit()
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         DBHelper = DataBaseHelper(applicationContext)
@@ -94,9 +94,9 @@ class A100MainActivity : BaseActivity() {
         prev.isChecked = true
 
         when (position) {
-            0 -> supportFragmentManager.beginTransaction().replace(R.id.location_listview, F110MainAddressFragment()).commit()
-            1 -> supportFragmentManager.beginTransaction().replace(R.id.location_listview, F120MainGpsFragment()).commit()
-            2 -> supportFragmentManager.beginTransaction().replace(R.id.location_listview, F130MainFavoriteFragment()).commit()
+            0 -> supportFragmentManager.beginTransaction().replace(R.id.location_recyclerview, F110MainAddressFragment()).commit()
+            1 -> supportFragmentManager.beginTransaction().replace(R.id.location_recyclerview, F120MainGpsFragment()).commit()
+            2 -> supportFragmentManager.beginTransaction().replace(R.id.location_recyclerview, F130MainFavoriteFragment()).commit()
         }
     }
 

@@ -1,40 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <data>
+        <variable
+            name="locationItem"
+            type="com.example.capston.pcjari.activity.a111_location.location.LocationListItem" />
+    </data>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@drawable/rounded"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="8dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/address_location_mark"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:visibility="visible"
-                app:srcCompat="@drawable/pointer_1915456_640" />
-            <TextView
-                android:id="@+id/address_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/address_location_mark"
-                android:layout_alignTop="@id/address_location_mark"
-                android:text="읍 면 동"
-                android:textSize="15sp" />
-        </RelativeLayout>
-    </LinearLayout>
+        android:orientation="vertical">
 
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/rounded"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/address_location_mark"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:visibility="visible"
+                    app:srcCompat="@drawable/pointer_1915456_640" />
+                <TextView
+                    android:id="@+id/address_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/address_location_mark"
+                    android:layout_alignTop="@id/address_location_mark"
+                    android:text="@{locationItem.si + ' ' + locationItem.gu + ' ' + locationItem.dong}"
+                    android:textSize="15sp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>

@@ -1,50 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
 
-        <EditText
-            android:id="@+id/location_search_edit"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:inputType="text"
-            android:privateImeOptions="defaultInputmode=korean"
-            android:hint="@string/juso_search" />
-        <Button
-            android:id="@+id/location_search_button"
-            android:layout_width="60dp"
-            android:layout_height="45dp"
-            android:text="@string/title_search" />
-    </LinearLayout>
+    <data>
+        <import type="androidx.databinding.ObservableArrayList" />
+        <import type="com.example.capston.pcjari.activity.a111_location.location.LocationListItem" />
+
+        <variable
+            name="locationList"
+            type="ObservableArrayList&lt;LocationListItem&gt;" />
+    </data>
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:visibility="visible">
-
-        <TextView
-            android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="주소검색 결과" />
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/location_search_text"
-            android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/location_search_edit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="text"
+                android:privateImeOptions="defaultInputmode=korean"
+                android:hint="@string/juso_search" />
+            <Button
+                android:id="@+id/location_search_button"
+                android:layout_width="60dp"
+                android:layout_height="45dp"
+                android:text="@string/title_search" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=' "" ' />
+            android:layout_marginLeft="5dp"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="주소검색 결과" />
+
+            <TextView
+                android:id="@+id/location_search_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=' "" ' />
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/location_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
     </LinearLayout>
-    <ListView
-        android:id="@+id/location_listview"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-    </ListView>
-</LinearLayout>
+</layout>

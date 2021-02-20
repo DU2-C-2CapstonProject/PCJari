@@ -4,12 +4,13 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
-import android.widget.AdapterView.OnItemClickListener
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.capston.pcjari.activity.a111_location.location.LocationAdapter
 import com.example.capston.pcjari.activity.a111_location.location.LocationListResponse
 import com.example.capston.pcjari.base.BaseActivity
 import com.example.capston.pcjari.R
+import com.example.capston.pcjari.activity.a111_location.location.LocationListItem
 import com.example.capston.pcjari.databinding.A111ActivityLocationBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,42 +24,46 @@ class A111LocationActivity : BaseActivity() {
         val LOCATION_INFO = "location"
     }
 
-    private lateinit var locationAdapter: LocationAdapter
+    lateinit var ui : A111ActivityLocationBinding
+    lateinit var adapter : LocationAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         this.title = "주소 검색"
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.a111_activity_location)
+
+        ui = DataBindingUtil.setContentView(this, R.layout.a111_activity_location)
 
         // 폰으로 엔터키 눌렀을 때 리스트 검색
-        location_search_edit.setOnEditorActionListener { v, actionId, event ->
+        ui.locationSearchEdit.setOnEditorActionListener { v, actionId, event ->
             if (v.id == R.id.location_search_edit && actionId == EditorInfo.IME_ACTION_DONE) {
                 mysql_list_search()
             }
 
             return@setOnEditorActionListener false
         }
-        location_search_button.setOnClickListener {
+        ui.locationSearchButton.setOnClickListener {
             mysql_list_search()
         }
 
-        locationAdapter = LocationAdapter(this)
-        location_listview.adapter = locationAdapter
-        location_listview.onItemClickListener = locationClick
+        ui.locationRecyclerview.layoutManager = LinearLayoutManager(this)
+
+        adapter = LocationAdapter(listener)
+        ui.locationRecyclerview.adapter = adapter
     }
 
-    // 리스트의 지역을 클릭 했을 때 이전 엑티비티로 전환
-    private var locationClick: OnItemClickListener = OnItemClickListener { adapterView, view, position, id ->
-        val location = locationAdapter.getItem(position)
-        val intent = Intent(applicationContext, A100MainActivity::class.java)
-        intent.putExtra(LOCATION_INFO, location)
-        setResult(Activity.RESULT_OK, intent)
-        finish()
+    private val listener = object : LocationAdapter.OnLocationClickListener {
+        override fun onClick(item: LocationListItem) {
+            // 리스트의 지역을 클릭 했을 때 이전 엑티비티로 전환
+            val intent = Intent(applicationContext, A100MainActivity::class.java)
+            intent.putExtra(LOCATION_INFO, item)
+            setResult(Activity.RESULT_OK, intent)
+            finish()
+        }
     }
 
     private fun mysql_list_search() {
-        val dong = location_search_edit.getText().toString()
-        location_search_text.text = " \"$dong\""
+        val dong = ui.locationSearchEdit.text.toString()
+        ui.locationSearchText.text = " \"$dong\""
         if (dong != "") {
             networkAPI.getLocationList(dong)
                     .enqueue(object : Callback<LocationListResponse> {
@@ -66,10 +71,8 @@ class A111LocationActivity : BaseActivity() {
                             val result = response.body() as LocationListResponse
 
                             if(result.status == "OK") {
-                                val locationList = result.locationList as ArrayList<LocationListItem>
-
-                                locationAdapter.addItem(locationList)
-                                locationAdapter.notifyDataSetChanged()
+                                adapter.addItem(result.locationList)
+                                adapter.notifyDataSetChanged()
                             }
                         }
 

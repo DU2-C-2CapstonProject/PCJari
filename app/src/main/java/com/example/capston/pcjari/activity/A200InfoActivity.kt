@@ -56,7 +56,7 @@ class A200InfoActivity : BaseActivity() {
     // 주소 보기 버튼 클릭
     var locationListener: View.OnClickListener = View.OnClickListener { // 위치 확인 권한 확인
         if (ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(parent, arrayOf<String>(Manifest.permission.ACCESS_FINE_LOCATION), 0)
+            ActivityCompat.requestPermissions(parent, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0)
         } else {
             val send_intent = Intent(applicationContext, A201MapActivity::class.java)
             send_intent.putExtra(POSITION, position)
