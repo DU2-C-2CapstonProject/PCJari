@@ -9,6 +9,7 @@ import com.example.capston.pcjari.base.BaseActivity
 import com.example.capston.pcjari.pc.PCListResponse
 import com.example.capston.pcjari.R
 import kotlinx.android.synthetic.main.f130_fragment_favorite.view.*
+import kotlinx.android.synthetic.main.include_pc_list.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -56,7 +57,7 @@ class F130MainFavoriteFragment : MainBaseFragment() {
         search_name = view.favorite_search_name
         search_button = view.favorite_search_button
 
-        swipe = view.favorite_swipe
-        listview = view.favorite_listview
+        swipe = view.pc_list_swipe_layout
+        listview = view.pc_listview
     }
 }

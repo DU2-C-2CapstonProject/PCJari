@@ -11,6 +11,7 @@ import com.example.capston.pcjari.pc.PCListItem
 import com.example.capston.pcjari.pc.PCListResponse
 import com.example.capston.pcjari.util.GPSTracker
 import kotlinx.android.synthetic.main.f120_fragment_gps.view.*
+import kotlinx.android.synthetic.main.include_pc_list.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,7 +35,7 @@ class F120MainGpsFragment : MainBaseFragment() {
 
         mListener = object : RefreshListener {
             override fun done(name: String?) {
-                gps.Update()
+                gps.update()
 
                 val lat = gps.getLatitude()
                 val lng = gps.getLongitude()
@@ -73,7 +74,7 @@ class F120MainGpsFragment : MainBaseFragment() {
         search_name = view.gps_search_name
         search_button = view.gps_search_button
 
-        swipe = view.gps_swipe
-        listview = view.gps_listview
+        swipe = view.pc_list_swipe_layout
+        listview = view.pc_listview
     }
 }

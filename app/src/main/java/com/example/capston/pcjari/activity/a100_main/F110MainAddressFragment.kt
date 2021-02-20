@@ -15,6 +15,7 @@ import com.example.capston.pcjari.activity.a111_location.location.LocationListIt
 import com.example.capston.pcjari.activity.A111LocationActivity.Companion.LOCATION_INFO
 import com.example.capston.pcjari.pc.PCListResponse
 import kotlinx.android.synthetic.main.f110_fragment_address.view.*
+import kotlinx.android.synthetic.main.include_pc_list.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -72,8 +73,8 @@ class F110MainAddressFragment : MainBaseFragment() {
         search_name = view.address_search_name
         search_button = view.location_search_button
 
-        swipe = view.address_swipe
-        listview = view.address_listview
+        swipe = view.pc_list_swipe_layout
+        listview = view.pc_listview
     }
 
     override fun setListener() {
