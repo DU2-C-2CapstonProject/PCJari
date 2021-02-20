@@ -40,7 +40,7 @@ class A201MapActivity : BaseActivity(), OnMapReadyCallback {
 
         // gps 받아올 수 있는 환경인지 Check~
         if (gps.canGetLocation) {
-            gps.Update()
+            gps.update()
 
             val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
             mapFragment.getMapAsync(this)
@@ -89,7 +89,7 @@ class A201MapActivity : BaseActivity(), OnMapReadyCallback {
         if (check >= 1) {
             gps = GPSTracker(applicationContext)
             if (gps.canGetLocation) {
-                gps.Update()
+                gps.update()
                 val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
                 mapFragment.getMapAsync(this)
             } else {

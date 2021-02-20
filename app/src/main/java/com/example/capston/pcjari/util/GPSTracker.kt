@@ -29,16 +29,14 @@ class GPSTracker(private val mContext: Context) : Service(), LocationListener {
     // flag for GPS status
     var canGetLocation = false
     var location: Location? = null
-    var latitude = 0.0 // latitude
-    var longitude = 0.0 // longitude
 
     // Declaring a Location Manager
     protected var locationManager: LocationManager? = null
-    fun Update() {
+    fun update() {
         getLocation()
     }
 
-    fun getLocation() {
+    private fun getLocation() {
         if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return
         }
@@ -64,13 +62,8 @@ class GPSTracker(private val mContext: Context) : Service(), LocationListener {
 
                         Log.d("Network", "Network")
 
-                        if (locationManager != null) {
+                        if (locationManager != null)
                             location = locationManager!!.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
-                            if (location != null) {
-                                latitude = location!!.latitude
-                                longitude = location!!.longitude
-                            }
-                        }
                     }
                     // if GPS Enabled get lat/long using GPS Services
                     if (isGPSEnabled) {
@@ -80,13 +73,9 @@ class GPSTracker(private val mContext: Context) : Service(), LocationListener {
                                     MIN_TIME_BW_UPDATES,
                                     MIN_DISTANCE_CHANGE_FOR_UPDATES.toFloat(), this)
                             Log.d("GPS Enabled", "GPS Enabled")
-                            if (locationManager != null) {
+
+                            if (locationManager != null)
                                 location = locationManager!!.getLastKnownLocation(LocationManager.GPS_PROVIDER)
-                                if (location != null) {
-                                    latitude = location!!.latitude
-                                    longitude = location!!.longitude
-                                }
-                            }
                         }
                     }
                 }
@@ -112,20 +101,16 @@ class GPSTracker(private val mContext: Context) : Service(), LocationListener {
      * Function to get latitude
      */
     fun getLatitude(): Double? {
-        latitude = location!!.latitude
-
         // return latitude
-        return latitude
+        return location?.latitude
     }
 
     /**
      * Function to get longitude
      */
     fun getLongitude(): Double? {
-        longitude = location!!.longitude
-
         // return longitude
-        return longitude
+        return location?.longitude
     }
 
     /**
