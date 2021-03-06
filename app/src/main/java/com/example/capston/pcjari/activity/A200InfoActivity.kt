@@ -8,10 +8,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.example.capston.pcjari.base.BaseActivity
 import com.example.capston.pcjari.pc.PCListItem
 import com.example.capston.pcjari.R
+import com.example.capston.pcjari.databinding.A200ActivityInfoBinding
 import com.example.capston.pcjari.util.retrofit.RetrofitClient
 import kotlinx.android.synthetic.main.a200_activity_info.*
 
@@ -22,6 +24,8 @@ class A200InfoActivity : BaseActivity() {
     var position = 0
     lateinit var pc: PCListItem
 
+    lateinit var ui: A200ActivityInfoBinding
+
     companion object {
         const val POSITION = "position"
         const val PCITEM = "pcitem"
@@ -29,28 +33,21 @@ class A200InfoActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.a200_activity_info)
+        ui = DataBindingUtil.setContentView(this, R.layout.a200_activity_info)
 
         position = intent.getIntExtra(POSITION, 0)
         pc = intent.getSerializableExtra(PCITEM) as PCListItem
 
         supportActionBar?.title = pc.title
 
-        di_notice.text = pc.notice
-        di_address.text = pc.si + " " + pc.gu + " " + pc.dong + " " + pc.etc_juso
-        di_tel.text = pc.tel
-        di_cpu.text = pc.cpu
-        di_ram.text = pc.ram
-        di_vga.text = pc.vga
-        di_per.text = pc.peripheral
-        di_price.text = "1시간 당 " + pc.price + "원"
-
         val imgUrl: String = RetrofitClient.serverUrl + "pc_images/" + pc.icon
-        Glide.with(applicationContext).load(imgUrl).into(imageView)
+        Glide.with(applicationContext).load(imgUrl).into(pc_info_image)
 
-        location_mark.setOnClickListener(locationListener)
-        di_tel.setOnClickListener(telListener)
-        button.setOnClickListener(seatListener)
+        ui.item = pc
+
+        ui.pcInfoAddressShowMap.setOnClickListener(locationListener)
+        ui.pcInfoTel.setOnClickListener(telListener)
+        ui.pcInfoSeatShowBtn.setOnClickListener(seatListener)
     }
 
     // 주소 보기 버튼 클릭

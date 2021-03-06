@@ -1,6 +1,8 @@
 package com.example.capston.pcjari.pc
 
 import com.google.gson.annotations.SerializedName
+import org.apache.commons.lang3.builder.ToStringBuilder
+import org.apache.commons.lang3.builder.ToStringStyle
 import java.io.Serializable
 
 /**
@@ -47,7 +49,7 @@ class PCListItem : Serializable {
     var peripheral: String? = null
 
     @SerializedName("price")
-    var price = 0
+    var price : String? = null
 
     @SerializedName("card")
     var isCard = false
@@ -72,4 +74,8 @@ class PCListItem : Serializable {
 
     @SerializedName("distance")
     var dist = 0.0
+
+    override fun toString(): String {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE)
+    }
 }

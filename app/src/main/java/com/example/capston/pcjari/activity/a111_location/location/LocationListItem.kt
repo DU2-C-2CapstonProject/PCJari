@@ -1,6 +1,8 @@
 package com.example.capston.pcjari.activity.a111_location.location
 
 import com.google.gson.annotations.SerializedName
+import org.apache.commons.lang3.builder.ToStringBuilder
+import org.apache.commons.lang3.builder.ToStringStyle
 import java.io.Serializable
 
 class LocationListItem() : Serializable {
@@ -17,5 +19,9 @@ class LocationListItem() : Serializable {
         this.si = si
         this.gu = gu
         this.dong = dong
+    }
+
+    override fun toString(): String {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE)
     }
 }

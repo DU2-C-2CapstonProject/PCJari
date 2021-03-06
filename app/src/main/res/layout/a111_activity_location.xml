@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:bind="http://schemas.android.com/apk/res-auto">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <import type="androidx.databinding.ObservableArrayList" />
@@ -12,27 +12,28 @@
     </data>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/location_search_button"
+                android:layout_width="60dp"
+                android:layout_height="45dp"
+                android:text="@string/title_search" />
 
             <EditText
                 android:id="@+id/location_search_edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:hint="@string/juso_search"
                 android:inputType="text"
-                android:privateImeOptions="defaultInputmode=korean"
-                android:hint="@string/juso_search" />
-            <Button
-                android:id="@+id/location_search_button"
-                android:layout_width="60dp"
-                android:layout_height="45dp"
-                android:text="@string/title_search" />
+                android:privateImeOptions="defaultInputmode=korean" />
         </LinearLayout>
 
         <LinearLayout
@@ -52,10 +53,12 @@
                 android:layout_height="wrap_content"
                 android:text=' "" ' />
         </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/location_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            tools:listitem="@layout/item_address" />
     </LinearLayout>
 </layout>
