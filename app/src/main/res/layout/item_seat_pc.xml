@@ -1,0 +1,71 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="android.view.View"/>
+        <import type="com.example.capston.pcjari.R" />
+        <import type="com.example.capston.pcjari.activity.a210_seat.seat.Seat" />
+
+        <variable
+            name="seatItem"
+            type="com.example.capston.pcjari.activity.a210_seat.seat.Seat" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/seat_background"
+        style="@style/SeatStyle"
+        android:background="@{seatItem.prepaidSeat ? @drawable/seat_ap : seatItem.postpaidSeat ? @drawable/seat_dp : @drawable/seat_va}">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/seat_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{seatItem.placeId}"
+                android:textColor="#FFFFFF"
+                android:textSize="2.7sp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{seatItem.emptySeat ? View.GONE : View.VISIBLE}">
+
+                <TextView
+                    android:id="@+id/seat_payment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:text="@{seatItem.prepaidSeat ? R.string.pc_state_prepaid : R.string.pc_state_postpaid}"
+                    android:textColor="@{seatItem.prepaidSeat ? @color/seat_ap : @color/seat_dp}"
+                    android:textSize="2.925sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true">
+
+                    <TextView
+                        android:id="@+id/seat_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{seatItem.dateTime}"
+                        android:textColor="#FFFFFF"
+                        android:textSize="2.7sp" />
+
+                    <TextView
+                        android:id="@+id/seat_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:text="@{seatItem.prepaidSeat ? R.string.pcuse_start : R.string.pcuse_remain}"
+                        android:textColor="#FFFFFF"
+                        android:textSize="2.7sp" />
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>

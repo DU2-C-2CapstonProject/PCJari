@@ -13,6 +13,8 @@
     <string name="juso_search">읍, 면, 동, 리 입력</string>
     <string name="search_hint">PC방 명 입력</string>
     <string name="pcnum">PC번호</string>
+    <string name="pc_state_prepaid">선불</string>
+    <string name="pc_state_postpaid">후불</string>
     <string name="pcuse_start">시작</string>
     <string name="pcuse_remain">남음</string>
     <string name="settings_frontpage">첫 화면</string>

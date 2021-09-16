@@ -17,4 +17,17 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- Custom style -->
+    <style name="SeatStyle">
+        <item name="android:layout_width">19.125dp</item>
+        <item name="android:layout_height">14.625dp</item>
+
+        <item name="android:paddingTop">1.2dp</item>
+        <item name="android:paddingStart">1.8dp</item>
+        <item name="android:paddingEnd">1.8dp</item>
+        <item name="android:paddingBottom">1dp</item>
+
+        <item name="android:orientation">vertical</item>
+    </style>
 </resources>
