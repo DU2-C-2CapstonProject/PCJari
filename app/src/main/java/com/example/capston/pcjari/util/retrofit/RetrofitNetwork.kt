@@ -28,7 +28,7 @@ interface RetrofitNetwork {
     @GET("pclist_search.php")
     fun getPCListByFavorite(
             @Query("code") code : Int,
-            @Query("favorite") favorite : Set<String>,
+            @Query("favorite") favorite : String,
             @Query("name") name : String?
     ) : Call<PCListResponse>
 

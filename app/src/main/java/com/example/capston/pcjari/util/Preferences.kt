@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
 import com.example.capston.pcjari.BuildConfig
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 object Preferences {
     private lateinit var preferences: SharedPreferences
@@ -17,6 +19,7 @@ object Preferences {
 
     fun init(context: Context) {
         preferences = context.getSharedPreferences(BuildConfig.APPLICATION_ID, Activity.MODE_PRIVATE)
+        favorite_list = Gson().fromJson(preferences.getString(Key.FAVORITE_LIST, ""), object: TypeToken<ArrayList<Int>>() {}.type) ?: ArrayList()
     }
 
     var first_screen_index: Int
@@ -27,24 +30,14 @@ object Preferences {
         get() = preferences.getInt(Key.GPS_DISTANCE, 0)
         set(value) = preferences.edit { putInt(Key.GPS_DISTANCE, value) }
 
-    private var favorite_list: MutableSet<String>? = null
-    fun getFavoriteList(): MutableSet<String> {
-        if(favorite_list == null)
-            favorite_list = preferences.getStringSet(Key.FAVORITE_LIST, HashSet()) ?: HashSet()
-
-        return favorite_list as MutableSet<String>
-    }
+    lateinit var favorite_list: ArrayList<Int>
 
     fun addFavorite(index: Int) {
-        favorite_list?.run {
-            add(index.toString())
-            preferences.edit { putStringSet(Key.FAVORITE_LIST, favorite_list) }
-        }
+        favorite_list.add(index)
+        preferences.edit { putString(Key.FAVORITE_LIST, Gson().toJson(favorite_list)) }
     }
     fun removeFavorite(index: Int) {
-        favorite_list?.run {
-            remove(index.toString())
-            preferences.edit { putStringSet(Key.FAVORITE_LIST, favorite_list) }
-        }
+        favorite_list.remove(index)
+        preferences.edit { putString(Key.FAVORITE_LIST, Gson().toJson(favorite_list)) }
     }
 }

@@ -31,7 +31,7 @@ class F130MainFavoriteFragment : MainBaseFragment<F130FragmentFavoriteBinding>(R
 
         mListener = object : RefreshListener {
             override fun done(name: String?) {
-                networkAPI.getPCListByFavorite(2, Preferences.getFavoriteList(), name)
+                networkAPI.getPCListByFavorite(2, Preferences.favorite_list.joinToString(), name)
                         .enqueue(object : Callback<PCListResponse> {
                             override fun onResponse(call: Call<PCListResponse>, response: Response<PCListResponse>) {
                                 Log.d(BaseActivity.TAG, "retrofit result : " + response.body())

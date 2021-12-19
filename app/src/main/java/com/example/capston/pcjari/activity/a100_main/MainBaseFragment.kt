@@ -96,7 +96,7 @@ open class MainBaseFragment<T : ViewDataBinding>(@LayoutRes val layoutId: Int) :
     protected var listlongListener: AdapterView.OnItemLongClickListener = AdapterView.OnItemLongClickListener { parent, view, position, id ->
         val pc = pcListAdapter.getItem(position)
 
-        when(!Preferences.getFavoriteList().contains(pc.pcID.toString())) {
+        when(!Preferences.favorite_list.contains(pc.pcID)) {
             true -> {
                 Preferences.addFavorite(pc.pcID)
                 Toast.makeText(context, "즐겨찾기에 추가 되었습니다.", Toast.LENGTH_SHORT).show()

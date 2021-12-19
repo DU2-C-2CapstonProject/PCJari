@@ -88,7 +88,7 @@ class PCListAdapter(var main: A100MainActivity) : BaseAdapter() {
         holder.pc_card.visibility = if(pcItem.isCard) View.VISIBLE else View.GONE
 
         // 즐겨찾기 마크
-        holder.pc_favoriteMark.visibility = if(Preferences.getFavoriteList().contains(pcItem.pcID.toString())) View.VISIBLE else View.INVISIBLE
+        holder.pc_favoriteMark.visibility = if(Preferences.favorite_list.contains(pcItem.pcID)) View.VISIBLE else View.INVISIBLE
 
         // 거리 표시
         if (pcItem.dist > 0) {
