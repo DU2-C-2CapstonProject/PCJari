@@ -9,10 +9,10 @@ import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
-import com.example.capston.pcjari.base.BaseActivity
-import com.example.capston.pcjari.pc.PCListItem
 import com.example.capston.pcjari.R
+import com.example.capston.pcjari.base.BaseActivity
 import com.example.capston.pcjari.databinding.A200ActivityInfoBinding
+import com.example.capston.pcjari.pc.PCListItem
 import com.example.capston.pcjari.util.retrofit.RetrofitClient
 import kotlinx.android.synthetic.main.a200_activity_info.*
 
@@ -22,18 +22,15 @@ import kotlinx.android.synthetic.main.a200_activity_info.*
 class A200InfoActivity : BaseActivity<A200ActivityInfoBinding>() {
     override fun getLayoutResId() = R.layout.a200_activity_info
 
-    var position = 0
     lateinit var pc: PCListItem
 
     companion object {
-        const val POSITION = "position"
         const val PCITEM = "pcitem"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        position = intent.getIntExtra(POSITION, 0)
         pc = intent.getSerializableExtra(PCITEM) as PCListItem
 
         supportActionBar?.title = pc.title
@@ -54,7 +51,6 @@ class A200InfoActivity : BaseActivity<A200ActivityInfoBinding>() {
             ActivityCompat.requestPermissions(parent, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0)
         } else {
             val send_intent = Intent(applicationContext, A201MapActivity::class.java)
-            send_intent.putExtra(POSITION, position)
             send_intent.putExtra(PCITEM, pc)
             startActivity(send_intent)
         }

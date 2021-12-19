@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName
 import org.apache.commons.lang3.builder.ToStringBuilder
 import org.apache.commons.lang3.builder.ToStringStyle
 import java.io.Serializable
+import kotlin.math.roundToInt
 
 /**
  * Created by KangSeungho on 2017-09-25.
@@ -74,6 +75,11 @@ class PCListItem : Serializable {
 
     @SerializedName("distance")
     var dist = 0.0
+
+    fun distToString() = when(dist) {
+        0.0 -> "${dist * 1000}m"
+        else -> "${(dist * 10).roundToInt().toDouble() / 10}km"
+    }
 
     override fun toString(): String {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE)

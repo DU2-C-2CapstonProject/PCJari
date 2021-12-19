@@ -9,6 +9,8 @@ import android.view.inputmethod.EditorInfo
 import android.widget.*
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.capston.pcjari.R
 import com.example.capston.pcjari.activity.A100MainActivity
@@ -30,19 +32,18 @@ open class MainBaseFragment<T : ViewDataBinding>(@LayoutRes val layoutId: Int) :
     lateinit var mListener: RefreshListener
 
     protected val networkAPI : RetrofitNetwork = RetrofitClient.getInstance()
-    protected lateinit var pcListAdapter : PCListAdapter
+    protected val pcListAdapter : PCListAdapter = PCListAdapter()
 
     protected lateinit var search_name: EditText
     protected lateinit var search_button: Button
 
     protected lateinit var swipe: SwipeRefreshLayout
-    protected lateinit var listview: ListView
+    protected lateinit var listview: RecyclerView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = super.onCreateView(inflater, container, savedInstanceState)
 
         main = activity as A100MainActivity
-        pcListAdapter = PCListAdapter(main)
 
         return view
     }
@@ -76,38 +77,28 @@ open class MainBaseFragment<T : ViewDataBinding>(@LayoutRes val layoutId: Int) :
             swipe.isRefreshing = false
         }
 
-        // 리스트뷰 리스너너
-        listview.adapter = pcListAdapter
-        listview.onItemClickListener = listshortListener
-        listview.onItemLongClickListener = listlongListener
-    }
-
-    //리스트 아이템 클릭했을 때 나오는 이벤트
-    protected var listshortListener: AdapterView.OnItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
-        val pc = pcListAdapter.getItem(position)
-
-        val intent = Intent(activity, A200InfoActivity::class.java)
-        intent.putExtra(A200InfoActivity.POSITION, position)
-        intent.putExtra(A200InfoActivity.PCITEM, pc)
-        startActivity(intent)
-    }
-
-    // 리스트 아이템 꾹 눌렀을 때 나오는 이벤트
-    protected var listlongListener: AdapterView.OnItemLongClickListener = AdapterView.OnItemLongClickListener { parent, view, position, id ->
-        val pc = pcListAdapter.getItem(position)
-
-        when(!Preferences.favorite_list.contains(pc.pcID)) {
-            true -> {
-                Preferences.addFavorite(pc.pcID)
-                Toast.makeText(context, "즐겨찾기에 추가 되었습니다.", Toast.LENGTH_SHORT).show()
+        // 리스트뷰 리스너
+        listview.layoutManager = LinearLayoutManager(activity)
+        pcListAdapter.setOnItemClickListener {
+            val intent = Intent(activity, A200InfoActivity::class.java)
+            intent.putExtra(A200InfoActivity.PCITEM, it)
+            startActivity(intent)
+        }
+        pcListAdapter.setOnItemLongClickListener {
+            when(!Preferences.favorite_list.contains(it.pcID)) {
+                true -> {
+                    Preferences.addFavorite(it.pcID)
+                    Toast.makeText(context, "즐겨찾기에 추가 되었습니다.", Toast.LENGTH_SHORT).show()
+                }
+                false -> {
+                    Preferences.removeFavorite(it.pcID)
+                    Toast.makeText(context, "즐겨찾기에서 삭제 되었습니다.", Toast.LENGTH_SHORT).show()
+                }
             }
-            false -> {
-                Preferences.removeFavorite(pc.pcID)
-                Toast.makeText(context, "즐겨찾기에서 삭제 되었습니다.", Toast.LENGTH_SHORT).show()
-            }
+
+            pcListAdapter.notifyDataSetChanged()
         }
 
-        pcListAdapter.notifyDataSetChanged()
-        true
+        listview.adapter = pcListAdapter
     }
 }
