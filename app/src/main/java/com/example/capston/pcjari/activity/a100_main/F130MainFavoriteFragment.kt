@@ -9,6 +9,7 @@ import com.example.capston.pcjari.R
 import com.example.capston.pcjari.base.BaseActivity
 import com.example.capston.pcjari.databinding.F130FragmentFavoriteBinding
 import com.example.capston.pcjari.pc.PCListResponse
+import com.example.capston.pcjari.util.Preferences
 import kotlinx.android.synthetic.main.f130_fragment_favorite.view.*
 import kotlinx.android.synthetic.main.include_pc_list.view.*
 import retrofit2.Call
@@ -30,7 +31,7 @@ class F130MainFavoriteFragment : MainBaseFragment<F130FragmentFavoriteBinding>(R
 
         mListener = object : RefreshListener {
             override fun done(name: String?) {
-                networkAPI.getPCListByFavorite(2, main.favorite, name)
+                networkAPI.getPCListByFavorite(2, Preferences.getFavoriteList(), name)
                         .enqueue(object : Callback<PCListResponse> {
                             override fun onResponse(call: Call<PCListResponse>, response: Response<PCListResponse>) {
                                 Log.d(BaseActivity.TAG, "retrofit result : " + response.body())

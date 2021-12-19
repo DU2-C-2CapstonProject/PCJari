@@ -12,7 +12,7 @@ import com.example.capston.pcjari.R
 import com.example.capston.pcjari.activity.A100MainActivity
 import com.example.capston.pcjari.base.BaseFragment
 import com.example.capston.pcjari.databinding.F140FragmentSettingBinding
-import com.example.capston.pcjari.util.db.DataBaseTables.CreateDB_setting
+import com.example.capston.pcjari.util.Preferences
 
 /**
  * Created by KangSeungho on 2017-10-27.
@@ -33,7 +33,7 @@ class F140SettingFragment : BaseFragment<F140FragmentSettingBinding>() {
         binding.settingFirstScreenRadioGroup.apply {
             setOnCheckedChangeListener(firstFragmentSetting)
 
-            when (main.position) {
+            when (Preferences.first_screen_index) {
                 0 -> check(R.id.setting_first_screen_address)
                 1 -> check(R.id.setting_first_screen_gps)
                 2 -> check(R.id.setting_first_screen_favorite)
@@ -45,12 +45,12 @@ class F140SettingFragment : BaseFragment<F140FragmentSettingBinding>() {
 
     @SuppressLint("SetTextI18n")
     fun seekbarSetting() {
-        binding.settingGpsDistanceSeekbar.progress = main.dist - 5
+        binding.settingGpsDistanceSeekbar.progress = Preferences.gps_distance - 5
 
-        if (main.dist >= 10) {
-            binding.settingGpsDistance.text = "${main.dist.toDouble() / 10}km"
+        if (Preferences.gps_distance >= 10) {
+            binding.settingGpsDistance.text = "${Preferences.gps_distance.toDouble() / 10}km"
         } else {
-            binding.settingGpsDistance.text = "${main.dist * 100}m"
+            binding.settingGpsDistance.text = "${Preferences.gps_distance * 100}m"
         }
 
         binding.settingGpsDistanceSeekbar.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
@@ -65,25 +65,17 @@ class F140SettingFragment : BaseFragment<F140FragmentSettingBinding>() {
 
             override fun onStartTrackingTouch(seekBar: SeekBar) {}
             override fun onStopTrackingTouch(seekBar: SeekBar) {
-                val dist = seekBar.progress + 5
-                main.dist = dist
-                val sql = ("UPDATE " + CreateDB_setting._TABLENAME
-                        + " SET " + CreateDB_setting.DIST + "=" + dist + ";")
-                main.db.execSQL(sql)
+                Preferences.gps_distance = seekBar.progress + 5
             }
         })
     }
 
     // 라디오 버튼 클릭 시 초기 화면 설정
     private var firstFragmentSetting: RadioGroup.OnCheckedChangeListener = RadioGroup.OnCheckedChangeListener { group, checkedId ->
-        var i = 0
         when (checkedId) {
-            R.id.setting_first_screen_address -> i = 0
-            R.id.setting_first_screen_gps -> i = 1
-            R.id.setting_first_screen_favorite -> i = 2
+            R.id.setting_first_screen_address -> Preferences.first_screen_index = 0
+            R.id.setting_first_screen_gps -> Preferences.first_screen_index = 1
+            R.id.setting_first_screen_favorite -> Preferences.first_screen_index = 2
         }
-        val sql = ("UPDATE " + CreateDB_setting._TABLENAME
-                + " SET " + CreateDB_setting.FIRST_ACTIVITY + "=" + i + ";")
-        main.db.execSQL(sql)
     }
 }

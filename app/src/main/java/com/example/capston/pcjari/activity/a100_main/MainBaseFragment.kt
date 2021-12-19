@@ -10,12 +10,12 @@ import android.widget.*
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.capston.pcjari.activity.A200InfoActivity
+import com.example.capston.pcjari.R
 import com.example.capston.pcjari.activity.A100MainActivity
+import com.example.capston.pcjari.activity.A200InfoActivity
 import com.example.capston.pcjari.base.BaseFragment
 import com.example.capston.pcjari.pc.PCListAdapter
-import com.example.capston.pcjari.R
-import com.example.capston.pcjari.util.db.DataBaseTables
+import com.example.capston.pcjari.util.Preferences
 import com.example.capston.pcjari.util.retrofit.RetrofitClient
 import com.example.capston.pcjari.util.retrofit.RetrofitNetwork
 
@@ -84,11 +84,11 @@ open class MainBaseFragment<T : ViewDataBinding>(@LayoutRes val layoutId: Int) :
 
     //리스트 아이템 클릭했을 때 나오는 이벤트
     protected var listshortListener: AdapterView.OnItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
-        main.pc = pcListAdapter.getItem(position)
+        val pc = pcListAdapter.getItem(position)
 
         val intent = Intent(activity, A200InfoActivity::class.java)
         intent.putExtra(A200InfoActivity.POSITION, position)
-        intent.putExtra(A200InfoActivity.PCITEM, main.pc)
+        intent.putExtra(A200InfoActivity.PCITEM, pc)
         startActivity(intent)
     }
 
@@ -96,30 +96,17 @@ open class MainBaseFragment<T : ViewDataBinding>(@LayoutRes val layoutId: Int) :
     protected var listlongListener: AdapterView.OnItemLongClickListener = AdapterView.OnItemLongClickListener { parent, view, position, id ->
         val pc = pcListAdapter.getItem(position)
 
-        if (!main.favorite.contains(pc.pcID)) {
-            try {
-                main.favorite.add(pc.pcID)
-
-                val sql = ("INSERT INTO " + DataBaseTables.CreateDB_favorite._TABLENAME + " VALUES(" + pc.pcID + ");")
-                main.db.execSQL(sql)
-
+        when(!Preferences.getFavoriteList().contains(pc.pcID.toString())) {
+            true -> {
+                Preferences.addFavorite(pc.pcID)
                 Toast.makeText(context, "즐겨찾기에 추가 되었습니다.", Toast.LENGTH_SHORT).show()
-            } catch (e: Exception) {
-                Toast.makeText(context, "즐겨찾기를 추가하던 도중 에러가 났습니다.", Toast.LENGTH_SHORT).show()
             }
-        } else {
-            try {
-                val index: Int = main.favorite.indexOf(pc.pcID)
-                main.favorite.removeAt(index)
-
-                val sql = ("DELETE FROM " + DataBaseTables.CreateDB_favorite._TABLENAME + " WHERE _ID=" + pc.pcID + ";")
-                main.db.execSQL(sql)
-
+            false -> {
+                Preferences.removeFavorite(pc.pcID)
                 Toast.makeText(context, "즐겨찾기에서 삭제 되었습니다.", Toast.LENGTH_SHORT).show()
-            } catch (e: Exception) {
-                Toast.makeText(context, "즐겨찾기를 하던 도중 에러가 났습니다.", Toast.LENGTH_SHORT).show()
             }
         }
+
         pcListAdapter.notifyDataSetChanged()
         true
     }

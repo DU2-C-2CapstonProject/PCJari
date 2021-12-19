@@ -11,6 +11,7 @@ import com.example.capston.pcjari.databinding.F120FragmentGpsBinding
 import com.example.capston.pcjari.pc.PCListItem
 import com.example.capston.pcjari.pc.PCListResponse
 import com.example.capston.pcjari.util.GPSTracker
+import com.example.capston.pcjari.util.Preferences
 import kotlinx.android.synthetic.main.f120_fragment_gps.view.*
 import kotlinx.android.synthetic.main.include_pc_list.view.*
 import retrofit2.Call
@@ -65,7 +66,7 @@ class F120MainGpsFragment : MainBaseFragment<F120FragmentGpsBinding>(R.layout.f1
         }
 
         gps = GPSTracker(requireActivity())
-        dist = (main.dist.toDouble() / 10).toString()
+        dist = (Preferences.gps_distance.toDouble() / 10).toString()
         mListener.done(null)
 
         return view

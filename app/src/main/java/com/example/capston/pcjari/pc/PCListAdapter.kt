@@ -9,9 +9,10 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.example.capston.pcjari.activity.A100MainActivity
 import com.example.capston.pcjari.R
+import com.example.capston.pcjari.activity.A100MainActivity
 import com.example.capston.pcjari.util.CustomBitmapPool
+import com.example.capston.pcjari.util.Preferences
 import com.example.capston.pcjari.util.retrofit.RetrofitClient
 import jp.wasabeef.glide.transformations.CropCircleTransformation
 import java.util.*
@@ -87,7 +88,7 @@ class PCListAdapter(var main: A100MainActivity) : BaseAdapter() {
         holder.pc_card.visibility = if(pcItem.isCard) View.VISIBLE else View.GONE
 
         // 즐겨찾기 마크
-        holder.pc_favoriteMark.visibility = if(main.favorite.contains(pcItem.pcID)) View.VISIBLE else View.INVISIBLE
+        holder.pc_favoriteMark.visibility = if(Preferences.getFavoriteList().contains(pcItem.pcID.toString())) View.VISIBLE else View.INVISIBLE
 
         // 거리 표시
         if (pcItem.dist > 0) {
