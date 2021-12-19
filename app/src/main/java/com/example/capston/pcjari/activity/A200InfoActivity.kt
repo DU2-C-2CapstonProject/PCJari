@@ -10,6 +10,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.capston.pcjari.R
+import com.example.capston.pcjari.activity.a210_seat.A210SeatActivity
 import com.example.capston.pcjari.base.BaseActivity
 import com.example.capston.pcjari.databinding.A200ActivityInfoBinding
 import com.example.capston.pcjari.pc.PCListItem

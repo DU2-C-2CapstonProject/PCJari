@@ -3,12 +3,11 @@ package com.example.capston.pcjari.activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.view.View
-import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget
-import com.example.capston.pcjari.base.BaseActivity
 import com.example.capston.pcjari.R
+import com.example.capston.pcjari.activity.a100_main.A100MainActivity
+import com.example.capston.pcjari.base.BaseActivity
 import com.example.capston.pcjari.databinding.A001ActivityIntroBinding
 
 /**

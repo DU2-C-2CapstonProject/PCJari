@@ -1,11 +1,11 @@
-package com.example.capston.pcjari.activity.a111_location.location
+package com.example.capston.pcjari.activity.a111_address.address
 
 import com.google.gson.annotations.SerializedName
 import org.apache.commons.lang3.builder.ToStringBuilder
 import org.apache.commons.lang3.builder.ToStringStyle
 import java.io.Serializable
 
-class LocationListItem() : Serializable {
+class AddressListItem() : Serializable {
     @SerializedName("si")
     lateinit var si : String
 

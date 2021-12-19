@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="locationItem"
-            type="com.example.capston.pcjari.activity.a111_location.location.LocationListItem" />
+            name="address"
+            type="com.example.capston.pcjari.activity.a111_address.address.AddressListItem" />
     </data>
 
     <RelativeLayout
@@ -41,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@+id/address_location_mark"
                     android:layout_alignTop="@id/address_location_mark"
-                    android:text="@{locationItem.si + ' ' + locationItem.gu + ' ' + locationItem.dong}"
+                    android:text="@{address.si + ' ' + address.gu + ' ' + address.dong}"
                     android:textSize="15sp" />
             </RelativeLayout>
         </LinearLayout>

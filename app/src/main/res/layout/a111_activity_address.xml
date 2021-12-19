@@ -4,11 +4,11 @@
 
     <data>
         <import type="androidx.databinding.ObservableArrayList" />
-        <import type="com.example.capston.pcjari.activity.a111_location.location.LocationListItem" />
+        <import type="com.example.capston.pcjari.activity.a111_address.address.AddressListItem" />
 
         <variable
             name="locationList"
-            type="ObservableArrayList&lt;LocationListItem&gt;" />
+            type="ObservableArrayList&lt;AddressListItem&gt;" />
     </data>
 
     <LinearLayout

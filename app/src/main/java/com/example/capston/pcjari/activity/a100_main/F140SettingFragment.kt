@@ -9,7 +9,6 @@ import android.widget.RadioGroup
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import com.example.capston.pcjari.R
-import com.example.capston.pcjari.activity.A100MainActivity
 import com.example.capston.pcjari.base.BaseFragment
 import com.example.capston.pcjari.databinding.F140FragmentSettingBinding
 import com.example.capston.pcjari.util.Preferences

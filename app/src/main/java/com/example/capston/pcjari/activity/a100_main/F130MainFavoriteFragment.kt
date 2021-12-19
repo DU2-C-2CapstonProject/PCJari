@@ -1,65 +1,93 @@
 package com.example.capston.pcjari.activity.a100_main
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.capston.pcjari.R
-import com.example.capston.pcjari.base.BaseActivity
+import com.example.capston.pcjari.activity.A200InfoActivity
+import com.example.capston.pcjari.base.BaseFragment
 import com.example.capston.pcjari.databinding.F130FragmentFavoriteBinding
-import com.example.capston.pcjari.pc.PCListResponse
+import com.example.capston.pcjari.pc.PCListAdapter
 import com.example.capston.pcjari.util.Preferences
 import kotlinx.android.synthetic.main.f130_fragment_favorite.view.*
 import kotlinx.android.synthetic.main.include_pc_list.view.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 /**
  * Created by KangSeungho on 2017-10-27.
  */
-class F130MainFavoriteFragment : MainBaseFragment<F130FragmentFavoriteBinding>(R.layout.f130_fragment_favorite) {
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
+class F130MainFavoriteFragment : BaseFragment<F130FragmentFavoriteBinding>() {
+    override fun getLayoutResId() = R.layout.f130_fragment_favorite
+
+    private val vm: F130MainFavoriteFragmentViewModel by viewModels()
+
+    private val pcListAdapter : PCListAdapter = PCListAdapter()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.vm = vm
+
         activity?.title = getString(R.string.title_favorite)
 
-        val view = binding.root
+        initUI()
+        initObserver()
 
-        initUI(view)
-        setListener()
-
-        mListener = object : RefreshListener {
-            override fun done(name: String?) {
-                networkAPI.getPCListByFavorite(2, Preferences.favorite_list.joinToString(), name)
-                        .enqueue(object : Callback<PCListResponse> {
-                            override fun onResponse(call: Call<PCListResponse>, response: Response<PCListResponse>) {
-                                Log.d(BaseActivity.TAG, "retrofit result : " + response.body())
-                                var result = response.body() as PCListResponse
-
-                                if(result.status == "OK") {
-                                    pcListAdapter.setItem(result.pcList)
-                                    pcListAdapter.notifyDataSetChanged()
-                                }
-                            }
-
-                            override fun onFailure(call: Call<PCListResponse>, t: Throwable) {
-                                Log.e(BaseActivity.TAG, "retrofit getPCListByFavorite error")
-                            }
-                        })
-            }
-        }
-
-        mListener.done(null)
-
-        return view
+        vm.getPCList()
     }
 
-    private fun initUI(view : View) {
-        search_name = view.favorite_search_name
-        search_button = view.favorite_search_button
+    fun initUI() {
+        // 검색 입력 완료 이벤트
+        binding.favoriteSearchName.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE)
+                vm.getPCList()
 
-        swipe = view.pc_list_swipe_layout
-        listview = view.pc_listview
+            return@setOnEditorActionListener false
+        }
+
+        // 검색 버튼
+        binding.favoriteSearchButton.setOnClickListener { vm.getPCList() }
+
+        // 새로고침
+        binding.pcListLayout.pcListSwipeLayout.setOnRefreshListener {
+            vm.getPCList()
+            binding.pcListLayout.pcListSwipeLayout.isRefreshing = false
+        }
+
+        pcListAdapter.setOnItemClickListener {
+            val intent = Intent(activity, A200InfoActivity::class.java)
+            intent.putExtra(A200InfoActivity.PCITEM, it)
+            startActivity(intent)
+        }
+
+        pcListAdapter.setOnItemLongClickListener {
+            when(!Preferences.favorite_list.contains(it.pcID)) {
+                true -> {
+                    Preferences.addFavorite(it.pcID)
+                    Toast.makeText(context, "즐겨찾기에 추가 되었습니다.", Toast.LENGTH_SHORT).show()
+                }
+                false -> {
+                    Preferences.removeFavorite(it.pcID)
+                    Toast.makeText(context, "즐겨찾기에서 삭제 되었습니다.", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            pcListAdapter.notifyDataSetChanged()
+        }
+
+        binding.pcListLayout.pcListview.layoutManager = LinearLayoutManager(activity)
+        binding.pcListLayout.pcListview.adapter = pcListAdapter
+    }
+
+    fun initObserver() {
+        vm.pcList.observe(viewLifecycleOwner) {
+            pcListAdapter.run {
+                setItem(it)
+                notifyDataSetChanged()
+            }
+        }
     }
 }

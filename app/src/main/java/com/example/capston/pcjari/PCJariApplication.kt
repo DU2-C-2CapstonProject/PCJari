@@ -4,11 +4,14 @@ import android.app.Application
 import com.example.capston.pcjari.util.Preferences
 
 class PCJariApplication : Application() {
-    override fun onCreate() {
-        super.onCreate()
-
-        Preferences.init(this)
+    companion object {
+        lateinit var instance: PCJariApplication
     }
 
-    fun context() = applicationContext
+    override fun onCreate() {
+        super.onCreate()
+        
+        instance = this
+        Preferences.init(this)
+    }
 }

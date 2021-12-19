@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.example.capston.pcjari.activity.a100_main.F130MainFavoriteFragmentViewModel" />
+    </data>
 
     <LinearLayout
         android:orientation="vertical"
@@ -21,7 +25,8 @@
                 android:inputType="text"
                 android:imeOptions="actionDone"
                 android:privateImeOptions="defaultInputmode=korean"
-                android:hint="@string/search_hint"/>
+                android:hint="@string/search_hint"
+                android:text="@={vm.searchName}"/>
 
             <Button
                 android:id="@+id/favorite_search_button"
@@ -31,6 +36,8 @@
                 android:text="@string/title_search" />
         </LinearLayout>
 
-        <include layout="@layout/include_pc_list" />
+        <include
+            android:id="@+id/pc_list_layout"
+            layout="@layout/include_pc_list" />
     </LinearLayout>
 </layout>

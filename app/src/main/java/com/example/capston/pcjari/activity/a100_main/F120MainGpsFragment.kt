@@ -1,82 +1,98 @@
 package com.example.capston.pcjari.activity.a100_main
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.capston.pcjari.R
-import com.example.capston.pcjari.base.BaseActivity
+import com.example.capston.pcjari.activity.A200InfoActivity
+import com.example.capston.pcjari.base.BaseFragment
 import com.example.capston.pcjari.databinding.F120FragmentGpsBinding
-import com.example.capston.pcjari.pc.PCListItem
-import com.example.capston.pcjari.pc.PCListResponse
-import com.example.capston.pcjari.util.GPSTracker
+import com.example.capston.pcjari.pc.PCListAdapter
 import com.example.capston.pcjari.util.Preferences
 import kotlinx.android.synthetic.main.f120_fragment_gps.view.*
 import kotlinx.android.synthetic.main.include_pc_list.view.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.util.*
 
 /**
  * Created by KangSeungho on 2017-10-27.
  */
-class F120MainGpsFragment : MainBaseFragment<F120FragmentGpsBinding>(R.layout.f120_fragment_gps) {
-    private lateinit var gps: GPSTracker
-    private lateinit var dist: String
+class F120MainGpsFragment : BaseFragment<F120FragmentGpsBinding>() {
+    override fun getLayoutResId() = R.layout.f120_fragment_gps
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
+    private val vm: F120MainGpsFragmentViewModel by viewModels()
+
+    private val pcListAdapter : PCListAdapter = PCListAdapter()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.vm = vm
+
         activity?.title = getString(R.string.title_search_by_me)
 
-        val view = binding.root
+        initUI()
+        initObserver()
 
-        initUI(view)
-        setListener()
-
-        mListener = object : RefreshListener {
-            override fun done(name: String?) {
-                gps.update()
-
-                val lat = gps.getLatitude()
-                val lng = gps.getLongitude()
-
-                var pcItem: ArrayList<PCListItem> = ArrayList<PCListItem>()
-
-                if(lat != null && lng != null) {
-                    networkAPI.getPCListByGps(1, lat, lng, dist, name)
-                            .enqueue(object : Callback<PCListResponse> {
-                                override fun onResponse(call: Call<PCListResponse>, response: Response<PCListResponse>) {
-                                    Log.d(BaseActivity.TAG, "retrofit result : " + response.body())
-                                    var result = response.body() as PCListResponse
-
-                                    if(result.status == "OK") {
-                                        pcListAdapter.setItem(result.pcList)
-                                        pcListAdapter.notifyDataSetChanged()
-                                    }
-                                }
-
-                                override fun onFailure(call: Call<PCListResponse>, t: Throwable) {
-                                    Log.e(BaseActivity.TAG, "retrofit getPCListByGps error")
-                                }
-                            })
-                }
-            }
-        }
-
-        gps = GPSTracker(requireActivity())
-        dist = (Preferences.gps_distance.toDouble() / 10).toString()
-        mListener.done(null)
-
-        return view
+        vm.updateLocation()
     }
 
-    private fun initUI(view : View) {
-        search_name = view.gps_search_name
-        search_button = view.gps_search_button
+    fun initUI() {
+        // 검색 입력 완료 이벤트
+        binding.gpsSearchName.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE)
+                vm.updateLocation()
 
-        swipe = view.pc_list_swipe_layout
-        listview = view.pc_listview
+            return@setOnEditorActionListener false
+        }
+
+        // 검색 버튼
+        binding.gpsSearchButton.setOnClickListener { vm.updateLocation() }
+
+        // 새로고침
+        binding.pcListLayout.pcListSwipeLayout.setOnRefreshListener {
+            vm.updateLocation()
+            binding.pcListLayout.pcListSwipeLayout.isRefreshing = false
+        }
+
+        pcListAdapter.setOnItemClickListener {
+            val intent = Intent(activity, A200InfoActivity::class.java)
+            intent.putExtra(A200InfoActivity.PCITEM, it)
+            startActivity(intent)
+        }
+
+        pcListAdapter.setOnItemLongClickListener {
+            when(!Preferences.favorite_list.contains(it.pcID)) {
+                true -> {
+                    Preferences.addFavorite(it.pcID)
+                    Toast.makeText(context, "즐겨찾기에 추가 되었습니다.", Toast.LENGTH_SHORT).show()
+                }
+                false -> {
+                    Preferences.removeFavorite(it.pcID)
+                    Toast.makeText(context, "즐겨찾기에서 삭제 되었습니다.", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            pcListAdapter.notifyDataSetChanged()
+        }
+
+        binding.pcListLayout.pcListview.layoutManager = LinearLayoutManager(activity)
+        binding.pcListLayout.pcListview.adapter = pcListAdapter
+    }
+
+    fun initObserver() {
+        vm.location.observe(viewLifecycleOwner) {
+            vm.getPCList(it)
+        }
+
+        vm.pcList.observe(viewLifecycleOwner) {
+            pcListAdapter.run {
+                setItem(it)
+                notifyDataSetChanged()
+            }
+        }
     }
 }

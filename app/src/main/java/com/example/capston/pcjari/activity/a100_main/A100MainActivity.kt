@@ -1,4 +1,4 @@
-package com.example.capston.pcjari.activity
+package com.example.capston.pcjari.activity.a100_main
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -30,14 +30,14 @@ class A100MainActivity : BaseActivity<A100ActivityMainBinding>() {
             binding.navigation.setupWithNavController(this)
         }
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
             ActivityCompat.requestPermissions(this, arrayOf<String?>(Manifest.permission.ACCESS_FINE_LOCATION), 0)
-        }
 
-        fragment_setting()
+        initUi()
     }
 
-    private fun fragment_setting() {
+    private fun initUi() {
+        // 첫 페이지 설정
         controller?.run {
             val navGraph = navInflater.inflate(R.navigation.main_navigation)
             navGraph.startDestination = when(Preferences.first_screen_index) {

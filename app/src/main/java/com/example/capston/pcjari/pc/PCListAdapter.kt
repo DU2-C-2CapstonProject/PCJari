@@ -37,8 +37,11 @@ class PCListAdapter : RecyclerView.Adapter<PCListAdapter.PCItemViewHolder>() {
         holder.apply {
             val item = pcItems[position]
             binding.item = item
-            setOnItemClickListener { onClickListener?.invoke(item) }
-            setOnItemLongClickListener { onLongClickListener?.invoke(item) }
+            binding.root.setOnClickListener { onClickListener?.invoke(item) }
+            binding.root.setOnLongClickListener {
+                onLongClickListener?.invoke(item)
+                true
+            }
         }
     }
 
