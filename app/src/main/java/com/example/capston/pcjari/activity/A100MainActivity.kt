@@ -16,6 +16,7 @@ import com.example.capston.pcjari.util.db.DataBaseHelper
 import com.example.capston.pcjari.util.db.DataBaseTables.CreateDB_favorite
 import com.example.capston.pcjari.util.db.DataBaseTables.CreateDB_setting
 import com.example.capston.pcjari.R
+import com.example.capston.pcjari.databinding.A100ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.a100_activity_main.*
 import java.util.*
@@ -23,7 +24,8 @@ import java.util.*
 /**
  * Created by KangSeungho on 2017-09-25.
  */
-class A100MainActivity : BaseActivity() {
+class A100MainActivity : BaseActivity<A100ActivityMainBinding>() {
+    override fun getLayoutResId() = R.layout.a100_activity_main
 
     lateinit var favorite: ArrayList<Int>
     var position = 0
@@ -58,7 +60,6 @@ class A100MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.a100_activity_main)
         supportFragmentManager.beginTransaction().add(R.id.location_recyclerview, F110MainAddressFragment()).commit()
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)

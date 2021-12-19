@@ -13,6 +13,7 @@ import com.example.capston.pcjari.activity.a210_seat.seat.SeatResponse
 import com.example.capston.pcjari.base.BaseActivity
 import com.example.capston.pcjari.pc.PCListItem
 import com.example.capston.pcjari.R
+import com.example.capston.pcjari.databinding.A210ActivitySeatBinding
 import kotlinx.android.synthetic.main.a210_activity_seat.*
 import kotlinx.android.synthetic.main.include_seat_info.*
 import pl.polidea.view.ZoomView
@@ -23,14 +24,15 @@ import retrofit2.Response
 /**
  * Created by KangSeungho on 2017-11-15.
  */
-class A210SeatActivity : BaseActivity() {
+class A210SeatActivity : BaseActivity<A210ActivitySeatBinding>() {
+    override fun getLayoutResId() = R.layout.a210_activity_seat
+
     lateinit var pc : PCListItem
     lateinit var seatAdapter: SeatAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         this.title = "좌석현황"
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.a210_activity_seat)
 
         pc = intent.getSerializableExtra(PCITEM) as PCListItem
 

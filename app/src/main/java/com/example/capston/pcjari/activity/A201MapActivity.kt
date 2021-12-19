@@ -12,6 +12,7 @@ import com.example.capston.pcjari.activity.A200InfoActivity.Companion.PCITEM
 import com.example.capston.pcjari.base.BaseActivity
 import com.example.capston.pcjari.pc.PCListItem
 import com.example.capston.pcjari.R
+import com.example.capston.pcjari.databinding.A201ActivityMapBinding
 import com.example.capston.pcjari.util.GPSTracker
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -23,7 +24,9 @@ import com.google.android.gms.maps.model.MarkerOptions
 /**
  * Created by KangSeungho on 2017-11-04.
  */
-class A201MapActivity : BaseActivity(), OnMapReadyCallback {
+class A201MapActivity : BaseActivity<A201ActivityMapBinding>(), OnMapReadyCallback {
+    override fun getLayoutResId() = R.layout.a201_activity_map
+
     var mMap: GoogleMap? = null
     lateinit var pc: PCListItem
     lateinit var gps: GPSTracker
@@ -31,7 +34,6 @@ class A201MapActivity : BaseActivity(), OnMapReadyCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.a201_activity_map)
 
         supportActionBar?.hide()
 

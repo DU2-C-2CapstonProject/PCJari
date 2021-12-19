@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.capston.pcjari.activity.a111_location.location.LocationAdapter
 import com.example.capston.pcjari.activity.a111_location.location.LocationListResponse
@@ -19,36 +18,35 @@ import retrofit2.Response
 /**
  * Created by KangSeungho on 2017-11-05.
  */
-class A111LocationActivity : BaseActivity() {
+class A111LocationActivity : BaseActivity<A111ActivityLocationBinding>() {
+    override fun getLayoutResId() = R.layout.a111_activity_location
+
     companion object {
         val LOCATION_INFO = "location"
     }
 
-    lateinit var ui : A111ActivityLocationBinding
     lateinit var adapter : LocationAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         this.title = "주소 검색"
         super.onCreate(savedInstanceState)
 
-        ui = DataBindingUtil.setContentView(this, R.layout.a111_activity_location)
-
         // 폰으로 엔터키 눌렀을 때 리스트 검색
-        ui.locationSearchEdit.setOnEditorActionListener { v, actionId, event ->
+        binding.locationSearchEdit.setOnEditorActionListener { v, actionId, event ->
             if (v.id == R.id.location_search_edit && actionId == EditorInfo.IME_ACTION_DONE) {
                 mysql_list_search()
             }
 
             return@setOnEditorActionListener false
         }
-        ui.locationSearchButton.setOnClickListener {
+        binding.locationSearchButton.setOnClickListener {
             mysql_list_search()
         }
 
-        ui.locationRecyclerview.layoutManager = LinearLayoutManager(this)
+        binding.locationRecyclerview.layoutManager = LinearLayoutManager(this)
 
         adapter = LocationAdapter(listener)
-        ui.locationRecyclerview.adapter = adapter
+        binding.locationRecyclerview.adapter = adapter
     }
 
     private val listener = object : LocationAdapter.OnLocationClickListener {
@@ -62,8 +60,8 @@ class A111LocationActivity : BaseActivity() {
     }
 
     private fun mysql_list_search() {
-        val dong = ui.locationSearchEdit.text.toString()
-        ui.locationSearchText.text = " \"$dong\""
+        val dong = binding.locationSearchEdit.text.toString()
+        binding.locationSearchText.text = " \"$dong\""
         if (dong != "") {
             networkAPI.getLocationList(dong)
                     .enqueue(object : Callback<LocationListResponse> {

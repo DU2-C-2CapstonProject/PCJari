@@ -1,5 +1,8 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/none_seat_background"
-    style="@style/SeatStyle"
-    android:background="@color/space_counter" />
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:id="@+id/none_seat_background"
+        style="@style/SeatStyle"
+        android:background="@color/space_counter" />
+</layout>

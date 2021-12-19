@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <TextView
             android:layout_width="match_parent"
@@ -18,186 +21,187 @@
             android:textSize="20sp"
             android:textColor="#000000"
             android:textStyle="bold"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp">
-        <View
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1.5dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:background="#c7c7c7" />
-    </LinearLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:text="버전정보"
-            android:textSize="20sp"
-            android:textColor="#000000"
-            android:textStyle="bold"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="15dp"
-            android:text="v1.0.0"
-            android:textSize="20sp"
-            android:textColor="#686868"
-            android:textStyle="bold"/>
-    </RelativeLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:layout_marginBottom="13dp">
-        <View
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="#c7c7c7" />
+        </LinearLayout>
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="1.5dp"
-            android:layout_alignParentStart="true"
-            android:background="#c7c7c7" />
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:text="설정"
-        android:textSize="17sp"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:text="@string/settings_frontpage"
-        android:textSize="18sp"
-        android:textColor="#3273e4"
-        android:textStyle="bold"/>
-
-    <RadioGroup
-        android:id="@+id/setting_first_screen_radio_group"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp">
-        <RadioButton
-            android:id="@+id/setting_first_screen_address"
-            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="버전정보"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:text="v1.0.0"
+                android:textSize="20sp"
+                android:textColor="#686868"
+                android:textStyle="bold"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:buttonTint="#ff4081"
-            android:checked="true"
-            android:text="@string/title_search_by_address"/>
-        <RadioButton
-            android:id="@+id/setting_first_screen_gps"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="#ff4081"
-            android:text="@string/title_search_by_me"
-            android:checked="false"/>
-        <RadioButton
-            android:id="@+id/setting_first_screen_favorite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="#ff4081"
-            android:checked="false"
-            android:text="@string/title_favorite"/>
-    </RadioGroup>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp">
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="13dp">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:layout_alignParentStart="true"
+                android:background="#c7c7c7" />
+        </LinearLayout>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/settings_gps"
+            android:layout_marginLeft="5dp"
+            android:text="설정"
+            android:textSize="17sp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="@string/settings_frontpage"
             android:textSize="18sp"
             android:textColor="#3273e4"
             android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/setting_gps_distance"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="15dp"
+        <RadioGroup
+            android:id="@+id/setting_first_screen_radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp">
+            <RadioButton
+                android:id="@+id/setting_first_screen_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="#ff4081"
+                android:checked="true"
+                android:text="@string/title_search_by_address"/>
+            <RadioButton
+                android:id="@+id/setting_first_screen_gps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="#ff4081"
+                android:text="@string/title_search_by_me"
+                android:checked="false"/>
+            <RadioButton
+                android:id="@+id/setting_first_screen_favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="#ff4081"
+                android:checked="false"
+                android:text="@string/title_favorite"/>
+        </RadioGroup>
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="500m"
-            android:textSize="18sp"
-            android:textColor="#686868"
+            android:layout_marginStart="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_gps"
+                android:textSize="18sp"
+                android:textColor="#3273e4"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/setting_gps_distance"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="500m"
+                android:textSize="18sp"
+                android:textColor="#686868"
+                android:textStyle="bold"/>
+        </RelativeLayout>
+
+        <SeekBar
+            android:id="@+id/setting_gps_distance_seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:max="1500"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="#c7c7c7" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="13dp"
+            android:text="기타"
+            android:textSize="17sp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="문의하기"
+            android:textSize="20sp"
+            android:textColor="#000000"
             android:textStyle="bold"/>
-    </RelativeLayout>
-
-    <SeekBar
-        android:id="@+id/setting_gps_distance_seekbar"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:max="1500"
-        />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp">
-        <View
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1.5dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:background="#c7c7c7" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="#c7c7c7" />
+        </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="13dp"
-        android:text="기타"
-        android:textSize="17sp"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:text="문의하기"
-        android:textSize="20sp"
-        android:textColor="#000000"
-        android:textStyle="bold"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp">
-        <View
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="1.5dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:background="#c7c7c7" />
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="15dp"
-        android:text="제보하기"
-        android:textSize="20sp"
-        android:textColor="#000000"
-        android:textStyle="bold"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp">
-        <View
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
+            android:text="제보하기"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:textStyle="bold"/>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1.5dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:background="#c7c7c7" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="#c7c7c7" />
+        </LinearLayout>
 
-</LinearLayout>
+    </LinearLayout>
+</layout>

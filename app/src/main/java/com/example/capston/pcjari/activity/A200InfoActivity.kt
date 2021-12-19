@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.example.capston.pcjari.base.BaseActivity
 import com.example.capston.pcjari.pc.PCListItem
@@ -20,11 +19,11 @@ import kotlinx.android.synthetic.main.a200_activity_info.*
 /**
  * Created by KangSeungho on 2017-11-01.
  */
-class A200InfoActivity : BaseActivity() {
+class A200InfoActivity : BaseActivity<A200ActivityInfoBinding>() {
+    override fun getLayoutResId() = R.layout.a200_activity_info
+
     var position = 0
     lateinit var pc: PCListItem
-
-    lateinit var ui: A200ActivityInfoBinding
 
     companion object {
         const val POSITION = "position"
@@ -33,7 +32,6 @@ class A200InfoActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ui = DataBindingUtil.setContentView(this, R.layout.a200_activity_info)
 
         position = intent.getIntExtra(POSITION, 0)
         pc = intent.getSerializableExtra(PCITEM) as PCListItem
@@ -43,11 +41,11 @@ class A200InfoActivity : BaseActivity() {
         val imgUrl: String = RetrofitClient.serverUrl + "pc_images/" + pc.icon
         Glide.with(applicationContext).load(imgUrl).into(pc_info_image)
 
-        ui.item = pc
+        binding.item = pc
 
-        ui.pcInfoAddressShowMap.setOnClickListener(locationListener)
-        ui.pcInfoTel.setOnClickListener(telListener)
-        ui.pcInfoSeatShowBtn.setOnClickListener(seatListener)
+        binding.pcInfoAddressShowMap.setOnClickListener(locationListener)
+        binding.pcInfoTel.setOnClickListener(telListener)
+        binding.pcInfoSeatShowBtn.setOnClickListener(seatListener)
     }
 
     // 주소 보기 버튼 클릭

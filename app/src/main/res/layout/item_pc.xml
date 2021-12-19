@@ -1,158 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/pc_img"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_margin="5dp"
-            android:scaleType="centerCrop"
-            android:text="img.." />
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/pc_img"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:scaleType="centerCrop"
+                android:text="img.." />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="73dp"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/pc_title"
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="73dp"
+                        android:layout_margin="5dp"
                         android:layout_weight="1"
-                        android:text="PC방명"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/pc_address"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginTop="4dp"
-                        android:text="주소"
-                        android:textSize="15sp" />
+                        <TextView
+                            android:id="@+id/pc_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="PC방명"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/pc_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginTop="4dp"
+                            android:text="주소"
+                            android:textSize="15sp" />
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp">
+                                <TextView
+                                    android:id="@+id/pc_price"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/tag"
+                                    android:text="시간당 요금"
+                                    android:textSize="11sp"
+                                    android:textColor="@color/colorPrimaryDark"/>
+                                <TextView
+                                    android:id="@+id/pc_card"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:background="@drawable/tag"
+                                    android:text="카드가능"
+                                    android:textSize="11sp"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    android:visibility="visible"/>
+                            </LinearLayout>
+                            <TextView
+                                android:id="@+id/pc_dist"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:text="80m"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:visibility="visible"/>
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
                     <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        android:layout_width="64dp"
+                        android:layout_height="73dp"
+                        android:layout_margin="5dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+                            <TextView
+                                android:id="@+id/pc_spaceSeat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentTop="true"
+                                android:text="20"
+                                android:textSize="35sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp">
+                            android:layout_alignParentBottom="true"
+                            android:gravity="center">
+
                             <TextView
-                                android:id="@+id/pc_price"
+                                android:id="@+id/pc_usingSeat"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:background="@drawable/tag"
-                                android:text="시간당 요금"
-                                android:textSize="11sp"
-                                android:textColor="@color/colorPrimaryDark"/>
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="5dp"
+                                android:text="000" />
+
                             <TextView
-                                android:id="@+id/pc_card"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="5dp"
-                                android:background="@drawable/tag"
-                                android:text="카드가능"
-                                android:textSize="11sp"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:visibility="visible"/>
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="5dp"
+                                android:text="/" />
+
+                            <TextView
+                                android:id="@+id/pc_totalSeat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignEnd="@+id/textView_pcLeft"
+                                android:layout_alignTop="@+id/linearLayout"
+                                android:layout_gravity="center_horizontal"
+                                android:text="000" />
+
                         </LinearLayout>
-                        <TextView
-                            android:id="@+id/pc_dist"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:text="80m"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:visibility="visible"/>
+
                     </RelativeLayout>
 
                 </LinearLayout>
-
-                <RelativeLayout
-                    android:layout_width="64dp"
-                    android:layout_height="73dp"
-                    android:layout_margin="5dp">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center">
-                        <TextView
-                            android:id="@+id/pc_spaceSeat"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentTop="true"
-                            android:text="20"
-                            android:textSize="35sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:gravity="center">
-
-                        <TextView
-                            android:id="@+id/pc_usingSeat"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginBottom="5dp"
-                            android:text="000" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginBottom="5dp"
-                            android:text="/" />
-
-                        <TextView
-                            android:id="@+id/pc_totalSeat"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignEnd="@+id/textView_pcLeft"
-                            android:layout_alignTop="@+id/linearLayout"
-                            android:layout_gravity="center_horizontal"
-                            android:text="000" />
-
-                    </LinearLayout>
-
-                </RelativeLayout>
-
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-    <ImageView
-        android:id="@+id/favoriteMark"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:visibility="visible"
-        app:srcCompat="@drawable/ic_star_mark" />
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/favoriteMark"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_star_mark" />
+    </RelativeLayout>
+</layout>
