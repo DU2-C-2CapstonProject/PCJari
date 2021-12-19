@@ -18,8 +18,8 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
     val TAG = BaseActivity.TAG
     val TITLE = "[${this.javaClass.simpleName}]"
 
-    private var _binding: ViewDataBinding? = null
-    protected val binding: ViewDataBinding get() = _binding!!
+    private var _binding: T? = null
+    protected val binding: T get() = _binding!!
 
     // region override =============================
 
@@ -32,7 +32,7 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = DataBindingUtil.inflate<T>(inflater, getLayoutResId(), container, false)
+        _binding = DataBindingUtil.inflate(inflater, getLayoutResId(), container, false)
         logD("onCreateView")
 
         return binding.root

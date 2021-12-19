@@ -24,49 +24,45 @@ class F140SettingFragment : BaseFragment<F140FragmentSettingBinding>() {
 
     override fun getLayoutResId() = R.layout.f140_fragment_setting
 
-    lateinit var radio_group : RadioGroup
-    lateinit var gps_distance_seekbar : SeekBar
-    lateinit var gps_distance : TextView
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        activity?.title = "정보"
-        val view = binding.root
+        super.onCreateView(inflater, container, savedInstanceState)
 
         main = activity as A100MainActivity
 
-        radio_group = view.setting_first_screen_radio_group
-
-        gps_distance = view.setting_gps_distance
-        gps_distance_seekbar = view.setting_gps_distance_seekbar
+        activity?.title = "정보"
 
         seekbarSetting()
 
-        radio_group.setOnCheckedChangeListener(firstFragmentSetting)
-        when (main.position) {
-            0 -> radio_group.check(R.id.setting_first_screen_address)
-            1 -> radio_group.check(R.id.setting_first_screen_gps)
-            2 -> radio_group.check(R.id.setting_first_screen_favorite)
+        binding.settingFirstScreenRadioGroup.apply {
+            setOnCheckedChangeListener(firstFragmentSetting)
+
+            when (main.position) {
+                0 -> check(R.id.setting_first_screen_address)
+                1 -> check(R.id.setting_first_screen_gps)
+                2 -> check(R.id.setting_first_screen_favorite)
+            }
         }
-        return view
+
+        return binding.root
     }
 
     @SuppressLint("SetTextI18n")
     fun seekbarSetting() {
-        gps_distance_seekbar.progress = main.dist - 5
+        binding.settingGpsDistanceSeekbar.progress = main.dist - 5
 
         if (main.dist >= 10) {
-            gps_distance.text = "${main.dist.toDouble() / 10}km"
+            binding.settingGpsDistance.text = "${main.dist.toDouble() / 10}km"
         } else {
-            gps_distance.text = "${main.dist * 100}m"
+            binding.settingGpsDistance.text = "${main.dist * 100}m"
         }
 
-        gps_distance_seekbar.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
+        binding.settingGpsDistanceSeekbar.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
                 val dist = seekBar.progress + 5
                 if (dist >= 10) {
-                    gps_distance.text = "${dist.toDouble() / 10}km"
+                    binding.settingGpsDistance.text = "${dist.toDouble() / 10}km"
                 } else {
-                    gps_distance.text = "${dist * 100}m"
+                    binding.settingGpsDistance.text = "${dist * 100}m"
                 }
             }
 

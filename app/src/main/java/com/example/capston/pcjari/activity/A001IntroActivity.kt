@@ -30,9 +30,9 @@ class A001IntroActivity : BaseActivity<A001ActivityIntroBinding>() {
         val actionBar = supportActionBar
         actionBar?.hide()
 
-        val intro = findViewById<View?>(R.id.intro_gif) as ImageView
-        val gifImage = GlideDrawableImageViewTarget(intro)
-        Glide.with(this).load(R.drawable.intro).into(gifImage)
+        Glide.with(this)
+            .load(R.drawable.intro)
+            .into(GlideDrawableImageViewTarget(binding.introGif))
     }
 
     override fun onResume() {
