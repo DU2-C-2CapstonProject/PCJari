@@ -5,10 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.capston.pcjari.base.BaseActivity
-import com.example.capston.pcjari.pc.PCListResponse
 import com.example.capston.pcjari.R
+import com.example.capston.pcjari.base.BaseActivity
 import com.example.capston.pcjari.databinding.F130FragmentFavoriteBinding
+import com.example.capston.pcjari.pc.PCListResponse
 import kotlinx.android.synthetic.main.f130_fragment_favorite.view.*
 import kotlinx.android.synthetic.main.include_pc_list.view.*
 import retrofit2.Call
@@ -21,8 +21,8 @@ import retrofit2.Response
 class F130MainFavoriteFragment : MainBaseFragment<F130FragmentFavoriteBinding>(R.layout.f130_fragment_favorite) {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
+        activity?.title = getString(R.string.title_favorite)
 
-        requireActivity().title = "즐겨찾기"
         val view = binding.root
 
         initUI(view)

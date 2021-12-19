@@ -7,12 +7,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
-import com.example.capston.pcjari.*
-import com.example.capston.pcjari.base.BaseActivity
+import android.widget.TextView
+import com.example.capston.pcjari.R
 import com.example.capston.pcjari.activity.A111LocationActivity
-import com.example.capston.pcjari.activity.a111_location.location.LocationListItem
 import com.example.capston.pcjari.activity.A111LocationActivity.Companion.LOCATION_INFO
+import com.example.capston.pcjari.activity.a111_location.location.LocationListItem
+import com.example.capston.pcjari.base.BaseActivity
 import com.example.capston.pcjari.databinding.F110FragmentAddressBinding
 import com.example.capston.pcjari.pc.PCListResponse
 import kotlinx.android.synthetic.main.f110_fragment_address.view.*
@@ -34,8 +34,8 @@ class F110MainAddressFragment : MainBaseFragment<F110FragmentAddressBinding>(R.l
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
+        activity?.title = getString(R.string.title_search_by_address)
 
-        requireActivity().title = "주소로 찾기"
         val view = binding.root
 
         initUI(view)

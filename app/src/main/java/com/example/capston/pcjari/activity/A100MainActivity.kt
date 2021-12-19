@@ -6,19 +6,16 @@ import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
+import com.example.capston.pcjari.R
 import com.example.capston.pcjari.base.BaseActivity
+import com.example.capston.pcjari.databinding.A100ActivityMainBinding
 import com.example.capston.pcjari.pc.PCListItem
-import com.example.capston.pcjari.activity.a100_main.F140SettingFragment
-import com.example.capston.pcjari.activity.a100_main.F110MainAddressFragment
-import com.example.capston.pcjari.activity.a100_main.F130MainFavoriteFragment
-import com.example.capston.pcjari.activity.a100_main.F120MainGpsFragment
 import com.example.capston.pcjari.util.db.DataBaseHelper
 import com.example.capston.pcjari.util.db.DataBaseTables.CreateDB_favorite
 import com.example.capston.pcjari.util.db.DataBaseTables.CreateDB_setting
-import com.example.capston.pcjari.R
-import com.example.capston.pcjari.databinding.A100ActivityMainBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.a100_activity_main.*
 import java.util.*
 
 /**
@@ -26,6 +23,8 @@ import java.util.*
  */
 class A100MainActivity : BaseActivity<A100ActivityMainBinding>() {
     override fun getLayoutResId() = R.layout.a100_activity_main
+
+    var controller: NavController? = null
 
     lateinit var favorite: ArrayList<Int>
     var position = 0
@@ -36,33 +35,16 @@ class A100MainActivity : BaseActivity<A100ActivityMainBinding>() {
     lateinit var pc: PCListItem
 
     lateinit var DBHelper: DataBaseHelper
-    private val mOnNavigationItemSelectedListener: BottomNavigationView.OnNavigationItemSelectedListener? = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        when (item.itemId) {
-            R.id.navigation_search_by_address -> {
-                supportFragmentManager.beginTransaction().replace(R.id.location_recyclerview, F110MainAddressFragment()).commit()
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_search_by_me -> {
-                supportFragmentManager.beginTransaction().replace(R.id.location_recyclerview, F120MainGpsFragment()).commit()
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_favorite -> {
-                supportFragmentManager.beginTransaction().replace(R.id.location_recyclerview, F130MainFavoriteFragment()).commit()
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_information -> {
-                supportFragmentManager.beginTransaction().replace(R.id.location_recyclerview, F140SettingFragment()).commit()
-                return@OnNavigationItemSelectedListener true
-            }
-        }
-        false
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        supportFragmentManager.beginTransaction().add(R.id.location_recyclerview, F110MainAddressFragment()).commit()
 
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        // 네비게이션 처리
+        controller = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main)?.findNavController()
+        controller?.run {
+            binding.navigation.setupWithNavController(this)
+        }
+
         DBHelper = DataBaseHelper(applicationContext)
 
         db = DBHelper.writableDatabase
@@ -91,13 +73,15 @@ class A100MainActivity : BaseActivity<A100ActivityMainBinding>() {
         dist = results.getInt(2)
         results.close()
 
-        val prev = navigation.menu.getItem(position)
-        prev.isChecked = true
-
-        when (position) {
-            0 -> supportFragmentManager.beginTransaction().replace(R.id.location_recyclerview, F110MainAddressFragment()).commit()
-            1 -> supportFragmentManager.beginTransaction().replace(R.id.location_recyclerview, F120MainGpsFragment()).commit()
-            2 -> supportFragmentManager.beginTransaction().replace(R.id.location_recyclerview, F130MainFavoriteFragment()).commit()
+        controller?.run {
+            val navGraph = navInflater.inflate(R.navigation.main_navigation)
+            navGraph.startDestination = when(position) {
+                0 -> R.id.navigation_search_by_address
+                1 -> R.id.navigation_search_by_me
+                2 -> R.id.navigation_favorite
+                else -> R.id.navigation_search_by_address
+            }
+            graph = navGraph
         }
     }
 

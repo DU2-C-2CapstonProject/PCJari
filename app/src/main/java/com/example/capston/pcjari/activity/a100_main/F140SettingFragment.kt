@@ -8,13 +8,11 @@ import android.view.ViewGroup
 import android.widget.RadioGroup
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
-import android.widget.TextView
+import com.example.capston.pcjari.R
 import com.example.capston.pcjari.activity.A100MainActivity
 import com.example.capston.pcjari.base.BaseFragment
-import com.example.capston.pcjari.R
 import com.example.capston.pcjari.databinding.F140FragmentSettingBinding
 import com.example.capston.pcjari.util.db.DataBaseTables.CreateDB_setting
-import kotlinx.android.synthetic.main.f140_fragment_setting.view.*
 
 /**
  * Created by KangSeungho on 2017-10-27.
@@ -26,10 +24,9 @@ class F140SettingFragment : BaseFragment<F140FragmentSettingBinding>() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
+        activity?.title = getString(R.string.title_information)
 
         main = activity as A100MainActivity
-
-        activity?.title = "정보"
 
         seekbarSetting()
 

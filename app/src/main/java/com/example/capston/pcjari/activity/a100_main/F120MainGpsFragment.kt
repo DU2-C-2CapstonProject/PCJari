@@ -5,7 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.capston.pcjari.*
+import com.example.capston.pcjari.R
 import com.example.capston.pcjari.base.BaseActivity
 import com.example.capston.pcjari.databinding.F120FragmentGpsBinding
 import com.example.capston.pcjari.pc.PCListItem
@@ -27,8 +27,8 @@ class F120MainGpsFragment : MainBaseFragment<F120FragmentGpsBinding>(R.layout.f1
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
+        activity?.title = getString(R.string.title_search_by_me)
 
-        requireActivity().title = "내 주변"
         val view = binding.root
 
         initUI(view)

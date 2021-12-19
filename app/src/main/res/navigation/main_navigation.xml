@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation">
+
+    <fragment
+        android:id="@+id/navigation_search_by_address"
+        android:name="com.example.capston.pcjari.activity.a100_main.F110MainAddressFragment"
+        android:label="@string/title_search_by_address"
+        tools:layout="@layout/f110_fragment_address" />
+    <fragment
+        android:id="@+id/navigation_search_by_me"
+        android:name="com.example.capston.pcjari.activity.a100_main.F120MainGpsFragment"
+        android:label="@string/title_search_by_me"
+        tools:layout="@layout/f120_fragment_gps" />
+    <fragment
+        android:id="@+id/navigation_favorite"
+        android:name="com.example.capston.pcjari.activity.a100_main.F130MainFavoriteFragment"
+        android:label="@string/title_favorite"
+        tools:layout="@layout/f130_fragment_favorite" />
+    <fragment
+        android:id="@+id/navigation_information"
+        android:name="com.example.capston.pcjari.activity.a100_main.F140SettingFragment"
+        android:label="@string/title_information"
+        tools:layout="@layout/f140_fragment_setting" />
+</navigation>
