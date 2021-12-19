@@ -12,14 +12,17 @@ import android.widget.TextView
 import com.example.capston.pcjari.activity.A100MainActivity
 import com.example.capston.pcjari.base.BaseFragment
 import com.example.capston.pcjari.R
+import com.example.capston.pcjari.databinding.F140FragmentSettingBinding
 import com.example.capston.pcjari.util.db.DataBaseTables.CreateDB_setting
 import kotlinx.android.synthetic.main.f140_fragment_setting.view.*
 
 /**
  * Created by KangSeungho on 2017-10-27.
  */
-class F140SettingFragment : BaseFragment() {
+class F140SettingFragment : BaseFragment<F140FragmentSettingBinding>() {
     lateinit var main: A100MainActivity
+
+    override fun getLayoutResId() = R.layout.f140_fragment_setting
 
     lateinit var radio_group : RadioGroup
     lateinit var gps_distance_seekbar : SeekBar
@@ -27,7 +30,7 @@ class F140SettingFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         activity?.title = "정보"
-        val view = inflater.inflate(R.layout.f140_fragment_setting, container, false)
+        val view = binding.root
 
         main = activity as A100MainActivity
 

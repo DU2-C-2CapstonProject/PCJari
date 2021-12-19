@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.capston.pcjari.*
 import com.example.capston.pcjari.base.BaseActivity
+import com.example.capston.pcjari.databinding.F120FragmentGpsBinding
 import com.example.capston.pcjari.pc.PCListItem
 import com.example.capston.pcjari.pc.PCListResponse
 import com.example.capston.pcjari.util.GPSTracker
@@ -20,7 +21,7 @@ import java.util.*
 /**
  * Created by KangSeungho on 2017-10-27.
  */
-class F120MainGpsFragment : MainBaseFragment() {
+class F120MainGpsFragment : MainBaseFragment<F120FragmentGpsBinding>(R.layout.f120_fragment_gps) {
     private lateinit var gps: GPSTracker
     private lateinit var dist: String
 
@@ -28,7 +29,7 @@ class F120MainGpsFragment : MainBaseFragment() {
         super.onCreateView(inflater, container, savedInstanceState)
 
         requireActivity().title = "내 주변"
-        val view = inflater.inflate(R.layout.f120_fragment_gps, container, false)
+        val view = binding.root
 
         initUI(view)
         setListener()

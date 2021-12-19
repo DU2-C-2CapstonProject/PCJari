@@ -13,6 +13,7 @@ import com.example.capston.pcjari.base.BaseActivity
 import com.example.capston.pcjari.activity.A111LocationActivity
 import com.example.capston.pcjari.activity.a111_location.location.LocationListItem
 import com.example.capston.pcjari.activity.A111LocationActivity.Companion.LOCATION_INFO
+import com.example.capston.pcjari.databinding.F110FragmentAddressBinding
 import com.example.capston.pcjari.pc.PCListResponse
 import kotlinx.android.synthetic.main.f110_fragment_address.view.*
 import kotlinx.android.synthetic.main.include_pc_list.view.*
@@ -23,7 +24,7 @@ import retrofit2.Response
 /**
  * Created by KangSeungho on 2017-10-27.
  */
-class F110MainAddressFragment : MainBaseFragment() {
+class F110MainAddressFragment : MainBaseFragment<F110FragmentAddressBinding>(R.layout.f110_fragment_address) {
     companion object {
         private var location = LocationListItem("경기도", "성남시 수정구", "복정동")
     }
@@ -35,7 +36,7 @@ class F110MainAddressFragment : MainBaseFragment() {
         super.onCreateView(inflater, container, savedInstanceState)
 
         requireActivity().title = "주소로 찾기"
-        val view = inflater.inflate(R.layout.f110_fragment_address, container, false)
+        val view = binding.root
 
         initUI(view)
         setListener()

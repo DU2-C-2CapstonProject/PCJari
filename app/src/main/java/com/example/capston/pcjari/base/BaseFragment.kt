@@ -5,17 +5,26 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 
 /**
  * Created by KangSeungho on 2020-07-29.
  * Fragment에서 공통으로 사용하는 메소드, 변수를 정의
  */
-open class BaseFragment : Fragment() {
+abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
     val TAG = BaseActivity.TAG
-    var TITLE = "[${this.javaClass.simpleName}]"
+    val TITLE = "[${this.javaClass.simpleName}]"
+
+    private var _binding: ViewDataBinding? = null
+    protected val binding: ViewDataBinding get() = _binding!!
 
     // region override =============================
+
+    @LayoutRes
+    abstract fun getLayoutResId(): Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,11 +32,10 @@ open class BaseFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = super.onCreateView(inflater, container, savedInstanceState)
-
+        _binding = DataBindingUtil.inflate<T>(inflater, getLayoutResId(), container, false)
         logD("onCreateView")
 
-        return view
+        return binding.root
     }
 
     override fun onResume() {

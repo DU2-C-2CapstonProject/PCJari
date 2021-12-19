@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.*
+import androidx.annotation.LayoutRes
+import androidx.databinding.ViewDataBinding
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.capston.pcjari.activity.A200InfoActivity
 import com.example.capston.pcjari.activity.A100MainActivity
@@ -17,8 +19,10 @@ import com.example.capston.pcjari.util.db.DataBaseTables
 import com.example.capston.pcjari.util.retrofit.RetrofitClient
 import com.example.capston.pcjari.util.retrofit.RetrofitNetwork
 
-open class MainBaseFragment : BaseFragment() {
+open class MainBaseFragment<T : ViewDataBinding>(@LayoutRes val layoutId: Int) : BaseFragment<T>() {
     lateinit var main : A100MainActivity
+
+    override fun getLayoutResId() = layoutId
 
     interface RefreshListener {
         fun done(name: String?)
