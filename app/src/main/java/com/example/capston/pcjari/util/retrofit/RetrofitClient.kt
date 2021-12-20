@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    const val serverUrl = "http://sosocom.iptime.org:80/php/"
+    const val serverUrl = "https://sosocom.duckdns.org/php/"
 
     private var instance : RetrofitNetwork? = null
 
