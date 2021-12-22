@@ -9,73 +9,73 @@ import kotlin.math.roundToInt
 /**
  * Created by KangSeungho on 2017-09-25.
  */
-class PCListItem : Serializable {
+data class PCListItem(
     @SerializedName("id")
-    var pcID = 0
+    val pcID: Int,
 
     @SerializedName("notice")
-    var notice: String? = null
+    val notice: String?,
 
     @SerializedName("url")
-    var icon: String? = null
+    val icon: String?,
 
     @SerializedName("name")
-    var title: String? = null
+    val title: String,
 
     @SerializedName("si")
-    var si: String? = null
+    val si: String,
 
     @SerializedName("gu")
-    var gu: String? = null
+    val gu: String,
 
     @SerializedName("dong")
-    var dong: String? = null
+    val dong: String,
 
     @SerializedName("etc_juso")
-    var etc_juso: String? = null
+    val etc_juso: String? = null,
 
     @SerializedName("tel")
-    var tel: String? = null
+    val tel: String? = null,
 
     @SerializedName("cpu")
-    var cpu: String? = null
+    val cpu: String? = null,
 
     @SerializedName("ram")
-    var ram: String? = null
+    val ram: String? = null,
 
     @SerializedName("vga")
-    var vga: String? = null
+    val vga: String? = null,
 
     @SerializedName("peripheral")
-    var peripheral: String? = null
+    val peripheral: String? = null,
 
     @SerializedName("price")
-    var price : String? = null
+    val price : String? = null,
 
     @SerializedName("card")
-    var isCard = false
+    val isCard: Boolean,
 
     @SerializedName("seatlength")
-    var seatLength = 0
+    val seatLength: Int,
 
     @SerializedName("x")
-    var location_x = 0.0
+    val location_x: Double,
 
     @SerializedName("y")
-    var location_y = 0.0
+    val location_y: Double,
 
     @SerializedName("total")
-    var totalSeat = 0
+    val totalSeat: Int,
 
     @SerializedName("space")
-    var spaceSeat = 0
+    val spaceSeat: Int,
 
     @SerializedName("using")
-    var usingSeat = 0
+    val usingSeat: Int,
 
     @SerializedName("distance")
-    var dist = 0.0
-
+    val dist: Double
+) : Serializable {
     fun distToString() = when(dist) {
         0.0 -> "${dist * 1000}m"
         else -> "${(dist * 10).roundToInt().toDouble() / 10}km"

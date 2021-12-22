@@ -12,6 +12,7 @@ import com.example.capston.pcjari.activity.A200InfoActivity
 import com.example.capston.pcjari.base.BaseFragment
 import com.example.capston.pcjari.databinding.F120FragmentGpsBinding
 import com.example.capston.pcjari.pc.PCListAdapter
+import com.example.capston.pcjari.pc.PCListItem
 import com.example.capston.pcjari.util.Preferences
 import kotlinx.android.synthetic.main.f120_fragment_gps.view.*
 import kotlinx.android.synthetic.main.include_pc_list.view.*
@@ -64,19 +65,19 @@ class F120MainGpsFragment : BaseFragment<F120FragmentGpsBinding>() {
             startActivity(intent)
         }
 
-        pcListAdapter.setOnItemLongClickListener {
-            when(!Preferences.favorite_list.contains(it.pcID)) {
+        pcListAdapter.setOnItemLongClickListener{ position: Int, Item: PCListItem ->
+            when(!Preferences.favorite_list.contains(Item.pcID)) {
                 true -> {
-                    Preferences.addFavorite(it.pcID)
+                    Preferences.addFavorite(Item.pcID)
                     Toast.makeText(context, "즐겨찾기에 추가 되었습니다.", Toast.LENGTH_SHORT).show()
                 }
                 false -> {
-                    Preferences.removeFavorite(it.pcID)
+                    Preferences.removeFavorite(Item.pcID)
                     Toast.makeText(context, "즐겨찾기에서 삭제 되었습니다.", Toast.LENGTH_SHORT).show()
                 }
             }
 
-            pcListAdapter.notifyDataSetChanged()
+            pcListAdapter.notifyItemChanged(position)
         }
 
         binding.pcListLayout.pcListview.layoutManager = LinearLayoutManager(activity)
@@ -89,10 +90,7 @@ class F120MainGpsFragment : BaseFragment<F120FragmentGpsBinding>() {
         }
 
         vm.pcList.observe(viewLifecycleOwner) {
-            pcListAdapter.run {
-                setItem(it)
-                notifyDataSetChanged()
-            }
+            pcListAdapter.submitList(it)
         }
     }
 }
