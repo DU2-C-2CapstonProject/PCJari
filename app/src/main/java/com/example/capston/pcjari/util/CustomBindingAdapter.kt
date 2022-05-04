@@ -9,8 +9,8 @@ import com.example.capston.pcjari.util.retrofit.RetrofitClient
 import jp.wasabeef.glide.transformations.CropCircleTransformation
 
 @BindingAdapter("android:visibleIf")
-fun View.setVisibleIf(visible: Boolean) {
-    isVisible = visible
+fun View.setVisibleIf(visible: Boolean?) {
+    isVisible = visible ?: false
 }
 
 @BindingAdapter(value = ["pcIcon"])
